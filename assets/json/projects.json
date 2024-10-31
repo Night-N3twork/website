@@ -1,0 +1,76 @@
+[
+    {
+        "name": "Space",
+        "description": "Space is a next-gen proxy that has revolutionized the proxy scene with its incredible UI, functionality, and speeds. Space is the flagship proxy for Night Network using never before seen blob cloaking, account system, and more!",
+        "image": "/assets/imgs/projects/space.jpeg",
+        "icon": "/assets/imgs/icons/space.webp",
+        "url": "https://gointospace.app",
+        "color": "#6b10fe"
+    },
+    {
+        "name": "DayLight",
+        "description": "Daylight is a simplistic proxy with smooth animations, fast speeds, custom themes, and custom extensions. In addition, Daylight has a vertical tab system in a similar style to arc.",
+        "image": "/assets/imgs/projects/daylight.png",
+        "icon": "/assets/imgs/icons/daylight.png", 
+        "color": "#fab81a"
+    },
+    {
+        "name": "Nova",
+        "icon":"/assets/imgs/icons/nova.png",
+        "description": "Nova is an arc-like proxy with a sleek, intuitive user interface that offers extensive customization options and a wide array of useful features",
+        "image": "/assets/imgs/projects/nova.png",
+        "color": "#97adf4",
+        "url": "https://novatabs.net"
+    },
+    {
+        "name": "Umbra",
+        "description": "Umbra is a music player with custom audio visualization, cover rendering, playlist support and sharing, and more. Umbra also has fast speeds and high-quality music.",
+        "image": "/assets/imgs/projects/umbra.png",
+        "icon": "/assets/imgs/icons/umbra.png",
+        "color": "#9807f9"
+    },
+    {
+        "name": "Nightmare",
+        "description": "The Most Compatible, Open-Source UI and Plugin System for the Web, Made to support all your Favorite Platforms, and support Universal Systems!",
+        "icon": "/assets/imgs/icons/nightmare.png",
+        "color": "#a50000"
+    },
+    {
+        "name": "DayDream X",
+        "icon": "/assets/imgs/icons/daydream.png",
+        "description": "The Ultimate Opera GX remake in HTML CSS JS, and Nightmare.",
+        "color": "#8409c7"
+    },
+    {
+        "name": "Elysium",
+        "description": "Elysium is a games focused proxy. With its smooth animations, high-quality games, and fast proxy, Elysium will be an incredible game site.",
+        "image": "/assets/imgs/projects/elysium.png",
+        "icon": "/assets/imgs/icons/elysium.png",
+        "color": "#814bc4"
+    },
+    {
+        "name": "ToDo",
+        "icon": "/assets/imgs/icons/todo.png",
+        "description": "Todo is an agenda and planner with custom dates, themes, and more. But that’s not all, since todo is secretly a proxy with sleek and simplistic UI, themes, umbraMax built-in, and even the way to access the proxy from the site changes every month!",
+        "image": "/assets/imgs/projects/todo.png",
+        "color": "#379b70"
+    },
+    {
+        "name": "Raindrop",
+        "icon": "/assets/imgs/icons/raindrop.png",
+        "description": "Raindrop is a proxy intended to support all platforms with never-before-seen speeds, revolutionizing the way users experience seamless and lightning-fast connectivity across a diverse range of devices and applications.",
+        "color": "#606060"
+    },
+    {
+        "name":"EclipseOS",
+        "icon":"/assets/imgs/icons/eclipse.png",
+        "description": "Super Project: Eclipse OS is a website that competes with some of the greatest sites ever. It is an entire webOS built in with DayDream X, UmbraMax, a file browser, and more! Coming soon.",
+        "color": "#8600ff"
+    },
+    {
+        "name": "Aurora",
+        "description": "TO BE DEVELOPED",
+        "icon": "/assets/imgs/icons/aurora.png",
+        "color": "#03b096"
+    }
+]

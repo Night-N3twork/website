@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Amplify",
+        "pfp": "/assets/imgs/devs/amp.jpg",
+        "link": "https://notamplify.online",
+        "color": "#aa00ff",
+        "title": "Fullstack Developer, Owner"
+    },
+    {
+        "name": "KDust7",
+        "pfp": "/assets/imgs/devs/dust.png",
+        "link": "https://guns.lol/kdust7",
+        "color": "#8fdcf9",
+        "title": "Fullstack Developer, Co-Owner"
+    },
+    {
+        "name": "Crllect",
+        "pfp": "/assets/imgs/devs/crllect.png",
+        "link": "https://github.com/crllect",
+        "color": "#c46c86",
+        "title": "Fullstack Developer, Administrator"
+    },
+    {
+        "name": "Silvereen",
+        "pfp": "/assets/imgs/devs/silvereen.png",
+        "link": "https://silvereen.net",
+        "color": "#00ff1a",
+        "title": "Fullstack Developer, Business Manager"
+    },
+    {
+        "name": "Technoalpha",
+        "pfp": "/assets/imgs/devs/technoalpha.webp",
+        "link": "https://guns.lol/technoalpha",
+        "color": "#e99274",
+        "title": "UI/UX Designer, Link Deployer"
+    },
+    {
+        "name": "Skye",
+        "pfp": "/assets/imgs/devs/skye.webp",
+        "link": "",
+        "color": "#d98fda",
+        "title": "Frontend Developer, Co-Owner"
+    }
+]
