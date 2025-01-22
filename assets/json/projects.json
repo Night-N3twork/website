@@ -8,19 +8,19 @@
         "color": "#6b10fe"
     },
     {
+        "name": "DayDream X",
+        "icon": "/assets/imgs/icons/daydream.png",
+        "description": "The Ultimate Opera GX remake in HTML CSS JS, and Nightmare.",
+        "color": "#8409c7",
+        "url": "https://daydreamx.pro",
+        "image": "/assets/imgs/projects/daydream.png"
+    },
+    {
         "name": "DayLight",
         "description": "Daylight is a simplistic proxy with smooth animations, fast speeds, custom themes, and custom extensions. In addition, Daylight has a vertical tab system in a similar style to arc.",
         "image": "/assets/imgs/projects/daylight.png",
         "icon": "/assets/imgs/icons/daylight.png", 
         "color": "#fab81a"
-    },
-    {
-        "name": "Nova",
-        "icon":"/assets/imgs/icons/nova.png",
-        "description": "Nova is an arc-like proxy with a sleek, intuitive user interface that offers extensive customization options and a wide array of useful features",
-        "image": "/assets/imgs/projects/nova.png",
-        "color": "#97adf4",
-        "url": "https://novatabs.net"
     },
     {
         "name": "Umbra",
@@ -30,23 +30,10 @@
         "color": "#9807f9"
     },
     {
-        "name": "Nightmare",
+        "name": "NightmareJS",
         "description": "The Most Compatible, Open-Source UI and Plugin System for the Web, Made to support all your Favorite Platforms, and support Universal Systems!",
         "icon": "/assets/imgs/icons/nightmare.png",
         "color": "#a50000"
-    },
-    {
-        "name": "DayDream X",
-        "icon": "/assets/imgs/icons/daydream.png",
-        "description": "The Ultimate Opera GX remake in HTML CSS JS, and Nightmare.",
-        "color": "#8409c7"
-    },
-    {
-        "name": "Elysium",
-        "description": "Elysium is a games focused proxy. With its smooth animations, high-quality games, and fast proxy, Elysium will be an incredible game site.",
-        "image": "/assets/imgs/projects/elysium.png",
-        "icon": "/assets/imgs/icons/elysium.png",
-        "color": "#814bc4"
     },
     {
         "name": "ToDo",
@@ -56,10 +43,10 @@
         "color": "#379b70"
     },
     {
-        "name": "Raindrop",
-        "icon": "/assets/imgs/icons/raindrop.png",
-        "description": "Raindrop is a proxy intended to support all platforms with never-before-seen speeds, revolutionizing the way users experience seamless and lightning-fast connectivity across a diverse range of devices and applications.",
-        "color": "#606060"
+        "name": "SledgeHammer",
+        "icon": "/assets/imgs/icons/sledgehammer.png",
+        "description": "SledgeHammer is a powerful, fast, and secure proxy with a system that can bypass any block. It uses the latest in ServiceWorker technology to provide speeds comparable to Scramjet and the best security, while allowing you to also use a fixed copy of Rammerhead, which is provided as a SH core by default.",
+        "color": "#686868"
     },
     {
         "name":"EclipseOS",

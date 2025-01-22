@@ -1,43 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home | Night Network</title>
+    <link rel="icon" type="image/x-icon" href="/assets/imgs/logo.png" />
+    <meta name="description" content="About Us" />
+    <meta
+      name="keywords"
+      content="Portfolio, About Me, Web Developers, Fullstack Developers, Organizations, Projects, Homepage"
+    />
+    <link rel="stylesheet" type="text/css" href="/assets/css/index.css" />
+    <script
+      src="https://kit.fontawesome.com/1964ee1753.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-QK55DE85Q5"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Home | Night Network</title>
-  <link rel="icon" type="image/x-icon" href="/assets/imgs/logo.png" />
-  <meta name="description" content="About Us" />
-  <meta name="keywords"
-    content="Portfolio, About Me, Web Developers, Fullstack Developers, Organizations, Projects, Homepage" />
-  <link rel="stylesheet" type="text/css" href="/assets/css/index.css" />
-  <script src="https://kit.fontawesome.com/1964ee1753.js" crossorigin="anonymous"></script>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QK55DE85Q5"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+      gtag("config", "G-QK55DE85Q5");
+    </script>
+  </head>
 
-    gtag('config', 'G-QK55DE85Q5');
-  </script>
-</head>
-
-<body>
-  <div class="bg-container">
-    <div id="background"></div>
-    <div class="aur_cont">
-      <span class="aur aur_1"></span>
-      <span class="aur aur_2"></span>
-      <span class="aur aur_3"></span>
-      <span class="aur aur_4"></span>
-      <span class="aur aur_5"></span>
-      <span class="aur aur_6"></span>
-      <span class="aur aur_7"></span>
-      <span class="aur aur_8"></span>
-      <span class="aur aur_9"></span>
-      <span class="aur aur_10"></span>
+  <body>
+    <div class="bg-container">
+      <div id="background"></div>
+      <div class="aur_cont">
+        <span class="aur aur_1"></span>
+        <span class="aur aur_2"></span>
+        <span class="aur aur_3"></span>
+        <span class="aur aur_4"></span>
+        <span class="aur aur_5"></span>
+        <span class="aur aur_6"></span>
+        <span class="aur aur_7"></span>
+        <span class="aur aur_8"></span>
+        <span class="aur aur_9"></span>
+        <span class="aur aur_10"></span>
+      </div>
     </div>
-  </div><!--
+    <!--
   <div class="nav">
     <div class="navItemsParent">
       <a href="/">
@@ -61,59 +71,104 @@
 
   </div>-->
 
-  <div class="nav">
-    <a href="/">
-      <img class="navImage" src="/assets/imgs/logo.png" />
-    </a>
+    <div class="nav">
+      <a href="/">
+        <img class="navImage" src="/assets/imgs/logo.png" />
+      </a>
 
-    <div class="middle-div">
-      <div class="date"></div>
-      <div class="time"></div>
-    </div>
+      <div class="right-div">
+        <a href="/" class="navItem"
+          ><span class="material-symbols-outlined">home</span>
+          <span class="navText" data-text="Home">Home</span></a
+        >
 
-    <div class="right-div">
-      <a href="/" class="navItem"><span class="material-symbols-outlined">home</span> <span class="navText"
-          data-text="Home">Home</span></a>
-
-      <a href="/projects/" class="navItem"><span class="material-symbols-outlined">
-          code
-        </span> <span class="navText" data-text="Projects">Projects</span></a>
-      <a href="/devs/" class="navItem"><span class="material-symbols-outlined">
-          people
-        </span> <span class="navText" data-text="Developers">Developers</span></a>
-      <a href="/supporters/" class="navItem"><span class="material-symbols-outlined">payments</span><span class="navText" data-text="Supporters">Supporters</span></a>
-      <a href="https://docs.night-x.com" class="navItem"><span class="material-symbols-outlined">
-          library_books
-        </span><span class="navText" data-text="Docs">Docs</span></a>
-    </div>
-  </div>
-
-  <div class="page" id="index" style="display: flex;flex-direction: column;align-items: center;
-  align-content: center;">
-    <div class="banner">
-      <img class="pfp" src="/assets/imgs/logo.png" alt="Profile Picture" />
-      <div>
-        <h1 class="name" data-text="Night Network">Night Network</h1>
+        <a href="/projects/" class="navItem"
+          ><span class="material-symbols-outlined"> code </span>
+          <span class="navText" data-text="Projects">Projects</span></a
+        >
+        <a href="/devs/" class="navItem"
+          ><span class="material-symbols-outlined"> people </span>
+          <span class="navText" data-text="Developers">Developers</span></a
+        >
+        <a href="/supporters/" class="navItem"
+          ><span class="material-symbols-outlined">payments</span
+          ><span class="navText" data-text="Supporters">Supporters</span></a
+        >
+        <a href="https://docs.night-x.com" class="navItem"
+          ><span class="material-symbols-outlined"> library_books </span
+          ><span class="navText" data-text="Docs">Docs</span></a
+        >
       </div>
     </div>
-    <br>
-    <br>
-    <p class="description">
-      Welcome to Night Network. At Night, We specialize in Web Software Development.
-    </p>
-    <h1 class="name">Socials</h1>
-    <div class="socials-container">
-      <a href="https://github.com/NightProxy/"><img class="social" src="/assets/imgs/socials/gh-white.svg" /></a>
-      <a href="https://www.youtube.com/@Night-X-Network"><img class="social" src="/assets/imgs/socials/yt.svg" /></a>
-      <a href="mailto:support@night-x.com"><img class="social" src="/assets/imgs/socials/email.svg" /></i></a>
-      <a href="https://discord.night-x.com"><img class="social" src="/assets/imgs/socials/discord.svg" /></a>
-    </div>
-  </div>
-  <script src="/assets/js/particles.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="/assets/js/index.js" ></script>
-</body>
 
+    <div
+      class="page"
+      id="index"
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-content: center;
+      "
+    >
+      <div class="banner">
+        <img class="pfp" src="/assets/imgs/logo.png" alt="Profile Picture" />
+        <div>
+          <h1 class="name">Night Network</h1>
+        </div>
+      </div>
+      <br />
+      <br />
+      <p class="description">
+        Welcome to Night Network. At Night, We specialize in Web Software
+        Development.
+      </p>
+      <div class="about-me">
+        <div class="about">
+          <h1 class="name">About Us:</h1>
+          <p class="description">
+            Night Network is a group of developers who specialize in Web
+            Software Development. We are a group of developers who are
+            passionate about what we do. We are always looking for new
+            developers to join our team.
+          </p>
+          <div class="item">
+            <h1 class="name">Socials</h1>
+            <div class="socials-container">
+              <a href="https://github.com/NightProxy/"
+                ><img class="social" src="/assets/imgs/socials/gh-white.svg"
+              /></a>
+              <a href="https://www.youtube.com/@Night-X-Network"
+                ><img class="social" src="/assets/imgs/socials/yt.svg"
+              /></a>
+              <a href="mailto:support@night-x.com"
+                ><img class="social" src="/assets/imgs/socials/email.svg"
+              /></a>
+              <a href="https://discord.night-x.com"
+                ><img class="social" src="/assets/imgs/socials/discord.svg"
+              /></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="more">
+          <div class="item">
+            <h1 class="name">Our Mission:</h1>
+            <p class="description">
+              Our Mission is to provide the best software and services to our
+              users.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/assets/js/particles.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="/assets/js/index.js"></script>
+  </body>
 </html>

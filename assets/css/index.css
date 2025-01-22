@@ -100,61 +100,61 @@ img {
 }
 
 .aur_cont .aur.aur_1 {
-    box-shadow: var(--secondary-color) 0px 0px 100px 40px;
+    box-shadow: var(--secondary-color) 0px 0px 80px 20px;
     margin-top: 2px;
     animation: topup 7031ms infinite linear;
 }
 
 .aur_cont .aur.aur_2 {
-    box-shadow: var(--main-color) 0px 0px 100px 40px;
+    box-shadow: var(--main-color) 0px 0px 80px 20px;
     margin-top: 27px;
     animation: topup 10359ms infinite linear;
 }
 
 .aur_cont .aur.aur_3 {
-    box-shadow: var(--secondary-color) 0px 0px 100px 40px;
+    box-shadow: var(--secondary-color) 0px 0px 80px 20px;
     margin-top: 27px;
     animation: topup 5515ms infinite linear;
 }
 
 .aur_cont .aur.aur_4 {
-    box-shadow: var(--third-color) 0px 0px 100px 40px;
+    box-shadow: var(--third-color) 0px 0px 80px 20px;
     margin-top: -30px;
     animation: topup 11580ms infinite linear;
 }
 
 .aur_cont .aur.aur_5 {
-    box-shadow: var(--secondary-color) 0px 0px 100px 40px;
+    box-shadow: var(--secondary-color) 0px 0px 80px 20px;
     margin-top: 0px;
     animation: topup 6773ms infinite linear;
 }
 
 .aur_cont .aur.aur_6 {
-    box-shadow: var(--main-color) 0px 0px 100px 40px;
+    box-shadow: var(--main-color) 0px 0px 80px 20px;
     margin-top: 45px;
     animation: topup 8622ms infinite linear;
 }
 
 .aur_cont .aur.aur_7 {
-    box-shadow: var(--third-color) 0px 0px 100px 40px;
+    box-shadow: var(--third-color) 0px 0px 80px 20px;
     margin-top: 0px;
     animation: topup 11510ms infinite linear;
 }
 
 .aur_cont .aur.aur_8 {
-    box-shadow: var(--secondary-color) 0px 0px 100px 40px;
+    box-shadow: var(--secondary-color) 0px 0px 80px 20px;
     margin-top: 5px;
     animation: topup 10258ms infinite linear;
 }
 
 .aur_cont .aur.aur_9 {
-    box-shadow: var(--main-color) 0px 0px 100px 40px;
+    box-shadow: var(--main-color) 0px 0px 80px 20px;
     margin-top: 9px;
     animation: topup 12160ms infinite linear;
 }
 
 .aur_cont .aur.aur_10 {
-    box-shadow: var(--third-color) 0px 0px 100px 40px;
+    box-shadow: var(--third-color) 0px 0px 80px 20px;
     margin-top: -27px;
     animation: topup 12931ms infinite linear;
 }
@@ -304,13 +304,9 @@ img {
     align-items: center;
     align-content: center;
     align-self: center;
-    border: 1px solid var(--main-color);
-    border-top: none;
     border-radius: 0;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
     z-index: 3;
-
+    box-shadow: 2px 2px 10px var(--main-color);
 }
 
 .nav * {
@@ -460,6 +456,7 @@ I USED A CSS ANIMATION THING, I DON'T CARE WHAT ANYONE THINKS, CAUSE I DON'T DO 
     width: 100vw;
     max-height: calc(100% - 62px);
     overflow-y: auto;
+    backdrop-filter: blur(4px);
 }
 
 .popup {
@@ -661,6 +658,7 @@ I USED A CSS ANIMATION THING, I DON'T CARE WHAT ANYONE THINKS, CAUSE I DON'T DO 
 }
 
 .banner {
+    margin-top: 10vh;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -739,4 +737,18 @@ I USED A CSS ANIMATION THING, I DON'T CARE WHAT ANYONE THINKS, CAUSE I DON'T DO 
     flex-wrap: wrap;
     align-items: center;
     align-content: center;
+}
+
+.about-me {
+    display: grid;
+    grid-template-columns: 0.5fr 0.75fr;
+    gap: 2em;
+    padding: 2em;
+}
+
+.about-me .about, .more .item {
+    background: transparent;
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
+    padding: 1.5em;
 }
