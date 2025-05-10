@@ -1,0 +1,342 @@
+<style>
+  .bg-container {
+    overflow: hidden;
+  }
+
+  #background {
+    width: 100%;
+    height: 99%;
+    top: 0;
+    left: 0;
+    z-index: -999;
+    position: fixed;
+  }
+
+  .box {
+    position: fixed;
+    bottom: 2%;
+    left: -50%;
+    transform: translateX(50%);
+  }
+
+  .wave {
+    position: absolute;
+    opacity: 0.4;
+    width: 1500px;
+    height: 1300px;
+    margin-left: -150px;
+    margin-top: -250px;
+    background-color: rgba(4, 150, 207, 0.116);
+    backdrop-filter: blur(15px);
+    border-radius: 83%;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .wave.-one {
+    animation: rotate 40000ms infinite linear;
+    opacity: 0.05;
+    backdrop-filter: blur(15px);
+    border: 2px solid #19ffc9;
+  }
+
+  .wave.-two {
+    animation: rotate 24000ms infinite linear;
+    opacity: 0.1;
+    border: 3px solid #19ffc9;
+  }
+
+  .aur_cont {
+    margin: 35px auto 0;
+    display: table;
+    height: auto;
+    position: fixed;
+    right: 1%;
+    top: 15%;
+    z-index: -1;
+  }
+
+  .aur_cont .aur {
+    transform: skew(-0.06turn, 18deg);
+    display: block;
+    width: 0;
+    min-height: 122px;
+    float: left;
+    margin-left: 100px;
+    border-radius: 5% 52% 30px 20px;
+    opacity: 1;
+  }
+
+  .aur_cont .aur.aur_1 {
+    box-shadow: #00ffcc 0px 0px 80px 20px;
+    margin-top: 2px;
+    animation: topup 7031ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_2 {
+    box-shadow: #00bfff 0px 0px 80px 20px;
+    margin-top: 27px;
+    animation: topup 10359ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_3 {
+    box-shadow: #00ffcc 0px 0px 80px 20px;
+    margin-top: 27px;
+    animation: topup 5515ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_4 {
+    box-shadow: #33ccff 0px 0px 80px 20px;
+    margin-top: -30px;
+    animation: topup 11580ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_5 {
+    box-shadow: #00ffcc 0px 0px 80px 20px;
+    margin-top: 0px;
+    animation: topup 6773ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_6 {
+    box-shadow: #00bfff 0px 0px 80px 20px;
+    margin-top: 45px;
+    animation: topup 8622ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_7 {
+    box-shadow: #33ccff 0px 0px 80px 20px;
+    margin-top: 0px;
+    animation: topup 11510ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_8 {
+    box-shadow: #00ffcc 0px 0px 80px 20px;
+    margin-top: 5px;
+    animation: topup 10258ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_9 {
+    box-shadow: #00bfff 0px 0px 80px 20px;
+    margin-top: 9px;
+    animation: topup 12160ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_10 {
+    box-shadow: #33ccff 0px 0px 80px 20px;
+    margin-top: -27px;
+    animation: topup 12931ms infinite linear;
+  }
+
+  /*.aur_cont .aur.aur_1 {
+    box-shadow: var(--secondary-color) 0px 0px 80px 20px;
+    margin-top: 2px;
+    animation: topup 7031ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_2 {
+    box-shadow: var(--main-color) 0px 0px 80px 20px;
+    margin-top: 27px;
+    animation: topup 10359ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_3 {
+    box-shadow: var(--secondary-color) 0px 0px 80px 20px;
+    margin-top: 27px;
+    animation: topup 5515ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_4 {
+    box-shadow: var(--third-color) 0px 0px 80px 20px;
+    margin-top: -30px;
+    animation: topup 11580ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_5 {
+    box-shadow: var(--secondary-color) 0px 0px 80px 20px;
+    margin-top: 0px;
+    animation: topup 6773ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_6 {
+    box-shadow: var(--main-color) 0px 0px 80px 20px;
+    margin-top: 45px;
+    animation: topup 8622ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_7 {
+    box-shadow: var(--third-color) 0px 0px 80px 20px;
+    margin-top: 0px;
+    animation: topup 11510ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_8 {
+    box-shadow: var(--secondary-color) 0px 0px 80px 20px;
+    margin-top: 5px;
+    animation: topup 10258ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_9 {
+    box-shadow: var(--main-color) 0px 0px 80px 20px;
+    margin-top: 9px;
+    animation: topup 12160ms infinite linear;
+  }
+
+  .aur_cont .aur.aur_10 {
+    box-shadow: var(--third-color) 0px 0px 80px 20px;
+    margin-top: -27px;
+    animation: topup 12931ms infinite linear;
+  }*/
+
+  @keyframes drift {
+    from {
+      transform: rotate(0deg);
+    }
+
+    from {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes topup {
+    0%,
+    100% {
+      transform: translatey(0px);
+      opacity: 0;
+    }
+
+    50% {
+      transform: translatey(150px);
+      opacity: 0.1;
+    }
+
+    25%,
+    75% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes northern {
+    0% {
+      transform: translate(5%, -2%);
+    }
+
+    25% {
+      transform: translate(10%, 7%);
+    }
+
+    40% {
+      transform: rotate(-10deg);
+    }
+
+    60% {
+      transform: translate(7%, -2%);
+    }
+
+    85% {
+      transform: translate(6%, 3%) rotate(12deg);
+    }
+
+    100% {
+      transform: none;
+    }
+  }
+</style>
+
+<div class="bg-container">
+  <div id="background">
+    <div id="tsparticles"></div>
+  </div>
+  <div class="aur_cont">
+    <span class="aur aur_1"></span>
+    <span class="aur aur_2"></span>
+    <span class="aur aur_3"></span>
+    <span class="aur aur_4"></span>
+    <span class="aur aur_5"></span>
+    <span class="aur aur_6"></span>
+    <span class="aur aur_7"></span>
+    <span class="aur aur_8"></span>
+    <span class="aur aur_9"></span>
+    <span class="aur aur_10"></span>
+  </div>
+</div>
+
+<!--<script is:inline src="/js/particles.min.js"></script>
+<script is:inline src="/js/bg.js"></script>-->
+
+<script>
+  import { tsParticles } from "tsparticles";
+  function start() {
+    tsParticles.load("tsparticles", {
+      fpsLimit: 60,
+      interactivity: {
+        events: {
+          onClick: { enable: false, mode: "push" },
+          onHover: {
+            enable: false,
+            mode: "repulse",
+            parallax: { enable: false, force: 60, smooth: 10 },
+          },
+          resize: true,
+        },
+        modes: {
+          push: { quantity: 4 },
+          repulse: { distance: 200, duration: 0.4 },
+        },
+      },
+      particles: {
+        color: { value: "#ffffff" },
+        move: {
+          direction: "top",
+          enable: true,
+          outModes: "out",
+          random: false,
+          speed: 1,
+          straight: false,
+        },
+        number: {
+          density: {
+            enable: true,
+            area: 800,
+          },
+          value: 160,
+        },
+        opacity: {
+          animation: {
+            enable: false,
+            speed: 0.05,
+            sync: false,
+            startValue: "max",
+            count: 1,
+            destroy: "min",
+          },
+          value: {
+            min: 0,
+            max: 0.5,
+          },
+        },
+        shape: {
+          type: "circle",
+        },
+        size: {
+          value: { min: 0.5, max: 2 },
+        },
+      },
+    });
+  }
+  start();
+
+  document.addEventListener("astro:page-load", () => {
+    start();
+  });
+  document.addEventListener("astro:after-swap", () => {
+    start();
+  });
+</script>

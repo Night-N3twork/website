@@ -1,0 +1,50 @@
+[
+    {
+        "name": "Space",
+        "description": "Space is a next-gen proxy that has revolutionized the proxy scene with its incredible UI, functionality, and speeds. Space is the flagship proxy for Night Network using never before seen blob cloaking, account system, and more!",
+        "image": "/imgs/projects/space.jpeg",
+        "icon": "/imgs/icons/space.png",
+        "url": "https://gointospace.app",
+        "color": "#6892e1"
+    },
+    {
+        "name": "DayDream X",
+        "icon": "/imgs/icons/daydream.png",
+        "description": "The Ultimate Opera GX remake in HTML CSS JS, and Nightmare.",
+        "color": "#8409c7",
+        "url": "https://daydreamx.pro",
+        "image": "/imgs/projects/daydream.png"
+    },
+    {
+        "name": "DayLight",
+        "description": "Daylight is a simplistic proxy with smooth animations, fast speeds, custom themes, and custom extensions. In addition, Daylight has a vertical tab system in a similar style to arc.",
+        "image": "/imgs/projects/daylight.png",
+        "icon": "/imgs/icons/daylight.png", 
+        "color": "#fab81a"
+    },
+    {
+        "name": "Umbra",
+        "description": "Umbra is a music player with custom audio visualization, cover rendering, playlist support and sharing, and more. Umbra also has fast speeds and high-quality music.",
+        "image": "/imgs/projects/umbra.png",
+        "icon": "/imgs/icons/umbra.png",
+        "color": "#9807f9"
+    },
+    {
+        "name": "NightmareJS",
+        "description": "The Most Compatible, Open-Source UI and Plugin System for the Web, Made to support all your Favorite Platforms, and support Universal Systems!",
+        "icon": "/imgs/icons/nightmare.png",
+        "color": "#a50000"
+    },
+    {
+        "name":"EclipseOS",
+        "icon":"/imgs/icons/eclipse.png",
+        "description": "Super Project: Eclipse OS is a WebOS built to rival MercuryWorkshop's AnuraOS. It is built with DayDream X V2, SpaceV2, File Browsing, a full 64 bit Linux subsystem, and more! Coming soon.",
+        "color": "#430eb8"
+    },
+    {
+        "name": "Aurora",
+        "description": "The Flagship Game System in Space v2",
+        "icon": "/imgs/icons/aurora.png",
+        "color": "#03b096"
+    }
+]
