@@ -1,0 +1,107 @@
+---
+
+---
+
+<style is:global>
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+
+  .grid .project {
+    list-style: none;
+    color: var(--text-color);
+    padding: 4px 8px 2px 8px;
+    backdrop-filter: blur(3px);
+    border-radius: 10px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+  }
+
+  .grid .project img {
+    width: 96px;
+    height: auto;
+    border-radius: 10px;
+  }
+
+  .grid .project:hover {
+    color: var(--main-color);
+  }
+
+  .grid .project-image {
+    max-width: 75%;
+    height: auto;
+  }
+
+  .grid .project-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+  }
+  .popup {
+    width: 100vw;
+    height: 100vh;
+    margin: auto;
+    border-radius: 14px;
+    z-index: 5;
+    overflow: auto;
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .popup .popup-close {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 30px;
+    box-shadow: none;
+    background-color: transparent;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .popup .popup-close span.material-symbols-outlined {
+    font-size: 20px;
+  }
+
+  .popup .popup-close:hover {
+    border: 1px solid var(--secondary-color);
+  }
+</style>
+
+<div class="container">
+  <h1 class="name">Our Projects:</h1>
+  <br /><br /><br />
+  <div id="projectsGrid" class="grid"></div>
+</div>
+
+<script>
+    import { initializePage } from "../js/projects";
+
+    initializePage()
+
+    document.addEventListener("astro:page-load", () => {
+    initializePage()
+  });
+  document.addEventListener("astro:after-swap", () => {
+    initializePage()
+  });
+</script>

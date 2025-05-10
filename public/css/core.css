@@ -1,0 +1,171 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --bg-color: #000000;
+  --bg-secondary: rgba(22, 22, 22, 0.623);
+  --text-color: #ffffff;
+  --main-color: #00ffcc;
+  --secondary-color: #00bfff;
+  --third-color: #33ccff;
+  --sb-track-color: #444b4e;
+  --sb-thumb-color: #a017e0;
+  --sb-size: 6px;
+}
+
+body {
+  background-color: var(--bg-color);
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+img {
+  -webkit-user-drag: none;
+}
+
+.page {
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  z-index: 2;
+  width: 90vw;
+  max-height: calc(100% - 62px);
+  overflow-y: auto;
+  backdrop-filter: blur(4px);
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.list {
+  list-style: none;
+  color: var(--text-color);
+  padding: 4px 8px 2px 8px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+}
+
+.pfp {
+  width: 120px;
+  height: 120px;
+}
+
+.name {
+  color: var(--text-color);
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.subname {
+  color: var(--text-color);
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 3px;
+}
+
+.definition,
+.description {
+  color: var(--text-color);
+  text-align: center;
+}
+
+.definition {
+  font-size: 12px;
+}
+
+.description {
+  margin: 30px;
+  font-size: 15px;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--main-color);
+}
+
+.socials-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.socials-container hr {
+  height: 100%;
+  width: 2px;
+  background: #929292;
+  border: none;
+  margin: 0px 4px;
+}
+
+.social {
+  margin: 2px;
+  color: var(--text-color);
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+
+  -webkit-user-drag: none;
+}
+
+.about-me {
+  display: grid;
+  grid-template-columns: 0.5fr 0.75fr;
+  gap: 2em;
+  padding: 2em;
+}
+
+.about-me .about,
+.more .item {
+  background: transparent;
+  backdrop-filter: blur(3px);
+  border-radius: 10px;
+  padding: 1.5em;
+}
+
+.banner {
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-content: center;
+  align-items: center;
+}
+
+.banner .name {
+  position: sticky;
+  font-size: 50px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  z-index: 4;
+  color: var(--text-color);
+  text-align: center;
+  margin: 0;
+  z-index: 2;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,44 @@
+[
+    {
+        "name": "Amplify",
+        "pfp": "/imgs/devs/amp.jpg",
+        "link": "https://github.com/not-amplify",
+        "color": "#aa00ff",
+        "title": "Fullstack Developer, Owner/Founder"
+    },
+    {
+        "name": "KDust7",
+        "pfp": "/imgs/devs/dust.png",
+        "link": "https://guns.lol/kdust7",
+        "color": "#8fdcf9",
+        "title": "Fullstack Developer, Owner"
+    },
+    {
+        "name": "Crllect",
+        "pfp": "/imgs/devs/crllect.png",
+        "link": "https://github.com/crllect",
+        "color": "#c46c86",
+        "title": "Fullstack Developer, Owner"
+    },
+    {
+        "name": "Motortruck1221",
+        "pfp": "/imgs/devs/mt.png",
+        "link": "https://motortruck1221.com/",
+        "color": "#094993",
+        "title": "Fullstack Developer, Developer"
+    },
+    {
+        "name": "Bearcat",
+        "pfp": "/imgs/devs/bearcat.webp",
+        "link": "https://github.com/bearcattt",
+        "color": "#bf0000",
+        "title":"Fullstack Developer, Developer"
+    },
+    {
+        "name": "Silvereen",
+        "pfp": "/imgs/devs/silvereen.png",
+        "link": "https://silvereen.net",
+        "color": "#00ff1a",
+        "title": "Fullstack Developer, Server Provider, Developer"
+    }
+]

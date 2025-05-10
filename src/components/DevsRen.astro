@@ -1,0 +1,61 @@
+---
+
+---
+
+<style is:global>
+  .devs-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .devs-container .dev-img img {
+    width: 96px;
+    height: auto;
+    border-radius: 32px;
+  }
+
+  .devs-container .dev-name {
+    color: var(--text-color);
+    font-size: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+  }
+
+  .devs-container .dev-name .name {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .devs-container .dev-name .name:hover {
+    color: var(--hover-color);
+  }
+</style>
+
+<div class="container">
+  <h1 class="name">Our Developers:</h1>
+  <p class="description">
+    Click on Dev to redirect to their Portfolio. Wanna join, apply through our
+    discord.
+  </p>
+  <div class="grid" id="devGrid"></div>
+</div>
+
+<script>
+  import { initializePage } from "../js/devs";
+
+  initializePage();
+
+  document.addEventListener("astro:page-load", () => {
+    initializePage();
+  });
+  document.addEventListener("astro:after-swap", () => {
+    initializePage();
+  });
+</script>
