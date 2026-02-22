@@ -1,57 +1,248 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro';
+import Overlay from '../components/Overlay.astro';
 ---
 
 <Layout>
-  <div style="display: flex;flex-direction: column;align-items: center;">
-    <div class="banner">
-      <img class="pfp" src="/imgs/logo.png" alt="Profile Picture" />
-      <div>
-        <h1 class="name">Night Network</h1>
-      </div>
-    </div>
-    <br />
-    <br />
-    <p class="description">
-      Welcome to Night Network. At Night, We specialize in Web Software
-      Development.
-    </p>
-    <div class="about-me">
-      <div class="about">
-        <h1 class="name">About Us:</h1>
-        <p class="description">
-          Night Network is a group of developers who specialize in Web Software
-          Development. We are a group of developers who are passionate about
-          what we do. We are always looking for new developers to join our team.
-        </p>
-        <div class="item">
-        </div>
-      </div>
+	<Overlay enableBg={false} customClasses="max-w-5xl w-full">
+		<div class="flex flex-row gap-3 h-full">
+			<!-- Left column with 2 stacked overlays -->
+			<div class="flex flex-col gap-3 flex-grow max-w-2xl">
+				<Overlay
+					customClasses="w-full h-60 flex items-center flex-col"
+					enableBg={true}
+				>
+					<div class="flex items-center gap-6 mb-4">
+						<img
+							src="/res/logo.png"
+							alt="Logo"
+							class="w-20 h-20 rounded-xl"
+						/>
+						<div>
+							<h1 class="text-3xl font-bold">Night Network</h1>
+						</div>
+					</div>
+					<p class="text-sm text-mocha-text">Founded in 2023 by amplify.dev, we're the team behind Space, DayDream X, DayLight, and more — serving over 3 million users in the past year alone. With a growing Discord community of <span id="member-count" class="text-mocha-lavender font-semibold">...</span> members, we build fast, privacy-first tools designed with user safety at the core.</p>
+				</Overlay>
 
-      <div class="more">
-        <div class="item">
-          <h1 class="name">Our Mission:</h1>
-          <p class="description">
-            Our Mission is to provide the best software and services to our
-            users.
-          </p>
-        </div>
-      </div>
-    </div>
-	<h1 class="name">Socials</h1>
-          <div class="socials-container">
-            <a href="https://github.com/NightProxy/"
-              ><img class="social" src="/imgs/socials/gh-white.svg" /></a
-            >
-            <a href="https://www.youtube.com/@Night-X-Network"
-              ><img class="social" src="/imgs/socials/yt.svg" /></a
-            >
-            <a href="mailto:support@night-x.com"
-              ><img class="social" src="/imgs/socials/email.svg" /></a
-            >
-            <a href="https://discord.night-x.com"
-              ><img class="social" src="/imgs/socials/discord.svg" /></a
-            >
-          </div>
-  </div>
+				<Overlay customClasses="w-full h-100" enableBg={true}>
+					<h1 class="text-rosepine-text text-lg font-semibold mb-4">
+						Partners & Suborganizations
+					</h1>
+					<div class="flex flex-col gap-3 text-sm text-rosepine-text">
+						<div
+							class="border border-mocha-surface0 hover:bg-mocha-base hover:border-mocha-mauve rounded-lg p-3"
+						>
+							<a
+								href="https://titaniumnetwork.org"
+								class="flex gap-3"
+							>
+								<img
+									src="/res/partners/tn.png"
+									alt="TN"
+									class="w-10 h-10"
+								/>
+								<div class="flex flex-col items-start justify-center">
+									<h3
+										class="font-semibold test-mocha-text mb-1 hover:text-mocha-mauve"
+									>
+										Titanium Network
+									</h3>
+								</div>
+							</a>
+						</div>
+						<div
+							class="border border-mocha-surface0 hover:bg-mocha-base hover:border-mocha-lavender rounded-lg p-3"
+						>
+							<a href="https://nebulaservices.org" class="flex gap-3">
+								<img
+									src="/res/partners/nebula.png"
+									alt="Nebula"
+									class="w-10 h-10"
+								/>
+								<div class="flex flex-col items-start justify-center">
+									<h3
+										class="font-semibold test-mocha-text mb-1 hover:text-mocha-lavender"
+									>
+										Nebula Services
+									</h3>
+								</div>
+							</a>
+						</div>
+            <div
+							class="border border-mocha-surface0 hover:bg-mocha-base hover:border-mocha-green rounded-lg p-3"
+						>
+							<a href="https://terbiumon.top" class="flex gap-3">
+								<img
+									src="/res/partners/terbium.png"
+									alt="TerbiumOS"
+									class="w-10 h-10"
+								/>
+								<div class="flex flex-col items-start justify-center">
+									<h3
+										class="font-semibold test-mocha-text mb-1 hover:text-mocha-green"
+									>
+										TerbiumOS
+									</h3>
+								</div>
+							</a>
+						</div>
+            <div
+							class="border border-mocha-surface0 hover:bg-mocha-base hover:border-mocha-blue rounded-lg p-3"
+						>
+							<a href="https://lunaron.top" class="flex gap-3">
+								<img
+									src="/res/partners/lunar.png"
+									alt="Lunar"
+									class="w-10 h-10"
+								/>
+								<div class="flex flex-col items-start justify-center">
+									<h3
+										class="font-semibold test-mocha-text mb-1 hover:text-mocha-blue"
+									>
+										Lunar
+									</h3>
+								</div>
+							</a>
+						</div>
+            <div
+							class="border border-mocha-surface0 hover:bg-mocha-base hover:border-mocha-mauve rounded-lg p-3"
+						>
+							<a href="https://obsidiandevlabs.org" class="flex gap-3">
+								<img
+									src="/res/partners/obsidian.png"
+									alt="Obsidian"
+									class="w-10 h-10"
+								/>
+								<div class="flex flex-col items-start justify-center">
+									<h3
+										class="font-semibold test-mocha-text mb-1 hover:text-mocha-mauve"
+									>
+										Obsidian Developer Labs
+									</h3>
+								</div>
+							</a>
+						</div>
+						<!--<div class="border border-rosepine-highlightLow rounded-lg p-3">
+              <h3 class="font-semibold test-mocha-text mb-1">Project Name</h3>
+              <p class="text-xs text-rosepine-muted">Description here</p>
+            </div>-->
+					</div>
+				</Overlay>
+			</div>
+
+			<!-- Right column with 2 stacked overlays -->
+			<div class="flex flex-col gap-3 max-w-xs w-full">
+				<Overlay
+					enableBg={true}
+					customClasses="w-full h-full flex flex-col gap-2"
+				>
+					<h1 class="text-rosepine-text text-lg font-semibold mb-2">
+						Our Accounts
+					</h1>
+					<a
+						class="text-mocha-subtext0 flex items-center gap-2"
+						href="https://github.com/Night-N3twork"
+						><span data-lucide="github"></span><span
+							class="text-sm text-mocha-subtext0 font-medium"
+							>Main Github</span
+						></a
+					>
+          <a
+						class="text-mocha-subtext0 flex items-center gap-2"
+						href="https://github.com/Lunar-Proxy"
+						><span data-lucide="github"></span><span
+							class="text-sm text-mocha-subtext0 font-medium"
+							>Lunar Github</span
+						></a
+					>
+          <a
+						class="text-mocha-subtext0 flex items-center gap-2"
+						href="https://github.com/Obsidian-Dev-Labs"
+						><span data-lucide="github"></span><span
+							class="text-sm text-mocha-subtext0 font-medium"
+							>Obsidian Github</span
+						></a
+					>
+          <a class="text-mocha-peach flex items-center gap-2"
+						href="https://gitlab.com/nightnetwork"
+						><span data-lucide="gitlab"></span><span
+							class="text-sm text-mocha-peach font-medium"
+							>Main Gitlab</span
+						></a
+					>
+					<a
+						class="text-mocha-blue  flex items-center gap-2"
+						href="https://discord.night-x.com"
+						><span data-lucide="at-sign"></span><span
+							class="text-sm text-mocha-blue font-medium"
+							>Night Discord (.gg/algebra)</span
+						></a
+					>
+          <a
+						class="text-mocha-blue  flex items-center gap-2"
+						href="https://discord.gg/JS6u8KuXf7"
+						><span data-lucide="at-sign"></span><span
+							class="text-sm text-mocha-blue font-medium"
+							>Lunar Discord</span
+						></a
+					>
+					<a
+						class="text-mocha-maroon flex items-center gap-2"
+						href="https://www.instagram.com/not.amplify.dev/"
+						><span data-lucide="instagram"></span><span
+							class="text-sm text-mocha-maroon font-medium"
+							>Instagram</span
+						></a
+					>
+          					<a
+						class="text-mocha-red flex items-center gap-2"
+						href="https://www.youtube.com/@NightNetworkOffical"
+						><span data-lucide="youtube"></span><span
+							class="text-sm text-mocha-red font-medium"
+							>Youtube</span
+						></a
+					>
+          <a
+						class="text-mocha-green flex items-center gap-2"
+						href="https://cash.app/$NightXNetwork"
+						><span data-lucide="wallet"></span><span
+							class="text-sm text-mocha-green font-medium"
+							>Cash App</span
+						></a
+					>
+          <a
+						class="text-mocha-text flex items-center gap-2"
+						href="https://www.patreon.com/c/nightNetwork"
+						><span data-lucide="landmark"></span><span
+							class="text-sm text-mocha-text font-medium"
+							>Patreon</span
+						></a
+					>
+				</Overlay>
+
+			</div>
+		</div>
+	</Overlay>
 </Layout>
+
+<script>
+	async function loadMemberCount() {
+		const el = document.getElementById('member-count');
+		if (!el) return;
+		try {
+			const res = await fetch('/api/stats');
+			if (!res.ok) throw new Error(res.statusText);
+			const data = await res.json();
+			if (data.memberCount != null) {
+				el.textContent = data.memberCount.toLocaleString();
+			}
+		} catch {
+			el.textContent = 'thousands of';
+		}
+	}
+
+	loadMemberCount();
+	document.addEventListener('astro:page-load', loadMemberCount);
+	document.addEventListener('astro:after-swap', loadMemberCount);
+</script>

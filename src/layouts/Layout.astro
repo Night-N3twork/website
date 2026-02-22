@@ -1,54 +1,66 @@
 ---
-import { ClientRouter } from "astro:transitions";
-import Background from "../components/Background.astro";
-import Nav from "../components/Nav.astro";
+import { ClientRouter } from 'astro:transitions';
+import Nav from '../components/Nav.astro';
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Night Network</title>
-    <link rel="icon" type="image/x-icon" href="/imgs/logo.png" />
-    <link rel="stylesheet" type="text/css" href="/css/core.css" />
-    <meta name="description" content="About Us" />
-    <meta
-      name="keywords"
-      content="Portfolio, About Me, Web Developers, Fullstack Developers, Organizations, Projects, Homepage"
-    />
-    <script
-      src="https://kit.fontawesome.com/1964ee1753.js"
-      crossorigin="anonymous"></script>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QK55DE85Q5"
-    ></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Night Network</title>
+		<link rel="icon" type="image/x-icon" href="/res/logo.png" />
+		<meta name="description" content="About Us" />
+		<meta
+			name="keywords"
+			content="Portfolio, About Me, Web Developers, Fullstack Developers, Organizations, Projects, Homepage"
+		/>
+		<script
+			src="https://kit.fontawesome.com/1964ee1753.js"
+			crossorigin="anonymous"></script>
+		<!-- Google tag (gtag.js) -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-6WQ979GFKD"
+		></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
 
-      gtag("config", "G-QK55DE85Q5");
-    </script>
-    <ClientRouter transition:animate="fade" />
-  </head>
-  <body>
-    <Nav />
-    <Background />
-    <div class="page">
-      <slot />
-    </div>
-  </body>
+			gtag('config', 'G-6WQ979GFKD');
+		</script>
+		<ClientRouter transition:animate="fade" />
+	</head>
+	<body class="overflow-hidden w-screen h-screen m-0 bg-mocha-crust text-mocha-text">
+		<Nav />
+		<div class="flex items-center justify-center overflow-hidden w-screen h-screen m-0">
+			<slot />
+		</div>
+	</body>
 </html>
 
 <style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
+	html,
+	body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+	}
 </style>
+
+<script>
+	import { createIcons, icons } from 'lucide';
+
+	createIcons({ icons });
+
+	document.addEventListener('astro:page-load', () => {
+		createIcons({ icons });
+	});
+	document.addEventListener('astro:after-swap', () => {
+		createIcons({ icons });
+	});
+</script>
