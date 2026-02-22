@@ -1,9 +1,156 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import ProjectsRen from "../components/ProjectsRen.astro"
+import Layout from '../layouts/Layout.astro';
+import Overlay from '../components/Overlay.astro';
+import projects from '../data/projects.json';
+
+interface Project {
+	name: string;
+	description: string;
+	icon: string;
+	image?: string;
+	url?: string;
+	color?: string;
+}
+
+const typedProjects: Project[] = projects;
 ---
 
-
 <Layout>
-<ProjectsRen />
+	<Overlay
+		enableBg={false}
+		customClasses="max-w-5xl w-full bg-mocha-mantle overflow-y-auto max-h-[85vh]"
+	>
+		<h1 class="text-2xl font-bold text-mocha-lavender mb-6">
+			Our Projects
+		</h1>
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+			{
+				typedProjects.map((project, i) => (
+					<button
+						data-project={i}
+						class="project-card group flex flex-col gap-3 p-4 rounded-lg border border-mocha-surface0 bg-mocha-crust hover:border-mocha-lavender transition-colors text-left cursor-pointer"
+					>
+						<div class="flex flex-row items-center gap-3">
+							<img
+								src={project.icon}
+								alt={project.name}
+								class="w-10 h-10 rounded-lg mx-2"
+							/>
+							<div class="flex flex-col">
+								<h3 class="text-lg font-semibold text-mocha-text group-hover:text-mocha-lavender transition-colors">
+									{project.name}
+								</h3>
+								<p class="text-sm text-mocha-subtext0 line-clamp-3">
+									{project.description}
+								</p>
+							</div>
+						</div>
+					</button>
+				))
+			}
+		</div>
+	</Overlay>
+
+	<!-- modal -->
+	<dialog
+		id="project-modal"
+		class="bg-transparent border-none p-0 max-w-[90vw] max-h-[90vh] overflow-visible backdrop:bg-black/75 backdrop:backdrop-blur-sm"
+	>
+		<div
+			class="bg-mocha-mantle border border-mocha-surface0 rounded-xl overflow-hidden flex flex-col max-w-[600px] max-h-[85vh] relative"
+		>
+			<button
+				id="modal-close"
+				class="absolute top-2 right-2 z-10 bg-mocha-crust/70 border border-mocha-surface1 rounded-lg text-mocha-text w-8 h-8 flex items-center justify-center cursor-pointer transition-colors hover:border-mocha-lavender"
+				aria-label="Close"
+			>
+				<span data-lucide="x"></span>
+			</button>
+			<img
+				id="modal-image"
+				class="w-full max-h-[350px] object-cover hidden"
+				src=""
+				alt=""
+			/>
+			<div class="px-5 pt-4 pb-5">
+				<div class="flex items-center gap-3 mb-2">
+					<img
+						id="modal-icon"
+						class="w-10 h-10 rounded-lg"
+						src=""
+						alt=""
+					/>
+					<h2
+						id="modal-name"
+						class="text-xl font-bold text-mocha-text"
+					>
+					</h2>
+				</div>
+				<p id="modal-desc" class="text-sm text-mocha-subtext0 mb-4"></p>
+				<a
+					id="modal-link"
+					href="#"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="hidden text-sm text-mocha-lavender hover:text-mocha-blue underline transition-colors"
+				>
+					Visit Project
+				</a>
+			</div>
+		</div>
+	</dialog>
 </Layout>
+
+<script define:vars={{ projects: typedProjects }}>
+	function setup() {
+		const modal = document.getElementById('project-modal');
+		const modalImage = document.getElementById('modal-image');
+		const modalIcon = document.getElementById('modal-icon');
+		const modalName = document.getElementById('modal-name');
+		const modalDesc = document.getElementById('modal-desc');
+		const modalLink = document.getElementById('modal-link');
+		const modalClose = document.getElementById('modal-close');
+
+		if (!modal) return;
+
+		document.querySelectorAll('.project-card').forEach(card => {
+			card.addEventListener('click', () => {
+				const index = Number(card.getAttribute('data-project'));
+				const project = projects[index];
+				if (!project) return;
+
+				if (project.image) {
+					modalImage.src = project.image;
+					modalImage.alt = project.name + ' preview';
+					modalImage.classList.remove('hidden');
+				} else {
+					modalImage.src = '';
+					modalImage.classList.add('hidden');
+				}
+
+				modalIcon.src = project.icon;
+				modalIcon.alt = project.name;
+				modalName.textContent = project.name;
+				modalDesc.textContent = project.description;
+
+				if (project.url) {
+					modalLink.href = project.url;
+					modalLink.classList.remove('hidden');
+				} else {
+					modalLink.classList.add('hidden');
+				}
+
+				modal.showModal();
+			});
+		});
+
+		modalClose.addEventListener('click', () => modal.close());
+		modal.addEventListener('click', e => {
+			if (e.target === modal) modal.close();
+		});
+	}
+
+	setup();
+	document.addEventListener('astro:page-load', setup);
+	document.addEventListener('astro:after-swap', setup);
+</script>

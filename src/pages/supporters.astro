@@ -1,35 +1,89 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro';
+import Overlay from '../components/Overlay.astro';
+
+const BOOSTER_ROLE_ID = '1198297300477432099';
+const DONATOR_ROLE_ID = '1432909960043565200';
 ---
 
 <Layout>
-    <div class="container">
-        <h1 class="name">Our Discord Server Boosters:</h1>
-        <ul class="list">
-          <li>crllect</li>
-          <li>gengar0183</li>
-          <li>unfunne</li>
-          <li>amplify.dev</li>
-          <li>bearcatttt</li>
-          <li>kay.is.gay</li>
-          <li>pumpkininthedeadofnight</li>
-          <li>sivsome</li>
-          <li>willy_wonka_the_2th</li>
-        </ul>
-        <h1 class="name">Donators</h1>
-        <ul class="list">
-          <li>none</li>
-        </ul>
-  
-        <h1 class="name">Support Us!</h1>
-        <p class="description">You can also support us by keeping the ads setting toggled on for our sites!</p>
-        <div class="socials-container">
-          <a href="https://cash.app/$NightXNetwork"><img class="social" src="/imgs/support/cashapp.svg" /></a>
-          <a href="https://paypal.me/N1ghtNetwork"><img class="social" src="/imgs/support/paypal.svg" /></a>
-          <a href="https://account.venmo.com/u/Night-Network"><img class="social" src="/imgs/support/venmo.svg" /></a>
-          <a href="https://www.patreon.com/NightNetworkX"><img class="social" src="/imgs/support/patreon.svg" /></a>
-          <!--<a href=""><img class="social" src="/imgs/support/ko-fi.svg" /></a>
-          <a href=""><img class="social" src="/imgs/support/buymeacoffee.svg" /></a>-->
-        </div>
-      </div>
+	<Overlay enableBg={false} customClasses="max-w-3xl w-full bg-mocha-mantle overflow-y-auto max-h-[85vh] scrollbar-thin scrollbar-thumb-mocha-surface1 hover:scrollbar-thumb-mocha-overlay0 scrollbar-track-mocha-crust scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
+		<h1 class="text-2xl font-bold text-mocha-lavender mb-6">Supporters</h1>
+
+		<!-- Boosters -->
+		<section class="mb-8">
+			<h2 class="text-lg font-semibold text-mocha-pink mb-3 border-b border-mocha-surface0 pb-2 flex items-center gap-2">
+				<span data-lucide="zap" class="w-5 h-5"></span>
+				Server Boosters
+			</h2>
+			<ul id="boosters-list" class="flex flex-wrap gap-2">
+				<li class="text-sm text-mocha-subtext0">Loading...</li>
+			</ul>
+		</section>
+
+		<!-- Donators -->
+		<section class="mb-8">
+			<h2 class="text-lg font-semibold text-mocha-green mb-3 border-b border-mocha-surface0 pb-2 flex items-center gap-2">
+				<span data-lucide="heart" class="w-5 h-5"></span>
+				Donators
+			</h2>
+			<ul id="donators-list" class="flex flex-wrap gap-2">
+				<li class="text-sm text-mocha-subtext0">Loading...</li>
+			</ul>
+		</section>
+
+		<p class="text-sm text-mocha-overlay1">
+			Want to support us? Check out the donation links on the <a href="/" class="text-mocha-lavender hover:text-mocha-blue underline transition-colors">main page</a>.
+		</p>
+	</Overlay>
 </Layout>
+
+<script define:vars={{ BOOSTER_ROLE_ID, DONATOR_ROLE_ID }}>
+	function renderList(el, members) {
+		el.innerHTML = '';
+
+		if (!members.length) {
+			const li = document.createElement('li');
+			li.className = 'text-sm text-mocha-subtext0 italic';
+			li.textContent = 'None yet — be the first!';
+			el.appendChild(li);
+			return;
+		}
+
+		members.forEach((m) => {
+			const li = document.createElement('li');
+			li.className = 'text-sm text-mocha-text bg-mocha-crust border border-mocha-surface0 rounded-lg px-3 py-1.5';
+			li.textContent = m.username;
+			el.appendChild(li);
+		});
+	}
+
+	async function fetchRole(roleId) {
+		try {
+			const res = await fetch(`/api/stats/members?role=${roleId}`);
+			if (!res.ok) throw new Error(res.statusText);
+			return await res.json();
+		} catch (err) {
+			console.error(`Failed to fetch role ${roleId}:`, err);
+			return [];
+		}
+	}
+
+	async function load() {
+		const boostersList = document.getElementById('boosters-list');
+		const donatorsList = document.getElementById('donators-list');
+		if (!boostersList || !donatorsList) return;
+
+		const [boosters, donators] = await Promise.all([
+			fetchRole(BOOSTER_ROLE_ID),
+			fetchRole(DONATOR_ROLE_ID),
+		]);
+
+		renderList(boostersList, boosters);
+		renderList(donatorsList, donators);
+	}
+
+	load();
+	document.addEventListener('astro:page-load', load);
+	document.addEventListener('astro:after-swap', load);
+</script>
