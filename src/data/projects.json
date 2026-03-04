@@ -32,6 +32,12 @@
     "icon": "/res/projects/icons/solar.png"
   },
   {
+    "name": "NyxAI",
+    "description": "Advanced AI with in your browser. Simple, but Powerful.",
+    "icon": "/res/projects/icons/nyx.png",
+    "image": "/res/projects/preview/nyx.png"
+  },
+  {
     "name": "DayLight",
     "description": "Daylight is a simplistic proxy with smooth animations, fast speeds, custom themes, and custom extensions. In addition, Daylight has a vertical tab system in a similar style to arc.",
     "image": "/res/projects/preview/daylight.png",
@@ -40,6 +46,12 @@
   {
     "name": "Umbra",
     "description": "Umbra is a music player with custom audio visualization, cover rendering, playlist support and sharing, and more. Umbra also has fast speeds and high-quality music.",
-    "icon": "/res/projects/icons/umbra.png"
+    "icon": "/res/projects/icons/umbra.png",
+    "image": "/res/projects/preview/umbra.png"
+  },
+  {
+    "name": "Aurora",
+    "description": "As Umbra is music, Aurora is video. Play your videos and media with the same familiar ease from Umbra.",
+    "icon": "/res/projects/icons/aurora.png"
   }
 ]
