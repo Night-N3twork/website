@@ -4,125 +4,154 @@ import Overlay from '../components/Overlay.astro';
 ---
 
 <Layout>
-	<Overlay enableBg={false} customClasses="max-w-5xl w-full">
-		<div class="flex flex-row gap-3 h-full">
-			<!-- Left column with 2 stacked overlays -->
-			<div class="flex flex-col gap-3 flex-grow max-w-2xl">
+	<Overlay
+		enableBg={false}
+		customClasses="max-w-full md:max-w-5xl w-full px-4 xs:px-2"
+	>
+		<div class="flex flex-col md:flex-row gap-3 md:gap-4">
+			<div
+				class="flex flex-col gap-3 md:gap-4 flex-grow md:max-w-2xl w-full"
+			>
 				<Overlay
-					customClasses="w-full h-60 flex items-center flex-col"
+					customClasses="w-full flex items-center flex-col gap-3 md:gap-4 reveal"
 					enableBg={true}
 				>
-					<div class="flex items-center gap-6 mb-4">
+					<div
+						class="flex flex-col xs:flex-row items-center gap-4 md:gap-6 mb-2 md:mb-4 w-full"
+					>
 						<img
 							src="/res/logo.png"
 							alt="Logo"
-							class="w-20 h-20 rounded-xl"
+							class="w-16 xs:w-20 h-16 xs:h-20 rounded-xl flex-shrink-0"
 						/>
-						<div>
-							<h1 class="text-3xl font-bold">Night Network</h1>
+						<div class="text-center xs:text-left">
+							<h1 class="text-2xl xs:text-3xl font-bold">
+								Night Network
+							</h1>
 						</div>
 					</div>
-					<p class="text-sm text-mocha-text">Founded in 2023 by amplify.dev, we're the team behind Space, DayDream X, DayLight, and more — serving over 3 million users in the past year alone. With a growing Discord community of <span id="member-count" class="text-mocha-lavender font-semibold">...</span> members, we build fast, privacy-first tools designed with user safety at the core.</p>
+					<p
+						class="text-xs xs:text-sm text-mocha-text leading-relaxed"
+					>
+						Founded in 2023 by amplify.dev, we're the team behind
+						Space, DayDream X, DayLight, and more — serving over 3
+						million users in the past year alone. With a growing
+						Discord community of <span
+							id="member-count"
+							class="text-mocha-lavender font-semibold">...</span
+						> members, we build fast, privacy-first tools designed with
+						user safety at the core.
+					</p>
 				</Overlay>
 
-				<Overlay customClasses="w-full h-100" enableBg={true}>
-					<h1 class="text-rosepine-text text-lg font-semibold mb-4">
+				<Overlay
+					customClasses="w-full flex flex-col gap-3 md:gap-4 reveal"
+					data-delay="150"
+					enableBg={true}
+				>
+					<h2
+						class="text-base md:text-lg font-semibold mb-2 text-mocha-text"
+					>
 						Partners & Suborganizations
-					</h1>
-					<div class="flex flex-col gap-3 text-sm text-rosepine-text">
-						<div
-							class="border border-mocha-surface0 hover:bg-mocha-base hover:border-mocha-mauve rounded-lg p-3"
+					</h2>
+					<div
+						class="flex flex-col gap-2 md:gap-3 text-xs xs:text-sm text-mocha-text overflow-y-auto max-h-96 md:max-h-none pr-2"
+					>
+						<a
+							href="https://titaniumnetwork.org"
+							class="border border-mocha-surface0 hover:bg-mocha-base hover:border-mocha-mauve rounded-lg p-2 md:p-3 flex gap-3 transition-all duration-300 hover:translate-x-0.5"
 						>
-							<a
-								href="https://titaniumnetwork.org"
-								class="flex gap-3"
+							<img
+								src="/res/partners/tn.png"
+								alt="TN"
+								class="w-8 md:w-10 h-8 md:h-10 flex-shrink-0"
+							/>
+							<div
+								class="flex flex-col items-start justify-center"
 							>
-								<img
-									src="/res/partners/tn.png"
-									alt="TN"
-									class="w-10 h-10"
-								/>
-								<div class="flex flex-col items-start justify-center">
-									<h3
-										class="font-semibold test-mocha-text mb-1 hover:text-mocha-mauve"
-									>
-										Titanium Network
-									</h3>
-								</div>
-							</a>
-						</div>
-						<div
-							class="border border-mocha-surface0 hover:bg-mocha-base hover:border-mocha-lavender rounded-lg p-3"
+								<h3
+									class="font-semibold text-mocha-text hover:text-mocha-mauve transition-colors"
+								>
+									Titanium Network
+								</h3>
+							</div>
+						</a>
+						<a
+							href="https://nebulaservices.org"
+							class="border border-mocha-surface0 hover:bg-mocha-base hover:border-mocha-lavender rounded-lg p-2 md:p-3 flex gap-3 transition-all duration-300 hover:translate-x-0.5"
 						>
-							<a href="https://nebulaservices.org" class="flex gap-3">
-								<img
-									src="/res/partners/nebula.png"
-									alt="Nebula"
-									class="w-10 h-10"
-								/>
-								<div class="flex flex-col items-start justify-center">
-									<h3
-										class="font-semibold test-mocha-text mb-1 hover:text-mocha-lavender"
-									>
-										Nebula Services
-									</h3>
-								</div>
-							</a>
-						</div>
-            <div
-							class="border border-mocha-surface0 hover:bg-mocha-base hover:border-mocha-green rounded-lg p-3"
+							<img
+								src="/res/partners/nebula.png"
+								alt="Nebula"
+								class="w-8 md:w-10 h-8 md:h-10 flex-shrink-0"
+							/>
+							<div
+								class="flex flex-col items-start justify-center"
+							>
+								<h3
+									class="font-semibold text-mocha-text hover:text-mocha-lavender transition-colors"
+								>
+									Nebula Services
+								</h3>
+							</div>
+						</a>
+						<a
+							href="https://terbiumon.top"
+							class="border border-mocha-surface0 hover:bg-mocha-base hover:border-mocha-green rounded-lg p-2 md:p-3 flex gap-3 transition-all duration-300 hover:translate-x-0.5"
 						>
-							<a href="https://terbiumon.top" class="flex gap-3">
-								<img
-									src="/res/partners/terbium.png"
-									alt="TerbiumOS"
-									class="w-10 h-10"
-								/>
-								<div class="flex flex-col items-start justify-center">
-									<h3
-										class="font-semibold test-mocha-text mb-1 hover:text-mocha-green"
-									>
-										TerbiumOS
-									</h3>
-								</div>
-							</a>
-						</div>
-            <div
-							class="border border-mocha-surface0 hover:bg-mocha-base hover:border-mocha-blue rounded-lg p-3"
+							<img
+								src="/res/partners/terbium.png"
+								alt="TerbiumOS"
+								class="w-8 md:w-10 h-8 md:h-10 flex-shrink-0"
+							/>
+							<div
+								class="flex flex-col items-start justify-center"
+							>
+								<h3
+									class="font-semibold text-mocha-text hover:text-mocha-green transition-colors"
+								>
+									TerbiumOS
+								</h3>
+							</div>
+						</a>
+						<a
+							href="https://lunaron.top"
+							class="border border-mocha-surface0 hover:bg-mocha-base hover:border-mocha-blue rounded-lg p-2 md:p-3 flex gap-3 transition-all duration-300 hover:translate-x-0.5"
 						>
-							<a href="https://lunaron.top" class="flex gap-3">
-								<img
-									src="/res/partners/lunar.png"
-									alt="Lunar"
-									class="w-10 h-10"
-								/>
-								<div class="flex flex-col items-start justify-center">
-									<h3
-										class="font-semibold test-mocha-text mb-1 hover:text-mocha-blue"
-									>
-										Lunar
-									</h3>
-								</div>
-							</a>
-						</div>
-            <div
-							class="border border-mocha-surface0 hover:bg-mocha-base hover:border-mocha-mauve rounded-lg p-3"
+							<img
+								src="/res/partners/lunar.png"
+								alt="Lunar"
+								class="w-8 md:w-10 h-8 md:h-10 flex-shrink-0"
+							/>
+							<div
+								class="flex flex-col items-start justify-center"
+							>
+								<h3
+									class="font-semibold text-mocha-text hover:text-mocha-blue transition-colors"
+								>
+									Lunar
+								</h3>
+							</div>
+						</a>
+						<a
+							href="https://obsidiandevlabs.org"
+							class="border border-mocha-surface0 hover:bg-mocha-base hover:border-mocha-mauve rounded-lg p-2 md:p-3 flex gap-3 transition-all duration-300 hover:translate-x-0.5"
 						>
-							<a href="https://obsidiandevlabs.org" class="flex gap-3">
-								<img
-									src="/res/partners/obsidian.png"
-									alt="Obsidian"
-									class="w-10 h-10"
-								/>
-								<div class="flex flex-col items-start justify-center">
-									<h3
-										class="font-semibold test-mocha-text mb-1 hover:text-mocha-mauve"
-									>
-										Obsidian Developer Labs
-									</h3>
-								</div>
-							</a>
-						</div>
+							<img
+								src="/res/partners/obsidian.png"
+								alt="Obsidian"
+								class="w-8 md:w-10 h-8 md:h-10 flex-shrink-0"
+							/>
+							<div
+								class="flex flex-col items-start justify-center"
+							>
+								<h3
+									class="font-semibold text-mocha-text hover:text-mocha-mauve transition-colors"
+								>
+									Obsidian Developer Labs
+								</h3>
+							</div>
+						</a>
 						<!--<div class="border border-rosepine-highlightLow rounded-lg p-3">
               <h3 class="font-semibold test-mocha-text mb-1">Project Name</h3>
               <p class="text-xs text-rosepine-muted">Description here</p>
@@ -131,96 +160,102 @@ import Overlay from '../components/Overlay.astro';
 				</Overlay>
 			</div>
 
-			<!-- Right column with 2 stacked overlays -->
-			<div class="flex flex-col gap-3 max-w-xs w-full">
+			<div class="flex flex-col gap-3 md:gap-4 w-full md:max-w-xs">
 				<Overlay
 					enableBg={true}
-					customClasses="w-full h-full flex flex-col gap-2"
+					customClasses="w-full flex flex-col gap-2 md:gap-3 reveal"
+					data-delay="250"
 				>
-					<h1 class="text-rosepine-text text-lg font-semibold mb-2">
+					<h2
+						class="text-base md:text-lg font-semibold mb-2 text-mocha-text"
+					>
 						Our Accounts
-					</h1>
-					<a
-						class="text-mocha-subtext0 flex items-center gap-2"
-						href="https://github.com/Night-N3twork"
-						><span data-lucide="github"></span><span
-							class="text-sm text-mocha-subtext0 font-medium"
-							>Main Github</span
-						></a
+					</h2>
+					<div
+						class="grid grid-cols-2 md:grid-cols-1 gap-2 md:gap-3 text-xs md:text-sm"
 					>
-          <a
-						class="text-mocha-subtext0 flex items-center gap-2"
-						href="https://github.com/Lunar-Proxy"
-						><span data-lucide="github"></span><span
-							class="text-sm text-mocha-subtext0 font-medium"
-							>Lunar Github</span
-						></a
-					>
-          <a
-						class="text-mocha-subtext0 flex items-center gap-2"
-						href="https://github.com/Obsidian-Dev-Labs"
-						><span data-lucide="github"></span><span
-							class="text-sm text-mocha-subtext0 font-medium"
-							>Obsidian Github</span
-						></a
-					>
-          <a class="text-mocha-peach flex items-center gap-2"
-						href="https://gitlab.com/nightnetwork"
-						><span data-lucide="gitlab"></span><span
-							class="text-sm text-mocha-peach font-medium"
-							>Main Gitlab</span
-						></a
-					>
-					<a
-						class="text-mocha-blue  flex items-center gap-2"
-						href="https://discord.night-x.com"
-						><span data-lucide="at-sign"></span><span
-							class="text-sm text-mocha-blue font-medium"
-							>Night Discord (.gg/algebra)</span
-						></a
-					>
-          <a
-						class="text-mocha-blue  flex items-center gap-2"
-						href="https://discord.gg/JS6u8KuXf7"
-						><span data-lucide="at-sign"></span><span
-							class="text-sm text-mocha-blue font-medium"
-							>Lunar Discord</span
-						></a
-					>
-					<a
-						class="text-mocha-maroon flex items-center gap-2"
-						href="https://www.instagram.com/not.amplify.dev/"
-						><span data-lucide="instagram"></span><span
-							class="text-sm text-mocha-maroon font-medium"
-							>Instagram</span
-						></a
-					>
-          					<a
-						class="text-mocha-red flex items-center gap-2"
-						href="https://www.youtube.com/@NightNetworkOffical"
-						><span data-lucide="youtube"></span><span
-							class="text-sm text-mocha-red font-medium"
-							>Youtube</span
-						></a
-					>
-          <a
-						class="text-mocha-green flex items-center gap-2"
-						href="https://cash.app/$NightXNetwork"
-						><span data-lucide="wallet"></span><span
-							class="text-sm text-mocha-green font-medium"
-							>Cash App</span
-						></a
-					>
-          <a
-						class="text-mocha-text flex items-center gap-2"
-						href="https://www.patreon.com/c/nightNetwork"
-						><span data-lucide="landmark"></span><span
-							class="text-sm text-mocha-text font-medium"
-							>Patreon</span
-						></a
-					>
+						<a
+							class="text-mocha-subtext0 flex items-center gap-2 hover:text-mocha-lavender transition-all duration-300 hover:translate-x-0.5"
+							href="https://github.com/Night-N3twork"
+							><span data-lucide="github" class="flex-shrink-0"
+							></span><span class="font-medium truncate"
+								>Main Github</span
+							></a
+						>
+						<a
+							class="text-mocha-subtext0 flex items-center gap-2 hover:text-mocha-lavender transition-all duration-300 hover:translate-x-0.5"
+							href="https://github.com/Lunar-Proxy"
+							><span data-lucide="github" class="flex-shrink-0"
+							></span><span class="font-medium truncate"
+								>Lunar Github</span
+							></a
+						>
+						<a
+							class="text-mocha-subtext0 flex items-center gap-2 hover:text-mocha-lavender transition-all duration-300 hover:translate-x-0.5"
+							href="https://github.com/Obsidian-Dev-Labs"
+							><span data-lucide="github" class="flex-shrink-0"
+							></span><span class="font-medium truncate"
+								>Obsidian Github</span
+							></a
+						>
+						<a
+							class="text-mocha-peach flex items-center gap-2 hover:text-mocha-yellow transition-all duration-300 hover:translate-x-0.5"
+							href="https://gitlab.com/nightnetwork"
+							><span data-lucide="gitlab" class="flex-shrink-0"
+							></span><span class="font-medium truncate"
+								>Main Gitlab</span
+							></a
+						>
+						<a
+							class="text-mocha-blue flex items-center gap-2 hover:text-mocha-sky transition-all duration-300 hover:translate-x-0.5"
+							href="https://discord.night-x.com"
+							><span data-lucide="at-sign" class="flex-shrink-0"
+							></span><span class="font-medium truncate"
+								>Night Discord</span
+							></a
+						>
+						<a
+							class="text-mocha-blue flex items-center gap-2 hover:text-mocha-sky transition-all duration-300 hover:translate-x-0.5"
+							href="https://discord.gg/JS6u8KuXf7"
+							><span data-lucide="at-sign" class="flex-shrink-0"
+							></span><span class="font-medium truncate"
+								>Lunar Discord</span
+							></a
+						>
+						<a
+							class="text-mocha-maroon flex items-center gap-2 hover:text-mocha-pink transition-all duration-300 hover:translate-x-0.5"
+							href="https://www.instagram.com/not.amplify.dev/"
+							><span data-lucide="instagram" class="flex-shrink-0"
+							></span><span class="font-medium truncate"
+								>Instagram</span
+							></a
+						>
+						<a
+							class="text-mocha-red flex items-center gap-2 hover:text-mocha-flamingo transition-all duration-300 hover:translate-x-0.5"
+							href="https://www.youtube.com/@NightNetworkOffical"
+							><span data-lucide="youtube" class="flex-shrink-0"
+							></span><span class="font-medium truncate"
+								>Youtube</span
+							></a
+						>
+						<a
+							class="text-mocha-green flex items-center gap-2 hover:text-mocha-teal transition-all duration-300 hover:translate-x-0.5"
+							href="https://cash.app/$NightXNetwork"
+							><span data-lucide="wallet" class="flex-shrink-0"
+							></span><span class="font-medium truncate"
+								>Cash App</span
+							></a
+						>
+						<a
+							class="text-mocha-text flex items-center gap-2 hover:text-mocha-subtext1 transition-all duration-300 hover:translate-x-0.5"
+							href="https://www.patreon.com/c/nightNetwork"
+							><span data-lucide="landmark" class="flex-shrink-0"
+							></span><span class="font-medium truncate"
+								>Patreon</span
+							></a
+						>
+					</div>
 				</Overlay>
-
 			</div>
 		</div>
 	</Overlay>

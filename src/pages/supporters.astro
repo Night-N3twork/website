@@ -7,33 +7,56 @@ const DONATOR_ROLE_ID = '1432909960043565200';
 ---
 
 <Layout>
-	<Overlay enableBg={false} customClasses="max-w-3xl w-full bg-mocha-mantle overflow-y-auto max-h-[85vh] scrollbar-thin scrollbar-thumb-mocha-surface1 hover:scrollbar-thumb-mocha-overlay0 scrollbar-track-mocha-crust scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
-		<h1 class="text-2xl font-bold text-mocha-lavender mb-6">Supporters</h1>
+	<Overlay
+		enableBg={false}
+		customClasses="max-w-full md:max-w-3xl w-full px-4 xs:px-2 bg-mocha-mantle overflow-y-auto max-h-[85vh] scrollbar-offset"
+	>
+		<h1
+			class="text-xl md:text-2xl font-bold text-mocha-lavender mb-4 md:mb-6 reveal-down"
+		>
+			Supporters
+		</h1>
 
 		<!-- Boosters -->
-		<section class="mb-8">
-			<h2 class="text-lg font-semibold text-mocha-pink mb-3 border-b border-mocha-surface0 pb-2 flex items-center gap-2">
-				<span data-lucide="zap" class="w-5 h-5"></span>
+		<section class="mb-6 md:mb-8 reveal" data-delay="100">
+			<h2
+				class="text-base md:text-lg font-semibold text-mocha-pink mb-2 md:mb-3 border-b border-mocha-surface0 pb-2 flex items-center gap-2"
+			>
+				<span
+					data-lucide="zap"
+					class="w-4 md:w-5 h-4 md:h-5 flex-shrink-0"></span>
 				Server Boosters
 			</h2>
 			<ul id="boosters-list" class="flex flex-wrap gap-2">
-				<li class="text-sm text-mocha-subtext0">Loading...</li>
+				<li class="text-xs md:text-sm text-mocha-subtext0">
+					Loading...
+				</li>
 			</ul>
 		</section>
 
 		<!-- Donators -->
-		<section class="mb-8">
-			<h2 class="text-lg font-semibold text-mocha-green mb-3 border-b border-mocha-surface0 pb-2 flex items-center gap-2">
-				<span data-lucide="heart" class="w-5 h-5"></span>
+		<section class="mb-6 md:mb-8 reveal" data-delay="200">
+			<h2
+				class="text-base md:text-lg font-semibold text-mocha-green mb-2 md:mb-3 border-b border-mocha-surface0 pb-2 flex items-center gap-2"
+			>
+				<span
+					data-lucide="heart"
+					class="w-4 md:w-5 h-4 md:h-5 flex-shrink-0"></span>
 				Donators
 			</h2>
 			<ul id="donators-list" class="flex flex-wrap gap-2">
-				<li class="text-sm text-mocha-subtext0">Loading...</li>
+				<li class="text-xs md:text-sm text-mocha-subtext0">
+					Loading...
+				</li>
 			</ul>
 		</section>
 
-		<p class="text-sm text-mocha-overlay1">
-			Want to support us? Check out the donation links on the <a href="/" class="text-mocha-lavender hover:text-mocha-blue underline transition-colors">main page</a>.
+		<p class="text-xs md:text-sm text-mocha-overlay1">
+			Want to support us? Check out the donation links on the <a
+				href="/"
+				class="text-mocha-lavender hover:text-mocha-blue underline transition-colors"
+				>main page</a
+			>.
 		</p>
 	</Overlay>
 </Layout>
@@ -44,15 +67,16 @@ const DONATOR_ROLE_ID = '1432909960043565200';
 
 		if (!members.length) {
 			const li = document.createElement('li');
-			li.className = 'text-sm text-mocha-subtext0 italic';
+			li.className = 'text-xs md:text-sm text-mocha-subtext0 italic';
 			li.textContent = 'None yet — be the first!';
 			el.appendChild(li);
 			return;
 		}
 
-		members.forEach((m) => {
+		members.forEach(m => {
 			const li = document.createElement('li');
-			li.className = 'text-sm text-mocha-text bg-mocha-crust border border-mocha-surface0 rounded-lg px-3 py-1.5';
+			li.className =
+				'text-xs md:text-sm text-mocha-text bg-mocha-crust border border-mocha-surface0 rounded-lg px-2 md:px-3 py-1 md:py-1.5 hover:border-mocha-lavender transition-all hover:scale-105 transform';
 			li.textContent = m.username;
 			el.appendChild(li);
 		});
@@ -76,7 +100,7 @@ const DONATOR_ROLE_ID = '1432909960043565200';
 
 		const [boosters, donators] = await Promise.all([
 			fetchRole(BOOSTER_ROLE_ID),
-			fetchRole(DONATOR_ROLE_ID),
+			fetchRole(DONATOR_ROLE_ID)
 		]);
 
 		renderList(boostersList, boosters);

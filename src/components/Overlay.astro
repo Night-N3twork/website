@@ -1,16 +1,18 @@
 ---
 export interface Props {
-  enableBg?: boolean;
-  customClasses?: string;
+	enableBg?: boolean;
+	customClasses?: string;
 }
 
-const { enableBg = true, customClasses = "" } = Astro.props;
+const { enableBg = true, customClasses = '' } = Astro.props;
 
-const bgClass = enableBg ? "bg-mocha-mantle backdrop-blur-md border border-mocha-base shadow-lg" : "";
+const bgClass = enableBg
+	? 'bg-mocha-mantle backdrop-blur-md border border-mocha-base shadow-lg'
+	: '';
 ---
 
 <div
-    class={`text-rosepine-text rounded-xl p-6 ${bgClass} ${customClasses}`}
-  >
-  <slot />
+	class={`text-mocha-text rounded-xl p-4 md:p-6 ${bgClass} ${customClasses}`}
+>
+	<slot />
 </div>

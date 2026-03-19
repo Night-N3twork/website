@@ -4,7 +4,7 @@
 	"type": "module",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "astro dev --host & npm run server",
+		"dev": "astro dev --host && node --env-file=.env --import=tsx server/index.ts",
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
@@ -24,6 +24,7 @@
 		"tsparticles": "^1.37.4"
 	},
 	"devDependencies": {
+		"prettier-plugin-astro": "^0.14.1",
 		"tsx": "^4.21.0"
 	}
 }

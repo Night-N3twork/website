@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import Nav from '../components/Nav.astro';
+import '../styles/global.css';
 ---
 
 <!doctype html>
@@ -35,9 +36,13 @@ import Nav from '../components/Nav.astro';
 		</script>
 		<ClientRouter transition:animate="fade" />
 	</head>
-	<body class="overflow-hidden w-screen h-screen m-0 bg-mocha-crust text-mocha-text">
+	<body
+		class="w-full min-h-screen m-0 bg-mocha-crust text-mocha-text flex flex-col"
+	>
 		<Nav />
-		<div class="flex items-center justify-center overflow-hidden w-screen h-screen m-0">
+		<div
+			class="flex items-center justify-center flex-1 w-full p-4 md:p-6 overflow-y-auto"
+		>
 			<slot />
 		</div>
 	</body>
@@ -48,19 +53,65 @@ import Nav from '../components/Nav.astro';
 	body {
 		margin: 0;
 		width: 100%;
-		height: 100%;
+	}
+
+	body {
+		overflow-x: hidden;
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	:global(.animate-delay-100) {
+		animation-delay: 100ms;
+	}
+	:global(.animate-delay-200) {
+		animation-delay: 200ms;
+	}
+	:global(.animate-delay-300) {
+		animation-delay: 300ms;
+	}
+	:global(.animate-delay-400) {
+		animation-delay: 400ms;
 	}
 </style>
 
 <script>
 	import { createIcons, icons } from 'lucide';
 
+	function initRevealAnimations() {
+		const observer = new IntersectionObserver(
+			entries => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						const el = entry.target as HTMLElement;
+						const delay = el.dataset.delay || '0';
+						el.style.transitionDelay = delay + 'ms';
+						requestAnimationFrame(() => {
+							el.classList.add('revealed');
+						});
+						observer.unobserve(el);
+					}
+				});
+			},
+			{ threshold: 0.08, rootMargin: '0px 0px -5% 0px' }
+		);
+
+		document.querySelectorAll('.reveal, .reveal-down').forEach(el => {
+			observer.observe(el);
+		});
+	}
+
 	createIcons({ icons });
+	initRevealAnimations();
 
 	document.addEventListener('astro:page-load', () => {
 		createIcons({ icons });
+		initRevealAnimations();
 	});
 	document.addEventListener('astro:after-swap', () => {
 		createIcons({ icons });
+		initRevealAnimations();
 	});
 </script>

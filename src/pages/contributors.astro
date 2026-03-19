@@ -19,60 +19,98 @@ const roles: Role[] = data.roles;
 const members: Member[] = data.members;
 
 const grouped = roles
-	.map((role) => ({
+	.map(role => ({
 		...role,
-		members: members.filter((m) => m.role === role.key),
+		members: members.filter(m => m.role === role.key)
 	}))
-	.filter((group) => group.members.length > 0);
+	.filter(group => group.members.length > 0);
 ---
 
 <Layout>
-	<Overlay enableBg={false} customClasses="max-w-5xl w-full bg-mocha-mantle overflow-y-auto max-h-[85vh] scrollbar-thin scrollbar-thumb-mocha-surface1 hover:scrollbar-thumb-mocha-overlay0 scrollbar-track-mocha-crust scrollbar-thumb-rounded-full scrollbar-track-rounded-full">
-		<h1 class="text-2xl font-bold text-mocha-lavender mb-6">Contributors</h1>
+	<Overlay
+		enableBg={false}
+		customClasses="max-w-full md:max-w-5xl w-full px-4 xs:px-2 bg-mocha-mantle overflow-y-auto max-h-[85vh] scrollbar-offset"
+	>
+		<h1
+			class="text-xl md:text-2xl font-bold text-mocha-lavender mb-4 md:mb-6 reveal-down"
+		>
+			Contributors
+		</h1>
 
-		<div class="flex flex-col gap-8">
-			{grouped.map((group) => (
-				<section>
-					<h2 class="text-lg font-semibold text-mocha-subtext1 mb-3 border-b border-mocha-surface0 pb-2">
-						{group.label}
-					</h2>
-					<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-						{group.members.map((member) => (
-							<button
-								data-id={member.id}
-								data-name={member.name}
-								data-role={group.label}
-								data-link={member.link ?? ""}
-								class="contributor-card group flex flex-col items-center gap-3 p-4 rounded-lg border border-mocha-surface0 bg-mocha-crust hover:border-mocha-lavender transition-colors cursor-pointer"
-							>
-								<img
-									src={`/api/users/${member.id}/avatar`}
-									alt={member.name}
-									class="w-16 h-16 rounded-full border-2 border-mocha-surface1 group-hover:border-mocha-lavender transition-colors object-cover"
-									loading="lazy"
-								/>
-								<span class="text-sm font-medium text-mocha-text group-hover:text-mocha-lavender transition-colors">
-									{member.name}
-								</span>
-							</button>
-						))}
-					</div>
-				</section>
-			))}
+		<div class="flex flex-col gap-6 md:gap-8">
+			{
+				grouped.map((group, groupIndex) => (
+					<section class="reveal" data-delay={`${groupIndex * 120}`}>
+						<h2 class="text-base md:text-lg font-semibold text-mocha-subtext1 mb-3 md:mb-3 border-b border-mocha-surface0 pb-2">
+							{group.label}
+						</h2>
+						<div class="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-2 md:gap-4">
+							{group.members.map(member => (
+								<button
+									data-id={member.id}
+									data-name={member.name}
+									data-role={group.label}
+									data-link={member.link ?? ''}
+									class="contributor-card group flex flex-col items-center gap-2 md:gap-3 p-3 md:p-4 rounded-lg border border-mocha-surface0 bg-mocha-crust hover:border-mocha-lavender hover:bg-mocha-base transition-all duration-300 cursor-pointer hover:scale-[1.03]"
+								>
+									<img
+										src={`/api/users/${member.id}/avatar`}
+										alt={member.name}
+										class="w-12 xs:w-14 md:w-16 h-12 xs:h-14 md:h-16 rounded-full border-2 border-mocha-surface1 group-hover:border-mocha-lavender transition-all object-cover"
+										loading="lazy"
+									/>
+									<span class="text-xs md:text-sm font-medium text-mocha-text group-hover:text-mocha-lavender transition-colors text-center line-clamp-2 break-words">
+										{member.name}
+									</span>
+								</button>
+							))}
+						</div>
+					</section>
+				))
+			}
 		</div>
 	</Overlay>
 
 	<!-- modal -->
-	<dialog id="contributor-modal" class="bg-transparent border-none p-0 max-w-[90vw] max-h-[90vh] overflow-visible backdrop:bg-black/75 backdrop:backdrop-blur-sm">
-		<div class="bg-mocha-mantle border border-mocha-surface0 rounded-xl overflow-hidden flex flex-col max-w-[400px] max-h-[85vh] relative">
-			<button id="modal-close" class="absolute top-2 right-2 z-10 bg-mocha-crust/70 border border-mocha-surface1 rounded-lg text-mocha-text w-8 h-8 flex items-center justify-center cursor-pointer transition-colors hover:border-mocha-lavender" aria-label="Close">
+	<dialog
+		id="contributor-modal"
+		class="bg-transparent border-none p-0 max-w-[90vw] max-h-[90vh] overflow-visible backdrop:bg-black/60 backdrop:backdrop-blur-sm rounded-xl"
+	>
+		<div
+			class="bg-mocha-mantle border border-mocha-surface0 rounded-xl overflow-hidden flex flex-col max-w-[90vw] xs:max-w-[400px] max-h-[85vh] relative animate-slide-up"
+		>
+			<button
+				id="modal-close"
+				class="absolute top-2 right-2 z-10 bg-mocha-crust/70 border border-mocha-surface1 rounded-lg text-mocha-text w-8 h-8 flex items-center justify-center cursor-pointer transition-all hover:border-mocha-lavender hover:scale-110"
+				aria-label="Close"
+			>
 				<span data-lucide="x"></span>
 			</button>
-			<div class="flex flex-col items-center gap-4 px-6 pt-8 pb-6">
-				<img id="modal-avatar" class="w-24 h-24 rounded-full border-2 border-mocha-surface1 object-cover" src="" alt="" />
-				<h2 id="modal-name" class="text-xl font-bold text-mocha-text"></h2>
-				<span id="modal-role" class="text-sm text-mocha-subtext0"></span>
-				<a id="modal-link" href="#" target="_blank" rel="noopener noreferrer" class="hidden text-sm text-mocha-lavender hover:text-mocha-blue underline transition-colors">
+			<div
+				class="flex flex-col items-center gap-3 md:gap-4 px-4 xs:px-6 pt-6 xs:pt-8 pb-6"
+			>
+				<img
+					id="modal-avatar"
+					class="w-20 xs:w-24 h-20 xs:h-24 rounded-full border-2 border-mocha-surface1 object-cover"
+					src=""
+					alt=""
+				/>
+				<h2
+					id="modal-name"
+					class="text-lg xs:text-xl font-bold text-mocha-text text-center break-words"
+				>
+				</h2>
+				<span
+					id="modal-role"
+					class="text-xs xs:text-sm text-mocha-subtext0 text-center"
+				></span>
+				<a
+					id="modal-link"
+					href="#"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="hidden text-xs xs:text-sm text-mocha-lavender hover:text-mocha-blue underline transition-colors"
+				>
 					Visit Profile
 				</a>
 			</div>
@@ -82,16 +120,30 @@ const grouped = roles
 
 <script>
 	function setup() {
-		const modal = document.getElementById('contributor-modal') as HTMLDialogElement | null;
-		const modalAvatar = document.getElementById('modal-avatar') as HTMLImageElement | null;
+		const modal = document.getElementById(
+			'contributor-modal'
+		) as HTMLDialogElement | null;
+		const modalAvatar = document.getElementById(
+			'modal-avatar'
+		) as HTMLImageElement | null;
 		const modalName = document.getElementById('modal-name');
 		const modalRole = document.getElementById('modal-role');
-		const modalLink = document.getElementById('modal-link') as HTMLAnchorElement | null;
+		const modalLink = document.getElementById(
+			'modal-link'
+		) as HTMLAnchorElement | null;
 		const modalClose = document.getElementById('modal-close');
 
-		if (!modal || !modalAvatar || !modalName || !modalRole || !modalLink || !modalClose) return;
+		if (
+			!modal ||
+			!modalAvatar ||
+			!modalName ||
+			!modalRole ||
+			!modalLink ||
+			!modalClose
+		)
+			return;
 
-		document.querySelectorAll('.contributor-card').forEach((card) => {
+		document.querySelectorAll('.contributor-card').forEach(card => {
 			card.addEventListener('click', () => {
 				const el = card as HTMLElement;
 				const id = el.dataset.id;
@@ -116,7 +168,7 @@ const grouped = roles
 		});
 
 		modalClose.addEventListener('click', () => modal.close());
-		modal.addEventListener('click', (e) => {
+		modal.addEventListener('click', e => {
 			if (e.target === modal) modal.close();
 		});
 	}
