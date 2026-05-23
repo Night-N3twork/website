@@ -61,67 +61,88 @@ const labelKey = {
 </div>
 
 <script
+	is:inline
 	define:vars={{
 		LOCALE_COOKIE,
 		LOCALE_COOKIE_MAX_AGE
 	}}
 >
-	function setup() {
-		const root = document.querySelector('[data-langswitcher]');
-		if (!root) return;
-		const toggle = root.querySelector('[data-langswitcher-toggle]');
-		const menu = root.querySelector('[data-langswitcher-menu]');
-		if (!toggle || !menu) return;
+	// Event delegation: a single set of document-level listeners drives every
+	// LangSwitcher on the page, including ones that arrive via Astro's
+	// ClientRouter view transitions. Idempotent — installing twice is a no-op
+	// because we tag the document on first install.
+	(function () {
+		if (document.documentElement.dataset.langswitcherInstalled === '1')
+			return;
+		document.documentElement.dataset.langswitcherInstalled = '1';
 
-		// Guard against double-wiring across view transitions.
-		if (root.dataset.wired === '1') return;
-		root.dataset.wired = '1';
-
-		function open() {
-			menu.classList.remove('hidden');
-			toggle.setAttribute('aria-expanded', 'true');
+		function setOpen(root, open) {
+			const toggle = root.querySelector('[data-langswitcher-toggle]');
+			const menu = root.querySelector('[data-langswitcher-menu]');
+			if (!toggle || !menu) return;
+			if (open) {
+				menu.classList.remove('hidden');
+				toggle.setAttribute('aria-expanded', 'true');
+			} else {
+				menu.classList.add('hidden');
+				toggle.setAttribute('aria-expanded', 'false');
+			}
 		}
-		function close() {
-			menu.classList.add('hidden');
-			toggle.setAttribute('aria-expanded', 'false');
-		}
 
-		toggle.addEventListener('click', e => {
-			e.stopPropagation();
-			menu.classList.contains('hidden') ? open() : close();
-		});
+		function closeAll(except) {
+			document
+				.querySelectorAll('[data-langswitcher]')
+				.forEach(r => {
+					if (r !== except) setOpen(r, false);
+				});
+		}
 
 		document.addEventListener('click', e => {
-			if (!root.contains(e.target)) close();
+			const target = e.target;
+			if (!(target instanceof Element)) return;
+
+			// Click on a locale link inside the menu — set the cookie so the
+			// root-redirect middleware honours the user's explicit choice on
+			// subsequent visits. Don't preventDefault — the link still
+			// navigates normally to the new locale URL.
+			const localeLink = target.closest(
+				'[data-langswitcher-menu] a[data-locale]'
+			);
+			if (localeLink) {
+				const loc = localeLink.getAttribute('data-locale');
+				if (loc) {
+					document.cookie =
+						LOCALE_COOKIE +
+						'=' +
+						encodeURIComponent(loc) +
+						'; Max-Age=' +
+						LOCALE_COOKIE_MAX_AGE +
+						'; Path=/; SameSite=Lax';
+				}
+				return;
+			}
+
+			// Click on the toggle button — open this switcher, close any others.
+			const toggle = target.closest('[data-langswitcher-toggle]');
+			if (toggle) {
+				const root = toggle.closest('[data-langswitcher]');
+				if (!root) return;
+				const menu = root.querySelector('[data-langswitcher-menu]');
+				const isHidden = menu?.classList.contains('hidden');
+				closeAll(root);
+				setOpen(root, !!isHidden);
+				return;
+			}
+
+			// Click anywhere else (outside any switcher) — close all switchers.
+			if (!target.closest('[data-langswitcher]')) {
+				closeAll(null);
+			}
 		});
 
-		// On selection: remember the choice in a cookie so the root-redirect
-		// middleware honours it on subsequent visits.
-		menu.querySelectorAll('a[data-locale]').forEach(a => {
-			a.addEventListener('click', () => {
-				const loc = a.getAttribute('data-locale');
-				if (!loc) return;
-				document.cookie =
-					LOCALE_COOKIE +
-					'=' +
-					encodeURIComponent(loc) +
-					'; Max-Age=' +
-					LOCALE_COOKIE_MAX_AGE +
-					'; Path=/; SameSite=Lax';
-			});
+		// Close on Escape for keyboard users.
+		document.addEventListener('keydown', e => {
+			if (e.key === 'Escape') closeAll(null);
 		});
-	}
-
-	setup();
-	document.addEventListener('astro:page-load', () => {
-		// Clear the wired flag so the next instance re-wires (the DOM is fresh).
-		const r = document.querySelector('[data-langswitcher]');
-		if (r) delete r.dataset.wired;
-		setup();
-	});
-	document.addEventListener('astro:after-swap', () => {
-		const r = document.querySelector('[data-langswitcher]');
-		if (r) delete r.dataset.wired;
-		setup();
-	});
+	})();
 </script>
