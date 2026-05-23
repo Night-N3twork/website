@@ -13,7 +13,9 @@ export default defineConfig({
 	// HTML at build time, so the four "real" pages (and their locale variants)
 	// are pre-rendered; only `/` runs at request time.
 	output: 'server',
-	adapter: node({ mode: 'standalone' }),
+	// Middleware mode: build emits a request handler we mount inside the
+	// existing Fastify app — one port, one process, no separate Astro server.
+	adapter: node({ mode: 'middleware' }),
 	integrations: [tailwind()],
 	i18n: {
 		defaultLocale: 'en',
