@@ -1,0 +1,121 @@
+{
+	"meta": {
+		"title": "Night Network",
+		"description": "About Us",
+		"keywords": "Portfolio, About Me, Web Developers, Fullstack Developers, Organizations, Projects, Homepage"
+	},
+	"nav": {
+		"home": "Home",
+		"projects": "Projects",
+		"contributors": "Contributors",
+		"supporters": "Supporters",
+		"uptime": "Uptime",
+		"language": "Language"
+	},
+	"home": {
+		"orgName": "Night Network",
+		"logoAlt": "Logo",
+		"introBefore": "Founded in 2023 by amplify.dev, we're the team behind Space, DayDream X, DayLight, and more — serving over 3 million users in the past year alone. With a growing Discord community of ",
+		"introAfter": " members, we build fast, privacy-first SaaS tools designed with user safety at the core. We believe in Control, Privacy, and Freedom — and we strive to create a better internet for everyone.",
+		"memberCountFallback": "thousands of",
+		"partnersHeading": "Partners & Suborganizations",
+		"partners": {
+			"titanium": { "name": "Titanium Network", "alt": "TN" },
+			"nebula": { "name": "Nebula Services", "alt": "Nebula" },
+			"terbium": { "name": "TerbiumOS", "alt": "TerbiumOS" },
+			"lunar": { "name": "Lunar", "alt": "Lunar" },
+			"obsidian": { "name": "Obsidian Developer Labs", "alt": "Obsidian" }
+		},
+		"accountsHeading": "Our Accounts",
+		"accounts": {
+			"mainGithub": "Main Github",
+			"lunarGithub": "Lunar Github",
+			"obsidianGithub": "Obsidian Github",
+			"mainGitlab": "Main Gitlab",
+			"nightDiscord": "Night Discord",
+			"lunarDiscord": "Lunar Discord",
+			"instagram": "Instagram",
+			"youtube": "Youtube",
+			"cashapp": "Cash App",
+			"patreon": "Patreon"
+		}
+	},
+	"projects": {
+		"heading": "Our Projects",
+		"modal": {
+			"close": "Close",
+			"visit": "Visit Project",
+			"previewAlt": "{name} preview"
+		},
+		"items": {
+			"space": {
+				"name": "Space",
+				"description": "Space is a next-gen proxy that has revolutionized the proxy scene with its incredible UI, functionality, and speeds. Space is the flagship proxy for Night Network using never before seen blob cloaking, account system, and more!"
+			},
+			"daydreamx": {
+				"name": "DayDream X",
+				"description": "Your favorite browser in a browser."
+			},
+			"lunar": {
+				"name": "Lunar",
+				"description": "Browser Inspired Proxy"
+			},
+			"linkArchive": {
+				"name": "Link Archive",
+				"description": "Mass Link storage solution with filter categorization, automatic link generation, and more. themed off of Amplify's Cat."
+			},
+			"solar": {
+				"name": "Solar",
+				"description": "Discord Filter Checker & Utility Bot"
+			},
+			"nyxai": {
+				"name": "NyxAI",
+				"description": "Advanced AI with in your browser. Simple, but Powerful."
+			},
+			"daylight": {
+				"name": "DayLight",
+				"description": "Daylight is a simplistic proxy with smooth animations, fast speeds, custom themes, and custom extensions. In addition, Daylight has a vertical tab system in a similar style to arc."
+			},
+			"umbra": {
+				"name": "Umbra",
+				"description": "Umbra is a music player with custom audio visualization, cover rendering, playlist support and sharing, and more. Umbra also has fast speeds and high-quality music."
+			},
+			"aurora": {
+				"name": "Aurora",
+				"description": "As Umbra is music, Aurora is video. Play your videos and media with the same familiar ease from Umbra."
+			}
+		}
+	},
+	"contributors": {
+		"heading": "Contributors",
+		"modal": {
+			"close": "Close",
+			"visit": "Visit Profile"
+		},
+		"roles": {
+			"owner": "Owners",
+			"co-owner": "Co-Owners",
+			"director": "Directors",
+			"developer": "Developers",
+			"admin": "Admins",
+			"moderator": "Mods",
+			"marketer": "Marketers"
+		}
+	},
+	"supporters": {
+		"heading": "Supporters",
+		"boostersHeading": "Server Boosters",
+		"donatorsHeading": "Donators",
+		"loading": "Loading...",
+		"empty": "None yet — be the first!",
+		"footerBefore": "Want to support us? Check out the donation links on the ",
+		"footerLinkText": "main page",
+		"footerAfter": "."
+	},
+	"language": {
+		"english": "English",
+		"spanish": "Español",
+		"french": "Français",
+		"japanese": "日本語"
+	}
+}

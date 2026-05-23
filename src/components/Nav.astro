@@ -1,5 +1,16 @@
 ---
+import LangSwitcher from '@components/LangSwitcher.astro';
+import {
+	LOCALES,
+	extractLocaleFromPath,
+	pathFor,
+	tFor
+} from '@utils/i18n';
 
+const locale =
+	(Astro.locals as { locale?: typeof LOCALES[number] } | undefined)?.locale ??
+	extractLocaleFromPath(Astro.url.pathname);
+const t = tFor(locale);
 ---
 
 <div
@@ -7,44 +18,38 @@
 >
 	<a
 		class="text-mocha-lavender hover:text-mocha-blue p-2 md:p-0 hover:scale-110 transition-all duration-300"
-		href="/"
-		title="Home"
+		href={pathFor(locale, '/')}
+		title={t('nav.home')}
 	>
 		<span data-lucide="home" class="w-5 h-5 md:w-6 md:h-6"></span>
 	</a>
 	<a
 		class="text-mocha-lavender hover:text-mocha-blue p-2 md:p-0 hover:scale-110 transition-all duration-300"
-		href="/projects"
-		title="Projects"
+		href={pathFor(locale, '/projects')}
+		title={t('nav.projects')}
 	>
 		<span data-lucide="code" class="w-5 h-5 md:w-6 md:h-6"></span>
 	</a>
 	<a
 		class="text-mocha-lavender hover:text-mocha-blue p-2 md:p-0 hover:scale-110 transition-all duration-300"
-		href="/contributors"
-		title="Contributors"
+		href={pathFor(locale, '/contributors')}
+		title={t('nav.contributors')}
 	>
 		<span data-lucide="users" class="w-5 h-5 md:w-6 md:h-6"></span>
 	</a>
 	<a
 		class="text-mocha-lavender hover:text-mocha-blue p-2 md:p-0 hover:scale-110 transition-all duration-300"
-		href="/supporters"
-		title="Supporters"
+		href={pathFor(locale, '/supporters')}
+		title={t('nav.supporters')}
 	>
 		<span data-lucide="heart" class="w-5 h-5 md:w-6 md:h-6"></span>
 	</a>
 	<a
 		class="text-mocha-lavender hover:text-mocha-blue p-2 md:p-0 hover:scale-110 transition-all duration-300"
-		href="https://docs.night-x.com"
-		title="Docs"
-	>
-		<span data-lucide="book" class="w-5 h-5 md:w-6 md:h-6"></span>
-	</a>
-	<a
-		class="text-mocha-lavender hover:text-mocha-blue p-2 md:p-0 hover:scale-110 transition-all duration-300"
 		href="https://uptime.night-x.com"
-		title="Uptime"
+		title={t('nav.uptime')}
 	>
 		<span data-lucide="activity" class="w-5 h-5 md:w-6 md:h-6"></span>
 	</a>
+	<LangSwitcher />
 </div>

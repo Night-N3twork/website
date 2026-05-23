@@ -1,0 +1,121 @@
+{
+	"meta": {
+		"title": "Night Network",
+		"description": "Sobre nosotros",
+		"keywords": "Portafolio, Sobre nosotros, Desarrolladores web, Desarrolladores fullstack, Organizaciones, Proyectos, Página principal"
+	},
+	"nav": {
+		"home": "Inicio",
+		"projects": "Proyectos",
+		"contributors": "Colaboradores",
+		"supporters": "Patrocinadores",
+		"uptime": "Estado del servicio",
+		"language": "Idioma"
+	},
+	"home": {
+		"orgName": "Night Network",
+		"logoAlt": "Logo",
+		"introBefore": "Fundada en 2023 por amplify.dev, somos el equipo detrás de Space, DayDream X, DayLight y más, atendiendo a más de 3 millones de usuarios solo en el último año. Con una creciente comunidad de Discord de ",
+		"introAfter": " miembros, creamos herramientas SaaS rápidas y centradas en la privacidad, diseñadas con la seguridad del usuario como prioridad. Creemos en el Control, la Privacidad y la Libertad, y nos esforzamos por crear un mejor internet para todos.",
+		"memberCountFallback": "miles de",
+		"partnersHeading": "Socios y suborganizaciones",
+		"partners": {
+			"titanium": { "name": "Titanium Network", "alt": "TN" },
+			"nebula": { "name": "Nebula Services", "alt": "Nebula" },
+			"terbium": { "name": "TerbiumOS", "alt": "TerbiumOS" },
+			"lunar": { "name": "Lunar", "alt": "Lunar" },
+			"obsidian": { "name": "Obsidian Developer Labs", "alt": "Obsidian" }
+		},
+		"accountsHeading": "Nuestras cuentas",
+		"accounts": {
+			"mainGithub": "GitHub principal",
+			"lunarGithub": "GitHub de Lunar",
+			"obsidianGithub": "GitHub de Obsidian",
+			"mainGitlab": "GitLab principal",
+			"nightDiscord": "Discord de Night",
+			"lunarDiscord": "Discord de Lunar",
+			"instagram": "Instagram",
+			"youtube": "YouTube",
+			"cashapp": "Cash App",
+			"patreon": "Patreon"
+		}
+	},
+	"projects": {
+		"heading": "Nuestros proyectos",
+		"modal": {
+			"close": "Cerrar",
+			"visit": "Visitar proyecto",
+			"previewAlt": "Vista previa de {name}"
+		},
+		"items": {
+			"space": {
+				"name": "Space",
+				"description": "Space es un proxy de nueva generación que ha revolucionado la escena de los proxies con su increíble interfaz, funcionalidad y velocidad. Space es el proxy insignia de Night Network, con cifrado por blob nunca antes visto, sistema de cuentas y mucho más."
+			},
+			"daydreamx": {
+				"name": "DayDream X",
+				"description": "Tu navegador favorito dentro de un navegador."
+			},
+			"lunar": {
+				"name": "Lunar",
+				"description": "Proxy inspirado en navegadores"
+			},
+			"linkArchive": {
+				"name": "Link Archive",
+				"description": "Solución de almacenamiento masivo de enlaces con categorización por filtros, generación automática de enlaces y más. Inspirado en el gato de Amplify."
+			},
+			"solar": {
+				"name": "Solar",
+				"description": "Bot de Discord para verificación de filtros y utilidades"
+			},
+			"nyxai": {
+				"name": "NyxAI",
+				"description": "IA avanzada en tu navegador. Simple, pero potente."
+			},
+			"daylight": {
+				"name": "DayLight",
+				"description": "Daylight es un proxy minimalista con animaciones fluidas, velocidades rápidas, temas personalizados y extensiones propias. Además, Daylight cuenta con un sistema de pestañas verticales en un estilo similar al de Arc."
+			},
+			"umbra": {
+				"name": "Umbra",
+				"description": "Umbra es un reproductor de música con visualización de audio personalizada, renderizado de portadas, soporte para compartir listas de reproducción y más. Umbra también ofrece velocidades rápidas y música de alta calidad."
+			},
+			"aurora": {
+				"name": "Aurora",
+				"description": "Así como Umbra es para música, Aurora es para vídeo. Reproduce tus vídeos y contenidos con la misma facilidad familiar de Umbra."
+			}
+		}
+	},
+	"contributors": {
+		"heading": "Colaboradores",
+		"modal": {
+			"close": "Cerrar",
+			"visit": "Visitar perfil"
+		},
+		"roles": {
+			"owner": "Owners",
+			"co-owner": "Co-Owners",
+			"director": "Directors",
+			"developer": "Developers",
+			"admin": "Admins",
+			"moderator": "Mods",
+			"marketer": "Marketers"
+		}
+	},
+	"supporters": {
+		"heading": "Patrocinadores",
+		"boostersHeading": "Boosters del servidor",
+		"donatorsHeading": "Donantes",
+		"loading": "Cargando...",
+		"empty": "Aún no hay ninguno, ¡sé el primero!",
+		"footerBefore": "¿Quieres apoyarnos? Consulta los enlaces de donación en la ",
+		"footerLinkText": "página principal",
+		"footerAfter": "."
+	},
+	"language": {
+		"english": "English",
+		"spanish": "Español",
+		"french": "Français",
+		"japanese": "日本語"
+	}
+}

@@ -1,0 +1,127 @@
+---
+import {
+	LOCALES,
+	DEFAULT_LOCALE,
+	extractLocaleFromPath,
+	stripLocale,
+	pathFor,
+	tFor,
+	LOCALE_COOKIE,
+	LOCALE_COOKIE_MAX_AGE
+} from '@utils/i18n';
+
+const activeLocale =
+	(Astro.locals as { locale?: typeof LOCALES[number] } | undefined)?.locale ??
+	extractLocaleFromPath(Astro.url.pathname);
+const t = tFor(activeLocale);
+const canonical = stripLocale(Astro.url.pathname);
+
+const labelKey = {
+	en: 'language.english',
+	es: 'language.spanish',
+	fr: 'language.french',
+	ja: 'language.japanese'
+} as const;
+---
+
+<div class="relative inline-block" data-langswitcher>
+	<button
+		type="button"
+		class="text-mocha-lavender hover:text-mocha-blue p-2 md:p-0 hover:scale-110 transition-all duration-300 cursor-pointer flex items-center"
+		title={t('nav.language')}
+		aria-haspopup="menu"
+		aria-expanded="false"
+		data-langswitcher-toggle
+	>
+		<span data-lucide="globe" class="w-5 h-5 md:w-6 md:h-6"></span>
+	</button>
+	<div
+		class="hidden absolute right-0 mt-2 min-w-[140px] bg-mocha-mantle border border-mocha-surface0 rounded-lg shadow-lg backdrop-blur-md z-[1100] py-1"
+		role="menu"
+		data-langswitcher-menu
+	>
+		{
+			LOCALES.map(l => (
+				<a
+					href={pathFor(l, canonical)}
+					role="menuitem"
+					data-locale={l}
+					class:list={[
+						'block px-3 py-2 text-xs md:text-sm transition-colors',
+						l === activeLocale
+							? 'text-mocha-lavender font-semibold bg-mocha-base'
+							: 'text-mocha-text hover:text-mocha-lavender hover:bg-mocha-base'
+					]}
+				>
+					{tFor(l)(labelKey[l])}
+				</a>
+			))
+		}
+	</div>
+</div>
+
+<script
+	define:vars={{
+		LOCALE_COOKIE,
+		LOCALE_COOKIE_MAX_AGE
+	}}
+>
+	function setup() {
+		const root = document.querySelector('[data-langswitcher]');
+		if (!root) return;
+		const toggle = root.querySelector('[data-langswitcher-toggle]');
+		const menu = root.querySelector('[data-langswitcher-menu]');
+		if (!toggle || !menu) return;
+
+		// Guard against double-wiring across view transitions.
+		if (root.dataset.wired === '1') return;
+		root.dataset.wired = '1';
+
+		function open() {
+			menu.classList.remove('hidden');
+			toggle.setAttribute('aria-expanded', 'true');
+		}
+		function close() {
+			menu.classList.add('hidden');
+			toggle.setAttribute('aria-expanded', 'false');
+		}
+
+		toggle.addEventListener('click', e => {
+			e.stopPropagation();
+			menu.classList.contains('hidden') ? open() : close();
+		});
+
+		document.addEventListener('click', e => {
+			if (!root.contains(e.target)) close();
+		});
+
+		// On selection: remember the choice in a cookie so the root-redirect
+		// middleware honours it on subsequent visits.
+		menu.querySelectorAll('a[data-locale]').forEach(a => {
+			a.addEventListener('click', () => {
+				const loc = a.getAttribute('data-locale');
+				if (!loc) return;
+				document.cookie =
+					LOCALE_COOKIE +
+					'=' +
+					encodeURIComponent(loc) +
+					'; Max-Age=' +
+					LOCALE_COOKIE_MAX_AGE +
+					'; Path=/; SameSite=Lax';
+			});
+		});
+	}
+
+	setup();
+	document.addEventListener('astro:page-load', () => {
+		// Clear the wired flag so the next instance re-wires (the DOM is fresh).
+		const r = document.querySelector('[data-langswitcher]');
+		if (r) delete r.dataset.wired;
+		setup();
+	});
+	document.addEventListener('astro:after-swap', () => {
+		const r = document.querySelector('[data-langswitcher]');
+		if (r) delete r.dataset.wired;
+		setup();
+	});
+</script>

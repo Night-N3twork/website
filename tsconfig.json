@@ -4,6 +4,16 @@
 	"exclude": ["dist"],
 	"compilerOptions": {
 		"emitDecoratorMetadata": true,
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+		"baseUrl": "./",
+		"paths": {
+			"@components/*": ["src/components/*"],
+			"@layouts/*": ["src/layouts/*"],
+			"@pages/*": ["src/pages/*"],
+			"@styles/*": ["src/styles/*"],
+			"@utils/*": ["src/utils/*"],
+			"@data/*": ["src/data/*"],
+			"@i18n/*": ["src/i18n/*"]
+		}
 	}
 }

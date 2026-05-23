@@ -1,5 +1,5 @@
 import Fastify from 'fastify';
-import fastifyStatic from "@fastify/static";
+import fastifyStatic from '@fastify/static';
 
 import statsRoutes from './routes/stats.js';
 import usersRoutes from './routes/users.js';
@@ -14,11 +14,11 @@ app.register(statsRoutes, { prefix: '/api' });
 app.register(usersRoutes, { prefix: '/api' });
 const frontendPath = new URL('../dist', import.meta.url);
 await app.register(fastifyStatic, {
-    root: frontendPath,
-    prefix: "/",
-    index: ["index.html"],
-    extensions: ["html"]
-  });
+	root: frontendPath,
+	prefix: '/',
+	index: ['index.html'],
+	extensions: ['html']
+});
 
 const start = async () => {
 	try {

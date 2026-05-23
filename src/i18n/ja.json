@@ -1,0 +1,121 @@
+{
+	"meta": {
+		"title": "Night Network",
+		"description": "私たちについて",
+		"keywords": "ポートフォリオ, 私たちについて, ウェブ開発者, フルスタック開発者, 組織, プロジェクト, ホームページ"
+	},
+	"nav": {
+		"home": "ホーム",
+		"projects": "プロジェクト",
+		"contributors": "コントリビューター",
+		"supporters": "サポーター",
+		"uptime": "稼働状況",
+		"language": "言語"
+	},
+	"home": {
+		"orgName": "Night Network",
+		"logoAlt": "ロゴ",
+		"introBefore": "2023年にamplify.devによって設立された私たちは、Space、DayDream X、DayLightをはじめとするプロジェクトを手がけるチームで、過去1年だけで300万人以上のユーザーにサービスを提供しています。",
+		"introAfter": "人のメンバーが集う成長中のDiscordコミュニティとともに、ユーザーの安全を最優先に考えた、高速でプライバシー重視のSaaSツールを開発しています。私たちはコントロール、プライバシー、そして自由を信じ、すべての人にとってより良いインターネットを目指して取り組んでいます。",
+		"memberCountFallback": "数千",
+		"partnersHeading": "パートナーと関連組織",
+		"partners": {
+			"titanium": { "name": "Titanium Network", "alt": "TN" },
+			"nebula": { "name": "Nebula Services", "alt": "Nebula" },
+			"terbium": { "name": "TerbiumOS", "alt": "TerbiumOS" },
+			"lunar": { "name": "Lunar", "alt": "Lunar" },
+			"obsidian": { "name": "Obsidian Developer Labs", "alt": "Obsidian" }
+		},
+		"accountsHeading": "公式アカウント",
+		"accounts": {
+			"mainGithub": "メインGitHub",
+			"lunarGithub": "Lunar GitHub",
+			"obsidianGithub": "Obsidian GitHub",
+			"mainGitlab": "メインGitLab",
+			"nightDiscord": "Night Discord",
+			"lunarDiscord": "Lunar Discord",
+			"instagram": "Instagram",
+			"youtube": "YouTube",
+			"cashapp": "Cash App",
+			"patreon": "Patreon"
+		}
+	},
+	"projects": {
+		"heading": "プロジェクト一覧",
+		"modal": {
+			"close": "閉じる",
+			"visit": "プロジェクトを見る",
+			"previewAlt": "{name}のプレビュー"
+		},
+		"items": {
+			"space": {
+				"name": "Space",
+				"description": "Spaceは、優れたUI、機能性、速度でプロキシシーンに革命を起こした次世代プロキシです。Night Networkの旗艦プロキシであり、これまでにないBlobクローキング、アカウントシステムなどを搭載しています。"
+			},
+			"daydreamx": {
+				"name": "DayDream X",
+				"description": "ブラウザの中のお気に入りブラウザ。"
+			},
+			"lunar": {
+				"name": "Lunar",
+				"description": "ブラウザにインスパイアされたプロキシ"
+			},
+			"linkArchive": {
+				"name": "Link Archive",
+				"description": "フィルタによるカテゴリ分け、自動リンク生成などを備えた大量リンクストレージソリューション。Amplifyの猫をテーマにしています。"
+			},
+			"solar": {
+				"name": "Solar",
+				"description": "Discordフィルタチェッカー兼ユーティリティBot"
+			},
+			"nyxai": {
+				"name": "NyxAI",
+				"description": "ブラウザで動く高度なAI。シンプルかつパワフル。"
+			},
+			"daylight": {
+				"name": "DayLight",
+				"description": "Daylightは、滑らかなアニメーション、高速な動作、カスタムテーマ、独自の拡張機能を備えたシンプルなプロキシです。さらに、Arcに似たスタイルの縦型タブシステムも搭載しています。"
+			},
+			"umbra": {
+				"name": "Umbra",
+				"description": "Umbraは、カスタム音声ビジュアライゼーション、カバーアートのレンダリング、プレイリストの共有・対応などを備えた音楽プレーヤーです。Umbraは高速かつ高音質な音楽再生も実現しています。"
+			},
+			"aurora": {
+				"name": "Aurora",
+				"description": "Umbraが音楽なら、Auroraは映像。Umbraと同じ親しみやすい操作感で、動画やメディアを楽しめます。"
+			}
+		}
+	},
+	"contributors": {
+		"heading": "コントリビューター",
+		"modal": {
+			"close": "閉じる",
+			"visit": "プロフィールを見る"
+		},
+		"roles": {
+			"owner": "Owners",
+			"co-owner": "Co-Owners",
+			"director": "Directors",
+			"developer": "Developers",
+			"admin": "Admins",
+			"moderator": "Mods",
+			"marketer": "Marketers"
+		}
+	},
+	"supporters": {
+		"heading": "サポーター",
+		"boostersHeading": "サーバーブースター",
+		"donatorsHeading": "寄付者",
+		"loading": "読み込み中...",
+		"empty": "まだ誰もいません — 最初の一人になりませんか？",
+		"footerBefore": "応援したいですか？",
+		"footerLinkText": "メインページ",
+		"footerAfter": "の寄付リンクをご覧ください。"
+	},
+	"language": {
+		"english": "English",
+		"spanish": "Español",
+		"french": "Français",
+		"japanese": "日本語"
+	}
+}
