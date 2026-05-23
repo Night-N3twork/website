@@ -1,21 +1,49 @@
 ---
 import { ClientRouter } from 'astro:transitions';
-import Nav from '../components/Nav.astro';
-import '../styles/global.css';
+import Nav from '@components/Nav.astro';
+import '@styles/global.css';
+import {
+	LOCALES,
+	DEFAULT_LOCALE,
+	extractLocaleFromPath,
+	stripLocale,
+	pathFor,
+	tFor
+} from '@utils/i18n';
+
+// Active locale: prefer middleware-set locals (SSR pages), fall back to URL
+// parse for pages that didn't go through middleware (prerendered).
+const locale =
+	(Astro.locals as { locale?: typeof LOCALES[number] } | undefined)?.locale ??
+	extractLocaleFromPath(Astro.url.pathname);
+const t = tFor(locale);
+
+const canonical = stripLocale(Astro.url.pathname);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Night Network</title>
+		<title>{t('meta.title')}</title>
 		<link rel="icon" type="image/x-icon" href="/res/logo.png" />
-		<meta name="description" content="About Us" />
-		<meta
-			name="keywords"
-			content="Portfolio, About Me, Web Developers, Fullstack Developers, Organizations, Projects, Homepage"
+		<meta name="description" content={t('meta.description')} />
+		<meta name="keywords" content={t('meta.keywords')} />
+		{
+			LOCALES.map(l => (
+				<link
+					rel="alternate"
+					hreflang={l}
+					href={pathFor(l, canonical)}
+				/>
+			))
+		}
+		<link
+			rel="alternate"
+			hreflang="x-default"
+			href={pathFor(DEFAULT_LOCALE, canonical)}
 		/>
 		<script
 			src="https://kit.fontawesome.com/1964ee1753.js"

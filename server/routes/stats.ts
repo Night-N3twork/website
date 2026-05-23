@@ -1,5 +1,5 @@
 import type { FastifyInstance } from 'fastify';
-import { api, guildId } from '../discord.js';
+import { api, guildId, lunarGuildId } from '../discord.js';
 
 // --- cache ---
 const CACHE_TTL = 12 * 60 * 60 * 1000; // 12 hours
@@ -50,24 +50,74 @@ async function fetchAllMembers() {
 	return allMembers;
 }
 
+// fetch a single guild's overview (cached per-guild)
+async function fetchGuildOverview(id: string) {
+	const cacheKey = `guild_stats_${id}`;
+	const cached = getCached<any>(cacheKey);
+	if (cached) return cached;
+
+	const guild = await api.proxy
+		.guilds(id)
+		.get({ query: { with_counts: true } });
+	const result = {
+		name: guild.name,
+		id: guild.id,
+		memberCount: guild.approximate_member_count ?? null,
+		icon: guild.icon
+	};
+
+	setCache(cacheKey, result);
+	return result;
+}
+
 export default async function statsRoutes(fastify: FastifyInstance) {
-	// GET /api/stats — guild overview (member count, roles, etc.)
+	// GET /api/stats — combined overview across all configured guilds.
+	// `memberCount` is the sum across guilds; `guilds` contains per-guild detail.
 	fastify.get('/stats', async (_request, reply) => {
 		try {
-			const cached = getCached<any>('guild_stats');
-			if (cached) return reply.send(cached);
+			const ids = [guildId, ...(lunarGuildId ? [lunarGuildId] : [])];
 
-			const guild = await api.proxy.guilds(guildId).get({ query: { with_counts: true } });
+			const settled = await Promise.allSettled(
+				ids.map(id => fetchGuildOverview(id))
+			);
 
-			const result = {
-				name: guild.name,
-				id: guild.id,
-				memberCount: guild.approximate_member_count ?? null,
-				icon: guild.icon
-			};
+			const guilds: any[] = [];
+			let totalMemberCount = 0;
+			let anySuccess = false;
 
-			setCache('guild_stats', result);
-			return reply.send(result);
+			for (let i = 0; i < settled.length; i++) {
+				const outcome = settled[i];
+				if (outcome.status === 'fulfilled') {
+					anySuccess = true;
+					guilds.push(outcome.value);
+					if (typeof outcome.value.memberCount === 'number') {
+						totalMemberCount += outcome.value.memberCount;
+					}
+				} else {
+					fastify.log.error(
+						{ err: outcome.reason, guildId: ids[i] },
+						'Failed to fetch guild overview'
+					);
+				}
+			}
+
+			if (!anySuccess) {
+				return reply
+					.status(500)
+					.send({ error: 'Failed to fetch guild stats' });
+			}
+
+			// Primary guild detail kept at top level for backward compatibility
+			// with existing frontend code that reads { name, id, memberCount, icon }.
+			const primary = guilds.find(g => g.id === guildId) ?? guilds[0];
+
+			return reply.send({
+				name: primary.name,
+				id: primary.id,
+				memberCount: totalMemberCount,
+				icon: primary.icon,
+				guilds
+			});
 		} catch (err) {
 			fastify.log.error(err);
 			return reply
@@ -106,7 +156,9 @@ export default async function statsRoutes(fastify: FastifyInstance) {
 		async (request, reply) => {
 			try {
 				const roleId = request.query.role;
-				const cacheKey = roleId ? `members_role_${roleId}` : 'members_all';
+				const cacheKey = roleId
+					? `members_role_${roleId}`
+					: 'members_all';
 
 				const cached = getCached<any[]>(cacheKey);
 				if (cached) return reply.send(cached);

@@ -1,0 +1,196 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Overlay from '@components/Overlay.astro';
+import data from '@data/contributors.json';
+import {
+	LOCALES,
+	extractLocaleFromPath,
+	tFor
+} from '@utils/i18n';
+
+interface Role {
+	key: string;
+	label: string;
+}
+
+interface Member {
+	id: string;
+	name: string;
+	role: string;
+	link?: string;
+}
+
+const locale =
+	(Astro.locals as { locale?: typeof LOCALES[number] } | undefined)?.locale ??
+	extractLocaleFromPath(Astro.url.pathname);
+const t = tFor(locale);
+
+const roles: Role[] = data.roles;
+const members: Member[] = data.members;
+
+// Localized role labels — but per project policy, role labels stay English
+// across all locales. Catalog returns English for all locales.
+const localizedRoles = roles.map(r => ({
+	...r,
+	label: t(`contributors.roles.${r.key}`)
+}));
+
+const grouped = localizedRoles
+	.map(role => ({
+		...role,
+		members: members.filter(m => m.role === role.key)
+	}))
+	.filter(group => group.members.length > 0);
+---
+
+<Layout>
+	<Overlay
+		enableBg={false}
+		customClasses="max-w-full md:max-w-5xl w-full px-4 xs:px-2 bg-mocha-mantle overflow-y-auto max-h-[85vh] scrollbar-offset"
+	>
+		<h1
+			class="text-xl md:text-2xl font-bold text-mocha-lavender mb-4 md:mb-6 reveal-down"
+		>
+			{t('contributors.heading')}
+		</h1>
+
+		<div class="flex flex-col gap-6 md:gap-8">
+			{
+				grouped.map((group, groupIndex) => (
+					<section class="reveal" data-delay={`${groupIndex * 120}`}>
+						<h2 class="text-base md:text-lg font-semibold text-mocha-subtext1 mb-3 md:mb-3 border-b border-mocha-surface0 pb-2">
+							{group.label}
+						</h2>
+						<div class="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-2 md:gap-4">
+							{group.members.map(member => (
+								<button
+									data-id={member.id}
+									data-name={member.name}
+									data-role={group.label}
+									data-link={member.link ?? ''}
+									class="contributor-card group flex flex-col items-center gap-2 md:gap-3 p-3 md:p-4 rounded-lg border border-mocha-surface0 bg-mocha-crust hover:border-mocha-lavender hover:bg-mocha-base transition-all duration-300 cursor-pointer hover:scale-[1.03]"
+								>
+									<img
+										src={`/api/users/${member.id}/avatar`}
+										alt={member.name}
+										class="w-12 xs:w-14 md:w-16 h-12 xs:h-14 md:h-16 rounded-full border-2 border-mocha-surface1 group-hover:border-mocha-lavender transition-all object-cover"
+										loading="lazy"
+									/>
+									<span class="text-xs md:text-sm font-medium text-mocha-text group-hover:text-mocha-lavender transition-colors text-center line-clamp-2 break-words">
+										{member.name}
+									</span>
+								</button>
+							))}
+						</div>
+					</section>
+				))
+			}
+		</div>
+	</Overlay>
+
+	<!-- modal -->
+	<dialog
+		id="contributor-modal"
+		class="bg-transparent border-none p-0 max-w-[90vw] max-h-[90vh] overflow-visible backdrop:bg-black/60 backdrop:backdrop-blur-sm rounded-xl"
+	>
+		<div
+			class="bg-mocha-mantle border border-mocha-surface0 rounded-xl overflow-hidden flex flex-col max-w-[90vw] xs:max-w-[400px] max-h-[85vh] relative animate-slide-up"
+		>
+			<button
+				id="modal-close"
+				class="absolute top-2 right-2 z-10 bg-mocha-crust/70 border border-mocha-surface1 rounded-lg text-mocha-text w-8 h-8 flex items-center justify-center cursor-pointer transition-all hover:border-mocha-lavender hover:scale-110"
+				aria-label={t('contributors.modal.close')}
+			>
+				<span data-lucide="x"></span>
+			</button>
+			<div
+				class="flex flex-col items-center gap-3 md:gap-4 px-4 xs:px-6 pt-6 xs:pt-8 pb-6"
+			>
+				<img
+					id="modal-avatar"
+					class="w-20 xs:w-24 h-20 xs:h-24 rounded-full border-2 border-mocha-surface1 object-cover"
+					src=""
+					alt=""
+				/>
+				<h2
+					id="modal-name"
+					class="text-lg xs:text-xl font-bold text-mocha-text text-center break-words"
+				>
+				</h2>
+				<span
+					id="modal-role"
+					class="text-xs xs:text-sm text-mocha-subtext0 text-center"
+				></span>
+				<a
+					id="modal-link"
+					href="#"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="hidden text-xs xs:text-sm text-mocha-lavender hover:text-mocha-blue underline transition-colors"
+				>
+					{t('contributors.modal.visit')}
+				</a>
+			</div>
+		</div>
+	</dialog>
+</Layout>
+
+<script>
+	function setup() {
+		const modal = document.getElementById(
+			'contributor-modal'
+		) as HTMLDialogElement | null;
+		const modalAvatar = document.getElementById(
+			'modal-avatar'
+		) as HTMLImageElement | null;
+		const modalName = document.getElementById('modal-name');
+		const modalRole = document.getElementById('modal-role');
+		const modalLink = document.getElementById(
+			'modal-link'
+		) as HTMLAnchorElement | null;
+		const modalClose = document.getElementById('modal-close');
+
+		if (
+			!modal ||
+			!modalAvatar ||
+			!modalName ||
+			!modalRole ||
+			!modalLink ||
+			!modalClose
+		)
+			return;
+
+		document.querySelectorAll('.contributor-card').forEach(card => {
+			card.addEventListener('click', () => {
+				const el = card as HTMLElement;
+				const id = el.dataset.id;
+				const name = el.dataset.name ?? '';
+				const role = el.dataset.role ?? '';
+				const link = el.dataset.link ?? '';
+
+				modalAvatar.src = `/api/users/${id}/avatar`;
+				modalAvatar.alt = name;
+				modalName.textContent = name;
+				modalRole.textContent = role;
+
+				if (link) {
+					modalLink.href = link;
+					modalLink.classList.remove('hidden');
+				} else {
+					modalLink.classList.add('hidden');
+				}
+
+				modal.showModal();
+			});
+		});
+
+		modalClose.addEventListener('click', () => modal.close());
+		modal.addEventListener('click', e => {
+			if (e.target === modal) modal.close();
+		});
+	}
+
+	setup();
+	document.addEventListener('astro:page-load', setup);
+	document.addEventListener('astro:after-swap', setup);
+</script>

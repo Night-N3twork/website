@@ -1,0 +1,128 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Overlay from '@components/Overlay.astro';
+import {
+	LOCALES,
+	extractLocaleFromPath,
+	pathFor,
+	tFor
+} from '@utils/i18n';
+
+const BOOSTER_ROLE_ID = '1198297300477432099';
+const DONATOR_ROLE_ID = '1432909960043565200';
+
+const locale =
+	(Astro.locals as { locale?: typeof LOCALES[number] } | undefined)?.locale ??
+	extractLocaleFromPath(Astro.url.pathname);
+const t = tFor(locale);
+
+const mainPageHref = pathFor(locale, '/');
+const loadingLabel = t('supporters.loading');
+const emptyLabel = t('supporters.empty');
+---
+
+<Layout>
+	<Overlay
+		enableBg={false}
+		customClasses="max-w-full md:max-w-3xl w-full px-4 xs:px-2 bg-mocha-mantle overflow-y-auto max-h-[85vh] scrollbar-offset"
+	>
+		<h1
+			class="text-xl md:text-2xl font-bold text-mocha-lavender mb-4 md:mb-6 reveal-down"
+		>
+			{t('supporters.heading')}
+		</h1>
+
+		<!-- Boosters -->
+		<section class="mb-6 md:mb-8 reveal" data-delay="100">
+			<h2
+				class="text-base md:text-lg font-semibold text-mocha-pink mb-2 md:mb-3 border-b border-mocha-surface0 pb-2 flex items-center gap-2"
+			>
+				<span
+					data-lucide="zap"
+					class="w-4 md:w-5 h-4 md:h-5 flex-shrink-0"></span>
+				{t('supporters.boostersHeading')}
+			</h2>
+			<ul id="boosters-list" class="flex flex-wrap gap-2">
+				<li class="text-xs md:text-sm text-mocha-subtext0">
+					{loadingLabel}
+				</li>
+			</ul>
+		</section>
+
+		<!-- Donators -->
+		<section class="mb-6 md:mb-8 reveal" data-delay="200">
+			<h2
+				class="text-base md:text-lg font-semibold text-mocha-green mb-2 md:mb-3 border-b border-mocha-surface0 pb-2 flex items-center gap-2"
+			>
+				<span
+					data-lucide="heart"
+					class="w-4 md:w-5 h-4 md:h-5 flex-shrink-0"></span>
+				{t('supporters.donatorsHeading')}
+			</h2>
+			<ul id="donators-list" class="flex flex-wrap gap-2">
+				<li class="text-xs md:text-sm text-mocha-subtext0">
+					{loadingLabel}
+				</li>
+			</ul>
+		</section>
+
+		<p class="text-xs md:text-sm text-mocha-overlay1">
+			{t('supporters.footerBefore')}<a
+				href={mainPageHref}
+				class="text-mocha-lavender hover:text-mocha-blue underline transition-colors"
+				>{t('supporters.footerLinkText')}</a
+			>{t('supporters.footerAfter')}
+		</p>
+	</Overlay>
+</Layout>
+
+<script define:vars={{ BOOSTER_ROLE_ID, DONATOR_ROLE_ID, emptyLabel }}>
+	function renderList(el, members) {
+		el.innerHTML = '';
+
+		if (!members.length) {
+			const li = document.createElement('li');
+			li.className = 'text-xs md:text-sm text-mocha-subtext0 italic';
+			li.textContent = emptyLabel;
+			el.appendChild(li);
+			return;
+		}
+
+		members.forEach(m => {
+			const li = document.createElement('li');
+			li.className =
+				'text-xs md:text-sm text-mocha-text bg-mocha-crust border border-mocha-surface0 rounded-lg px-2 md:px-3 py-1 md:py-1.5 hover:border-mocha-lavender transition-all hover:scale-105 transform';
+			li.textContent = m.username;
+			el.appendChild(li);
+		});
+	}
+
+	async function fetchRole(roleId) {
+		try {
+			const res = await fetch(`/api/stats/members?role=${roleId}`);
+			if (!res.ok) throw new Error(res.statusText);
+			return await res.json();
+		} catch (err) {
+			console.error(`Failed to fetch role ${roleId}:`, err);
+			return [];
+		}
+	}
+
+	async function load() {
+		const boostersList = document.getElementById('boosters-list');
+		const donatorsList = document.getElementById('donators-list');
+		if (!boostersList || !donatorsList) return;
+
+		const [boosters, donators] = await Promise.all([
+			fetchRole(BOOSTER_ROLE_ID),
+			fetchRole(DONATOR_ROLE_ID)
+		]);
+
+		renderList(boostersList, boosters);
+		renderList(donatorsList, donators);
+	}
+
+	load();
+	document.addEventListener('astro:page-load', load);
+	document.addEventListener('astro:after-swap', load);
+</script>
