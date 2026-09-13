@@ -1,55 +1,162 @@
 ---
 import LangSwitcher from '@components/LangSwitcher.astro';
-import {
-	LOCALES,
-	extractLocaleFromPath,
-	pathFor,
-	tFor
-} from '@utils/i18n';
+import { LOCALES, extractLocaleFromPath, pathFor, tFor } from '@utils/i18n';
 
 const locale =
-	(Astro.locals as { locale?: typeof LOCALES[number] } | undefined)?.locale ??
-	extractLocaleFromPath(Astro.url.pathname);
+	(Astro.locals as { locale?: (typeof LOCALES)[number] } | undefined)
+		?.locale ?? extractLocaleFromPath(Astro.url.pathname);
 const t = tFor(locale);
+
+const links = [
+	{ href: pathFor(locale, '/'), icon: 'home', label: t('nav.home') },
+	{
+		href: pathFor(locale, '/projects'),
+		icon: 'code',
+		label: t('nav.projects')
+	},
+	{
+		href: pathFor(locale, '/contributors'),
+		icon: 'users',
+		label: t('nav.contributors')
+	},
+	{
+		href: pathFor(locale, '/supporters'),
+		icon: 'heart',
+		label: t('nav.supporters')
+	},
+	{ href: 'https://docs.night-x.com', icon: 'book', label: t('nav.docs') },
+	{
+		href: 'https://uptime.night-x.com',
+		icon: 'activity',
+		label: t('nav.uptime')
+	}
+];
 ---
 
-<div
-	class="fixed bg-mocha-mantle text-mocha-text rounded-md shadow-lg p-2 md:p-3 max-w-xl w-fit backdrop-blur-md border border-mocha-base top-2 left-0 right-0 mx-auto mb-2 flex items-center justify-center gap-2 md:gap-4 z-[1000] animate-fade-in"
+<nav
+	class="fixed top-2 left-2 right-2 z-[1000] flex items-center gap-3 rounded-md border border-night-base bg-night-mantle p-2 shadow-lg backdrop-blur-md animate-fade-in"
+	aria-label="Primary navigation"
 >
 	<a
-		class="text-mocha-lavender hover:text-mocha-blue p-2 md:p-0 hover:scale-110 transition-all duration-300"
+		class="flex items-center gap-2 px-2 py-1 text-base font-bold tracking-tight text-white transition-colors hover:text-night-lavender"
 		href={pathFor(locale, '/')}
-		title={t('nav.home')}
 	>
-		<span data-lucide="home" class="w-5 h-5 md:w-6 md:h-6"></span>
+		<img class="h-8 w-8" src="/res/logo.png" alt="">
+		<span>Night Network</span>
 	</a>
-	<a
-		class="text-mocha-lavender hover:text-mocha-blue p-2 md:p-0 hover:scale-110 transition-all duration-300"
-		href={pathFor(locale, '/projects')}
-		title={t('nav.projects')}
+
+	<div class="ml-auto hidden items-center gap-1 lg:flex">
+		{
+			links.map(link => (
+				<a
+					class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-night-text transition-colors hover:bg-night-base hover:text-night-lavender"
+					href={link.href}
+				>
+					<span data-lucide={link.icon} class="h-4 w-4"></span>
+					<span>{link.label}</span>
+				</a>
+			))
+		}
+	</div>
+
+	<button
+		type="button"
+		class="ml-auto flex h-10 w-10 items-center justify-center rounded-md text-night-lavender transition-colors hover:bg-night-base hover:text-night-blue lg:hidden"
+		aria-label="Open navigation menu"
+		aria-controls="mobile-navigation"
+		aria-expanded="false"
+		data-nav-toggle
 	>
-		<span data-lucide="code" class="w-5 h-5 md:w-6 md:h-6"></span>
-	</a>
-	<a
-		class="text-mocha-lavender hover:text-mocha-blue p-2 md:p-0 hover:scale-110 transition-all duration-300"
-		href={pathFor(locale, '/contributors')}
-		title={t('nav.contributors')}
-	>
-		<span data-lucide="users" class="w-5 h-5 md:w-6 md:h-6"></span>
-	</a>
-	<a
-		class="text-mocha-lavender hover:text-mocha-blue p-2 md:p-0 hover:scale-110 transition-all duration-300"
-		href={pathFor(locale, '/supporters')}
-		title={t('nav.supporters')}
-	>
-		<span data-lucide="heart" class="w-5 h-5 md:w-6 md:h-6"></span>
-	</a>
-	<a
-		class="text-mocha-lavender hover:text-mocha-blue p-2 md:p-0 hover:scale-110 transition-all duration-300"
-		href="https://uptime.night-x.com"
-		title={t('nav.uptime')}
-	>
-		<span data-lucide="activity" class="w-5 h-5 md:w-6 md:h-6"></span>
-	</a>
-	<LangSwitcher />
+		<span data-lucide="menu" class="h-6 w-6"></span>
+	</button>
+</nav>
+
+<div
+	class="fixed inset-0 z-[1050] hidden bg-black/60 backdrop-blur-sm lg:hidden"
+	data-nav-backdrop
+></div>
+<aside
+	id="mobile-navigation"
+	class="fixed inset-y-0 right-0 z-[1060] flex w-72 translate-x-full flex-col border-l border-night-surface1 bg-night-mantle p-4 shadow-2xl transition-transform duration-300 ease-out lg:hidden"
+	aria-label="Mobile navigation"
+	inert
+	data-nav-drawer
+>
+	<div class="mb-6 flex items-center justify-between">
+		<span class="text-lg font-extrabold tracking-tight text-white">Night Network</span>
+		<button
+			type="button"
+			class="flex h-9 w-9 items-center justify-center rounded-md text-night-lavender transition-colors hover:bg-night-base hover:text-night-blue"
+			aria-label="Close navigation menu"
+			data-nav-close
+		>
+			<span data-lucide="x" class="h-5 w-5"></span>
+		</button>
+	</div>
+	<div class="flex flex-col gap-1">
+		{
+			links.map(link => (
+				<a
+					class="flex items-center gap-3 rounded-md px-3 py-3 text-sm font-medium text-night-text transition-colors hover:bg-night-base hover:text-night-lavender"
+					href={link.href}
+					data-nav-link
+				>
+					<span data-lucide={link.icon} class="h-5 w-5"></span>
+					<span>{link.label}</span>
+				</a>
+			))
+		}
+	</div>
+</aside>
+
+<div class="fixed bottom-4 right-4 z-[1000] rounded-full border border-night-surface1 bg-night-mantle p-2 shadow-lg backdrop-blur-md">
+	<LangSwitcher upward />
 </div>
+
+<script is:inline>
+	(function () {
+		if (document.documentElement.dataset.navigationInstalled === '1') return;
+		document.documentElement.dataset.navigationInstalled = '1';
+
+		function setOpen(open) {
+			const drawer = document.querySelector('[data-nav-drawer]');
+			const backdrop = document.querySelector('[data-nav-backdrop]');
+			const toggle = document.querySelector('[data-nav-toggle]');
+			if (!drawer || !backdrop || !toggle) return;
+
+			drawer.classList.toggle('translate-x-full', !open);
+			drawer.toggleAttribute('inert', !open);
+			backdrop.classList.toggle('hidden', !open);
+			toggle.setAttribute('aria-expanded', String(open));
+			document.body.classList.toggle('overflow-hidden', open);
+
+			if (open) {
+				drawer.querySelector('[data-nav-close]')?.focus();
+			} else if (document.activeElement?.closest('[data-nav-drawer]')) {
+				toggle.focus();
+			}
+		}
+
+		document.addEventListener('click', event => {
+			const target = event.target;
+			if (!(target instanceof Element)) return;
+
+			if (target.closest('[data-nav-toggle]')) {
+				setOpen(true);
+				return;
+			}
+
+			if (
+				target.closest('[data-nav-close]') ||
+				target.closest('[data-nav-backdrop]') ||
+				target.closest('[data-nav-link]')
+			) {
+				setOpen(false);
+			}
+		});
+
+		document.addEventListener('keydown', event => {
+			if (event.key === 'Escape') setOpen(false);
+		});
+	})();
+</script>

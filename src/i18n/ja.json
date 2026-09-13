@@ -10,6 +10,7 @@
 		"contributors": "コントリビューター",
 		"supporters": "サポーター",
 		"uptime": "稼働状況",
+		"docs": "ドキュメント",
 		"language": "言語"
 	},
 	"home": {
@@ -20,13 +21,14 @@
 		"memberCountFallback": "数千",
 		"partnersHeading": "パートナーと関連組織",
 		"partners": {
+			"hostedBadge": "Night Network がホスト",
 			"titanium": { "name": "Titanium Network", "alt": "TN" },
 			"nebula": { "name": "Nebula Services", "alt": "Nebula" },
 			"terbium": { "name": "TerbiumOS", "alt": "TerbiumOS" },
 			"lunar": { "name": "Lunar", "alt": "Lunar" },
 			"obsidian": { "name": "Obsidian Developer Labs", "alt": "Obsidian" }
 		},
-		"accountsHeading": "公式アカウント",
+		"accountsHeading": "プラットフォーム",
 		"accounts": {
 			"mainGithub": "メインGitHub",
 			"lunarGithub": "Lunar GitHub",
@@ -38,9 +40,15 @@
 			"youtube": "YouTube",
 			"cashapp": "Cash App",
 			"patreon": "Patreon"
+		},
+		"sponsorship": {
+			"heading": "スポンサーシップ",
+			"description": "オープンでプライバシーを重視したツールの開発を支援してください。",
+			"patreon": "Patreon",
+			"kofi": "Ko-fi"
 		}
 	},
-	"projects": {
+	"services": {
 		"heading": "プロジェクト一覧",
 		"modal": {
 			"close": "閉じる",
@@ -53,8 +61,8 @@
 				"description": "Spaceは、優れたUI、機能性、速度でプロキシシーンに革命を起こした次世代プロキシです。Night Networkの旗艦プロキシであり、これまでにないBlobクローキング、アカウントシステムなどを搭載しています。"
 			},
 			"daydreamx": {
-				"name": "DayDream X",
-				"description": "ブラウザの中のお気に入りブラウザ。"
+				"name": "DayDream Browser",
+				"description": "TypeScriptで書かれた、どのブラウザでもどこでも動作可能なChromeレベルのブラウザです。インストール不要です。DayDreamは、速度・セキュリティ・ユーザー体験に重点を置いた、プライバシー重視のブラウザです。"
 			},
 			"lunar": {
 				"name": "Lunar",
@@ -76,6 +84,90 @@
 				"name": "DayLight",
 				"description": "Daylightは、滑らかなアニメーション、高速な動作、カスタムテーマ、独自の拡張機能を備えたシンプルなプロキシです。さらに、Arcに似たスタイルの縦型タブシステムも搭載しています。"
 			},
+			"starlight": {
+				"name": "StarLight",
+				"description": "StarLightは、シンプルでプライバシー重視、落ち着いたユーザー体験に焦点を当てたプロキシです。Lightの後継であり、新しいデザインと機能を備えながら、シンプルで落ち着いた体験を維持しています。"
+			},
+			"umbra": {
+				"name": "Umbra",
+				"description": "Umbraは、カスタム音声ビジュアライゼーション、カバーアートのレンダリング、プレイリストの共有・対応などを備えた音楽プレーヤーです。Umbraは高速かつ高音質な音楽再生も実現しています。"
+			},
+			"aurora": {
+				"name": "Aurora",
+				"description": "Umbraが音楽なら、Auroraは映像。Umbraと同じ親しみやすい操作感で、動画やメディアを楽しめます。"
+			}
+		}
+	},
+	"libraries": {
+		"heading": "ライブラリ一覧",
+		"modal": {
+			"close": "閉じる",
+			"visit": "ライブラリを見る",
+			"previewAlt": "{name}のプレビュー"
+		},
+		"items": {
+			"Dusk": {
+				"name": "Dusk",
+				"description": "Duskは、ブラウザ向けのNode.js互換ランタイムです。WebContainersに対抗できるように構築されており、Shell、Node.js、Python3、SQLITEなどをサポートしています。"
+			},
+			"dpm": {
+				"name": "dpm",
+				"description": "dpmはDusk向けのパッケージマネージャーです。npm、GitHubなどからパッケージをインストールできます。dpmは高速・安全・使いやすさを重視して設計されており、Dusk向けに作られていますが、実環境でも使えます。"
+			},
+			"Nova": {
+				"name": "Nova",
+				"description": "NovaはWispとMoonbeamに対応したクライアントです。Rustで書かれたNovaは、libcurlに匹敵する機能を備えた超高速クライアントで、他に類を見ない速度を実現しています。Duskのネットワーキングに使用されており、最初の対応Moonbeamクライアントです。"
+			},
+			"Moonbeam": {
+				"name": "Moonbeam",
+				"description": "Moonbeamはネットワーキングライブラリです。ブラウザ内でDHCP、DNS、ICMPなどをサポートしたプライベートネットワークを作成できます。MoonbeamはWispを使ってレイヤー4ネットワークをインターネットに接続し、クライアント同士が相互にやり取りしながらもインターネットにアクセスできるようにします。"
+			},
+			"Moonscale": {
+				"name": "Moonscale",
+				"description": "Web版Tailscaleです。Moonbeamベースのネットワーク上でブラウザからTailscaleを接続・実行でき、MagicDNS、Tailscale Funnel、Exit Nodeなどに対応しています。"
+			}
+		}
+	},
+	"projects": {
+		"heading": "プロジェクト一覧",
+		"modal": {
+			"close": "閉じる",
+			"visit": "プロジェクトを見る",
+			"previewAlt": "{name}のプレビュー"
+		},
+		"items": {
+			"space": {
+				"name": "Space",
+				"description": "Spaceは、優れたUI、機能性、速度でプロキシシーンに革命を起こした次世代プロキシです。Night Networkの旗艦プロキシであり、これまでにないBlobクローキング、アカウントシステムなどを搭載しています。"
+			},
+			"daydreamx": {
+				"name": "DayDream Browser",
+				"description": "TypeScriptで書かれた、どのブラウザでもどこでも動作可能なChromeレベルのブラウザです。インストール不要です。DayDreamは、速度・セキュリティ・ユーザー体験に重点を置いた、プライバシー重視のブラウザです。"
+			},
+			"lunar": {
+				"name": "Lunar",
+				"description": "ブラウザにインスパイアされたプロキシ"
+			},
+			"linkArchive": {
+				"name": "Link Archive",
+				"description": "フィルタによるカテゴリ分け、自動リンク生成などを備えた大量リンクストレージソリューション。Amplifyの猫をテーマにしています。"
+			},
+			"solar": {
+				"name": "Solar",
+				"description": "Discordフィルタチェッカー兼ユーティリティBot"
+			},
+			"nyxai": {
+				"name": "NyxAI",
+				"description": "ブラウザで動く高度なAI。シンプルかつパワフル。"
+			},
+			"daylight": {
+				"name": "DayLight",
+				"description": "Daylightは、滑らかなアニメーション、高速な動作、カスタムテーマ、独自の拡張機能を備えたシンプルなプロキシです。さらに、Arcに似たスタイルの縦型タブシステムも搭載しています。"
+			},
+			"starlight": {
+				"name": "StarLight",
+				"description": "StarLightは、シンプルでプライバシー重視、落ち着いたユーザー体験に焦点を当てたプロキシです。Lightの後継であり、新しいデザインと機能を備えながら、シンプルで落ち着いた体験を維持しています。"
+			},
 			"umbra": {
 				"name": "Umbra",
 				"description": "Umbraは、カスタム音声ビジュアライゼーション、カバーアートのレンダリング、プレイリストの共有・対応などを備えた音楽プレーヤーです。Umbraは高速かつ高音質な音楽再生も実現しています。"
@@ -93,13 +185,13 @@
 			"visit": "プロフィールを見る"
 		},
 		"roles": {
-			"owner": "Owners",
-			"co-owner": "Co-Owners",
-			"director": "Directors",
-			"developer": "Developers",
-			"admin": "Admins",
-			"moderator": "Mods",
-			"marketer": "Marketers"
+			"owner": "オーナー",
+			"co-owner": "共同オーナー",
+			"director": "ディレクター",
+			"developer": "開発者",
+			"admin": "管理者",
+			"moderator": "モデレーター",
+			"marketer": "マーケター"
 		}
 	},
 	"supporters": {

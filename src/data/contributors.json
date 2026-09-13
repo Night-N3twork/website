@@ -25,7 +25,7 @@
 			"id": "713488984596021291",
 			"name": "Crllect",
 			"role": "owner",
-			"link": "https://github.com/crllect"
+			"link": "https://crllect.dev"
 		},
 
 		{
@@ -40,28 +40,16 @@
 		{
 			"id": "1012095822957133976",
 			"name": "soap phia",
-			"role": "director"
+			"role": "owner"
 		},
-
-		{ "id": "911824214078664714", "name": "Arq", "role": "admin" },
-
-		{ "id": "988950574387068968", "name": "xmb9", "role": "moderator" },
+		{ "id": "715182388879163402", "name": "sandstorm", "role": "developer" },
+		{ "id": "988950574387068968", "name": "xmb9", "role": "admin" },
 		{ "id": "1066783543268745286", "name": "Erpt77", "role": "moderator" },
-		{ "id": "1416930047931060235", "name": "Ampiefy", "role": "moderator" },
-		{ "id": "1373406412280955061", "name": "Kayy", "role": "moderator" },
-		{ "id": "879866178808447056", "name": "X3FV", "role": "moderator" },
 		{ "id": "914227730034327613", "name": "Atrixity", "role": "moderator" },
 		{ "id": "1009912279833247744", "name": "rxx", "role": "moderator" },
-		{ "id": "1135973842330857545", "name": "Cryptic", "role": "moderator" },
-		{
-			"id": "1298358937216876665",
-			"name": "Fweeeeeee",
-			"role": "moderator"
-		},
 		{ "id": "851589646671806474", "name": "Avaian", "role": "moderator" },
 		{ "id": "1385447526814973953", "name": "v4.0.4", "role": "moderator" },
 		{ "id": "405896057139232778", "name": "Synaptic", "role": "moderator" },
-		{ "id": "1481627346464145541", "name": "Charlotte", "role": "moderator" },
 		{ "id": "1121672562053759076", "name": "enzo", "role": "marketer" }
 	]
 }

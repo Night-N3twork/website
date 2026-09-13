@@ -10,6 +10,7 @@
 		"contributors": "Colaboradores",
 		"supporters": "Patrocinadores",
 		"uptime": "Estado del servicio",
+		"docs": "Documentación",
 		"language": "Idioma"
 	},
 	"home": {
@@ -20,13 +21,14 @@
 		"memberCountFallback": "miles de",
 		"partnersHeading": "Socios y suborganizaciones",
 		"partners": {
+			"hostedBadge": "Alojado por Night Network",
 			"titanium": { "name": "Titanium Network", "alt": "TN" },
 			"nebula": { "name": "Nebula Services", "alt": "Nebula" },
 			"terbium": { "name": "TerbiumOS", "alt": "TerbiumOS" },
 			"lunar": { "name": "Lunar", "alt": "Lunar" },
 			"obsidian": { "name": "Obsidian Developer Labs", "alt": "Obsidian" }
 		},
-		"accountsHeading": "Nuestras cuentas",
+		"accountsHeading": "Nuestras plataformas",
 		"accounts": {
 			"mainGithub": "GitHub principal",
 			"lunarGithub": "GitHub de Lunar",
@@ -38,9 +40,15 @@
 			"youtube": "YouTube",
 			"cashapp": "Cash App",
 			"patreon": "Patreon"
+		},
+		"sponsorship": {
+			"heading": "Patrocinios",
+			"description": "Ayúdanos a seguir creando herramientas abiertas y centradas en la privacidad.",
+			"patreon": "Patreon",
+			"kofi": "Ko-fi"
 		}
 	},
-	"projects": {
+	"services": {
 		"heading": "Nuestros proyectos",
 		"modal": {
 			"close": "Cerrar",
@@ -50,11 +58,11 @@
 		"items": {
 			"space": {
 				"name": "Space",
-				"description": "Space es un proxy de nueva generación que ha revolucionado la escena de los proxies con su increíble interfaz, funcionalidad y velocidad. Space es el proxy insignia de Night Network, con cifrado por blob nunca antes visto, sistema de cuentas y mucho más."
+				"description": "Space es un proxy de nueva generación que ha revolucionado la escena de los proxies con su increíble interfaz, funcionalidad y velocidad. Space es el proxy insignia de Night Network y cuenta con cloaking por blob nunca antes visto, sistema de cuentas y mucho más."
 			},
 			"daydreamx": {
-				"name": "DayDream X",
-				"description": "Tu navegador favorito dentro de un navegador."
+				"name": "DayDream Browser",
+				"description": "Un navegador de nivel Chrome escrito en TypeScript, capaz de ejecutarse en cualquier navegador y en cualquier lugar. No requiere instalación. DayDream es un navegador centrado en la privacidad, con enfoque en la velocidad, la seguridad y la experiencia del usuario."
 			},
 			"lunar": {
 				"name": "Lunar",
@@ -74,15 +82,99 @@
 			},
 			"daylight": {
 				"name": "DayLight",
-				"description": "Daylight es un proxy minimalista con animaciones fluidas, velocidades rápidas, temas personalizados y extensiones propias. Además, Daylight cuenta con un sistema de pestañas verticales en un estilo similar al de Arc."
+				"description": "Daylight es un proxy minimalista con animaciones fluidas, velocidades rápidas, temas personalizados y extensiones propias. Además, Daylight tiene un sistema de pestañas verticales con un estilo similar al de Arc."
+			},
+			"starlight": {
+				"name": "StarLight",
+				"description": "StarLight es un proxy simple y centrado en la privacidad, con un enfoque en una experiencia de usuario sencilla. StarLight es el sucesor de Light, con un nuevo diseño y nuevas funciones, manteniendo al mismo tiempo una experiencia tranquila y simple."
 			},
 			"umbra": {
 				"name": "Umbra",
-				"description": "Umbra es un reproductor de música con visualización de audio personalizada, renderizado de portadas, soporte para compartir listas de reproducción y más. Umbra también ofrece velocidades rápidas y música de alta calidad."
+				"description": "Umbra es un reproductor de música con visualización de audio personalizada, renderizado de portadas, soporte para listas de reproducción y compartirlas, y mucho más. Umbra también ofrece velocidades rápidas y música de alta calidad."
 			},
 			"aurora": {
 				"name": "Aurora",
-				"description": "Así como Umbra es para música, Aurora es para vídeo. Reproduce tus vídeos y contenidos con la misma facilidad familiar de Umbra."
+				"description": "Si Umbra es música, Aurora es vídeo. Reproduce tus vídeos y medios con la misma facilidad familiar que Umbra."
+			}
+		}
+	},
+	"libraries": {
+		"heading": "Nuestras bibliotecas",
+		"modal": {
+			"close": "Cerrar",
+			"visit": "Visitar biblioteca",
+			"previewAlt": "Vista previa de {name}"
+		},
+		"items": {
+			"Dusk": {
+				"name": "Dusk",
+				"description": "Dusk es un runtime compatible con Node.js para el navegador. Diseñado para rivalizar con WebContainers. Dusk soporta Shell, Node.js, Python3, SQLITE y más por venir."
+			},
+			"dpm": {
+				"name": "dpm",
+				"description": "dpm es un gestor de paquetes para Dusk. Permite instalar paquetes desde npm, GitHub y más. dpm está diseñado para ser rápido, seguro y fácil de usar; aunque está hecho para Dusk, también puede usarse en entornos reales."
+			},
+			"Nova": {
+				"name": "Nova",
+				"description": "Nova es un cliente compatible con Wisp y Moonbeam. Escrito en Rust, Nova es un cliente increíblemente rápido con funciones que rivalizan con libcurl y velocidades sin igual. Se usa en Dusk para networking y es el primer cliente Moonbeam compatible."
+			},
+			"Moonbeam": {
+				"name": "Moonbeam",
+				"description": "Moonbeam es una biblioteca de networking. Permite crear redes privadas en el navegador con soporte para DHCP, DNS, ICMP y más. Moonbeam utiliza Wisp para la capa 4 de networking hacia Internet, permitiendo que los clientes interactúen entre sí y sigan llegando a Internet."
+			},
+			"Moonscale": {
+				"name": "Moonscale",
+				"description": "Tailscale en la web: conecta y ejecuta Tailscale desde el navegador en una red basada en Moonbeam. Incluye soporte para MagicDNS, Tailscale Funnel, nodos de salida y más."
+			}
+		}
+	},
+	"projects": {
+		"heading": "Nuestros proyectos",
+		"modal": {
+			"close": "Cerrar",
+			"visit": "Visitar proyecto",
+			"previewAlt": "Vista previa de {name}"
+		},
+		"items": {
+			"space": {
+				"name": "Space",
+				"description": "Space es un proxy de nueva generación que ha revolucionado la escena de los proxies con su increíble interfaz, funcionalidad y velocidad. Space es el proxy insignia de Night Network y cuenta con cloaking por blob nunca antes visto, sistema de cuentas y mucho más."
+			},
+			"daydreamx": {
+				"name": "DayDream Browser",
+				"description": "Un navegador de nivel Chrome escrito en TypeScript, capaz de ejecutarse en cualquier navegador y en cualquier lugar. No requiere instalación. DayDream es un navegador centrado en la privacidad, con enfoque en la velocidad, la seguridad y la experiencia del usuario."
+			},
+			"lunar": {
+				"name": "Lunar",
+				"description": "Proxy inspirado en navegadores"
+			},
+			"linkArchive": {
+				"name": "Link Archive",
+				"description": "Solución de almacenamiento masivo de enlaces con categorización por filtros, generación automática de enlaces y más. Inspirado en el gato de Amplify."
+			},
+			"solar": {
+				"name": "Solar",
+				"description": "Bot de Discord para verificación de filtros y utilidades"
+			},
+			"nyxai": {
+				"name": "NyxAI",
+				"description": "IA avanzada en tu navegador. Simple, pero potente."
+			},
+			"daylight": {
+				"name": "DayLight",
+				"description": "Daylight es un proxy minimalista con animaciones fluidas, velocidades rápidas, temas personalizados y extensiones propias. Además, Daylight tiene un sistema de pestañas verticales con un estilo similar al de Arc."
+			},
+			"starlight": {
+				"name": "StarLight",
+				"description": "StarLight es un proxy simple y centrado en la privacidad, con un enfoque en una experiencia de usuario sencilla. StarLight es el sucesor de Light, con un nuevo diseño y nuevas funciones, manteniendo al mismo tiempo una experiencia tranquila y simple."
+			},
+			"umbra": {
+				"name": "Umbra",
+				"description": "Umbra es un reproductor de música con visualización de audio personalizada, renderizado de portadas, soporte para listas de reproducción y compartirlas, y mucho más. Umbra también ofrece velocidades rápidas y música de alta calidad."
+			},
+			"aurora": {
+				"name": "Aurora",
+				"description": "Si Umbra es música, Aurora es vídeo. Reproduce tus vídeos y medios con la misma facilidad familiar que Umbra."
 			}
 		}
 	},
@@ -93,13 +185,13 @@
 			"visit": "Visitar perfil"
 		},
 		"roles": {
-			"owner": "Owners",
-			"co-owner": "Co-Owners",
-			"director": "Directors",
-			"developer": "Developers",
-			"admin": "Admins",
+			"owner": "Propietarios",
+			"co-owner": "Copropietarios",
+			"director": "Directores",
+			"developer": "Desarrolladores",
+			"admin": "Administradores",
 			"moderator": "Mods",
-			"marketer": "Marketers"
+			"marketer": "Especialistas de marketing"
 		}
 	},
 	"supporters": {

@@ -16,7 +16,8 @@ interface ProjectRaw {
 	color?: string;
 }
 
-const raw: ProjectRaw[] = projectsData;
+const services: ProjectRaw[] = projectsData[0];
+const libraries: ProjectRaw[] = projectsData[1];
 
 const locale =
 	(Astro.locals as { locale?: typeof LOCALES[number] } | undefined)?.locale ??
@@ -25,34 +26,40 @@ const t = tFor(locale);
 
 // Resolve the localized name + description once at render time, then pass
 // the whole shape to the inline modal script via define:vars.
-const projects = raw.map(p => ({
+const servicesLocalized = services.map(p => ({
 	...p,
-	name: t(`projects.items.${p.i18nKey}.name`),
-	description: t(`projects.items.${p.i18nKey}.description`)
+	name: t(`services.items.${p.i18nKey}.name`),
+	description: t(`services.items.${p.i18nKey}.description`)
+}));
+
+const librariesLocalized = libraries.map(p => ({
+	...p,
+	name: t(`libraries.items.${p.i18nKey}.name`),
+	description: t(`libraries.items.${p.i18nKey}.description`)
 }));
 
 // Composed string template passed to the inline script for the preview alt.
-const previewAltTemplate = t('projects.modal.previewAlt', { name: '__NAME__' });
+const previewAltTemplate = t('services.modal.previewAlt', { name: '__NAME__' });
 ---
 
 <Layout>
 	<Overlay
 		enableBg={false}
-		customClasses="max-w-full md:max-w-5xl w-full px-4 xs:px-2 bg-mocha-mantle overflow-y-auto max-h-[85vh] scrollbar-offset"
+		customClasses="max-w-full md:max-w-5xl w-full px-4 xs:px-2 bg-night-mantle overflow-y-auto max-h-[85vh] scrollbar-offset"
 	>
 		<h1
-			class="text-xl md:text-2xl font-bold text-mocha-lavender mb-4 md:mb-6 reveal-down"
+			class="text-xl md:text-2xl font-bold text-night-lavender mb-4 md:mb-6 reveal-down"
 		>
-			{t('projects.heading')}
+			{t('services.heading')}
 		</h1>
 		<div
 			class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-4"
 		>
 			{
-				projects.map((project, i) => (
+				servicesLocalized.map((project, i) => (
 					<button
 						data-project={i}
-						class="project-card group flex flex-col gap-2 md:gap-3 p-3 md:p-4 rounded-lg border border-mocha-surface0 bg-mocha-crust hover:border-mocha-lavender hover:bg-mocha-base transition-all duration-300 text-left cursor-pointer reveal hover:-translate-y-0.5"
+						class="project-card group flex flex-col gap-2 md:gap-3 p-3 md:p-4 rounded-lg border border-night-surface0 bg-night-crust hover:border-night-lavender hover:bg-night-base transition-all duration-300 text-left cursor-pointer reveal hover:-translate-y-0.5"
 						data-delay={`${i * 80}`}
 					>
 						<div class="flex flex-row items-center gap-2 md:gap-3">
@@ -62,10 +69,37 @@ const previewAltTemplate = t('projects.modal.previewAlt', { name: '__NAME__' });
 								class="w-8 xs:w-10 md:w-10 h-8 xs:h-10 md:h-10 rounded-lg flex-shrink-0"
 							/>
 							<div class="flex flex-col min-w-0 flex-1">
-								<h3 class="text-sm md:text-lg font-semibold text-mocha-text group-hover:text-mocha-lavender transition-colors truncate">
+								<h3 class="text-sm md:text-lg font-semibold text-night-text group-hover:text-night-lavender transition-colors truncate">
 									{project.name}
 								</h3>
-								<p class="text-xs md:text-sm text-mocha-subtext0 line-clamp-2 md:line-clamp-3">
+								<p class="text-xs md:text-sm text-night-subtext0 line-clamp-2 md:line-clamp-3">
+									{project.description}
+								</p>
+							</div>
+						</div>
+					</button>
+				))
+			}
+		</div>
+		<h1 class="text-xl md:text-2xl font-bold text-night-lavender mt-8 mb-4 md:mb-6 reveal-down">
+			{t('libraries.heading')}
+		</h1>
+		<div
+			class="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-4"
+		>
+			{
+				librariesLocalized.map((project, i) => (
+					<button
+						data-service={i}
+						class="project-card group flex flex-col gap-2 md:gap-3 p-3 md:p-4 rounded-lg border border-night-surface0 bg-night-crust hover:border-night-lavender hover:bg-night-base transition-all duration-300 text-left cursor-pointer reveal hover:-translate-y-0.5"
+						data-delay={`${i * 80}`}
+					>
+						<div class="flex flex-row items-center gap-2 md:gap-3">
+							<div class="flex flex-col min-w-0 flex-1">
+								<h3 class="text-sm md:text-lg font-semibold text-night-text group-hover:text-night-lavender transition-colors truncate">
+									{project.name}
+								</h3>
+								<p class="text-xs md:text-sm text-night-subtext0 line-clamp-2 md:line-clamp-3">
 									{project.description}
 								</p>
 							</div>
@@ -82,11 +116,11 @@ const previewAltTemplate = t('projects.modal.previewAlt', { name: '__NAME__' });
 		class="bg-transparent border-none p-0 max-w-[90vw] max-h-[90vh] overflow-visible backdrop:bg-black/60 backdrop:backdrop-blur-sm rounded-xl"
 	>
 		<div
-			class="bg-mocha-mantle border border-mocha-surface0 rounded-xl overflow-hidden flex flex-col max-w-[90vw] xs:max-w-[600px] max-h-[85vh] relative animate-slide-up"
+			class="bg-night-mantle border border-night-surface0 rounded-xl overflow-hidden flex flex-col max-w-[90vw] xs:max-w-[600px] max-h-[85vh] relative animate-slide-up"
 		>
 			<button
 				id="modal-close"
-				class="absolute top-2 right-2 z-10 bg-mocha-crust/70 border border-mocha-surface1 rounded-lg text-mocha-text w-8 h-8 flex items-center justify-center cursor-pointer transition-all hover:border-mocha-lavender hover:scale-110"
+				class="absolute top-2 right-2 z-10 bg-night-crust/70 border border-night-surface1 rounded-lg text-night-text w-8 h-8 flex items-center justify-center cursor-pointer transition-all hover:border-night-lavender hover:scale-110"
 				aria-label={t('projects.modal.close')}
 			>
 				<span data-lucide="x"></span>
@@ -107,13 +141,13 @@ const previewAltTemplate = t('projects.modal.previewAlt', { name: '__NAME__' });
 					/>
 					<h2
 						id="modal-name"
-						class="text-lg xs:text-xl font-bold text-mocha-text break-words"
+						class="text-lg xs:text-xl font-bold text-night-text break-words"
 					>
 					</h2>
 				</div>
 				<p
 					id="modal-desc"
-					class="text-xs xs:text-sm text-mocha-subtext0 mb-4"
+					class="text-xs xs:text-sm text-night-subtext0 mb-4"
 				>
 				</p>
 				<a
@@ -121,16 +155,16 @@ const previewAltTemplate = t('projects.modal.previewAlt', { name: '__NAME__' });
 					href="#"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="hidden text-xs xs:text-sm text-mocha-lavender hover:text-mocha-blue underline transition-colors"
+					class="hidden text-xs xs:text-sm text-night-lavender hover:text-night-blue underline transition-colors"
 				>
-					{t('projects.modal.visit')}
+					{t('services.modal.visit')}
 				</a>
 			</div>
 		</div>
 	</dialog>
 </Layout>
 
-<script define:vars={{ projects, previewAltTemplate }}>
+<script define:vars={{ servicesLocalized, librariesLocalized, previewAltTemplate }}>
 	function setup() {
 		const modal = document.getElementById('project-modal');
 		const modalImage = document.getElementById('modal-image');
@@ -144,8 +178,41 @@ const previewAltTemplate = t('projects.modal.previewAlt', { name: '__NAME__' });
 
 		document.querySelectorAll('.project-card').forEach(card => {
 			card.addEventListener('click', () => {
+				if (card.hasAttribute('data-service')) {
+					const index = Number(card.getAttribute('data-service'));
+					const project = librariesLocalized[index];
+					if (!project) return;
+
+					if (project.image) {
+						modalImage.src = project.image;
+						modalImage.alt = previewAltTemplate.replace(
+							'__NAME__',
+							project.name
+						);
+						modalImage.classList.remove('hidden');
+					} else {
+						modalImage.src = '';
+						modalImage.classList.add('hidden');
+					}
+
+					modalIcon.src = "/res/logo.png";
+					modalIcon.alt = project.name;
+					modalName.textContent = project.name;
+					modalDesc.textContent = project.description;
+
+					if (project.url) {
+						modalLink.href = project.url;
+						modalLink.classList.remove('hidden');
+					} else {
+						modalLink.classList.add('hidden');
+					}
+
+					modal.showModal();
+					return;
+				} else {
+
 				const index = Number(card.getAttribute('data-project'));
-				const project = projects[index];
+				const project = servicesLocalized[index];
 				if (!project) return;
 
 				if (project.image) {
@@ -173,6 +240,7 @@ const previewAltTemplate = t('projects.modal.previewAlt', { name: '__NAME__' });
 				}
 
 				modal.showModal();
+			}
 			});
 		});
 

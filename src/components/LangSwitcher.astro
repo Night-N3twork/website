@@ -22,12 +22,18 @@ const labelKey = {
 	fr: 'language.french',
 	ja: 'language.japanese'
 } as const;
+
+export interface Props {
+	upward?: boolean;
+}
+
+const { upward = false } = Astro.props;
 ---
 
 <div class="relative inline-block" data-langswitcher>
 	<button
 		type="button"
-		class="text-mocha-lavender hover:text-mocha-blue p-2 md:p-0 hover:scale-110 transition-all duration-300 cursor-pointer flex items-center"
+		class="text-night-lavender hover:text-night-blue p-2 md:p-0 hover:scale-110 transition-all duration-300 cursor-pointer flex items-center"
 		title={t('nav.language')}
 		aria-haspopup="menu"
 		aria-expanded="false"
@@ -36,7 +42,10 @@ const labelKey = {
 		<span data-lucide="globe" class="w-5 h-5 md:w-6 md:h-6"></span>
 	</button>
 	<div
-		class="hidden absolute right-0 mt-2 min-w-[140px] bg-mocha-mantle border border-mocha-surface0 rounded-lg shadow-lg backdrop-blur-md z-[1100] py-1"
+		class:list={[
+			'hidden absolute right-0 min-w-[140px] bg-night-mantle border border-night-surface0 rounded-lg shadow-lg backdrop-blur-md z-[1100] py-1',
+			upward ? 'bottom-full mb-2' : 'mt-2'
+		]}
 		role="menu"
 		data-langswitcher-menu
 	>
@@ -49,8 +58,8 @@ const labelKey = {
 					class:list={[
 						'block px-3 py-2 text-xs md:text-sm transition-colors',
 						l === activeLocale
-							? 'text-mocha-lavender font-semibold bg-mocha-base'
-							: 'text-mocha-text hover:text-mocha-lavender hover:bg-mocha-base'
+							? 'text-night-lavender font-semibold bg-night-base'
+							: 'text-night-text hover:text-night-lavender hover:bg-night-base'
 					]}
 				>
 					{tFor(l)(labelKey[l])}

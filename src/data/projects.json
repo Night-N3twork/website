@@ -1,5 +1,5 @@
 [
-	{
+	[{
 		"i18nKey": "space",
 		"image": "/res/projects/preview/space.jpeg",
 		"icon": "/res/projects/icons/space.png",
@@ -7,7 +7,7 @@
 	},
 	{
 		"i18nKey": "daydreamx",
-		"image": "/res/projects/preview/daydream.png",
+		"image": "/res/projects/preview/daydream.jpeg",
 		"icon": "/res/projects/icons/daydream.png",
 		"url": "https://daydreamx.pro"
 	},
@@ -37,6 +37,11 @@
 		"icon": "/res/projects/icons/daylight.png"
 	},
 	{
+		"i18nKey": "starlight",
+		"icon": "/res/projects/icons/starlight.png",
+		"image": "/res/projects/preview/starlight.png"
+	},
+	{
 		"i18nKey": "umbra",
 		"icon": "/res/projects/icons/umbra.png",
 		"image": "/res/projects/preview/umbra.png"
@@ -44,5 +49,26 @@
 	{
 		"i18nKey": "aurora",
 		"icon": "/res/projects/icons/aurora.png"
-	}
+	}],
+	
+	[{
+		"i18nKey": "Dusk",
+		"image": "/res/projects/preview/dusk.jpeg",
+		"url": "https://dusk.night-x.com"
+	},
+	{
+		"i18nKey": "dpm"
+	},
+	{
+		"i18nKey": "Nova"
+	},
+	{
+		"i18nKey": "Moonbeam"
+	},
+	{
+		"i18nKey": "Moonscale"
+	},
+	{
+		"i18nKey": "LunaSSH"
+	}]
 ]

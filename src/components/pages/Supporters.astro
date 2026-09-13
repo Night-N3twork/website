@@ -24,10 +24,10 @@ const emptyLabel = t('supporters.empty');
 <Layout>
 	<Overlay
 		enableBg={false}
-		customClasses="max-w-full md:max-w-3xl w-full px-4 xs:px-2 bg-mocha-mantle overflow-y-auto max-h-[85vh] scrollbar-offset"
+		customClasses="max-w-full md:max-w-3xl w-full px-4 xs:px-2 bg-night-mantle overflow-y-auto max-h-[85vh] scrollbar-offset"
 	>
 		<h1
-			class="text-xl md:text-2xl font-bold text-mocha-lavender mb-4 md:mb-6 reveal-down"
+			class="text-xl md:text-2xl font-bold text-night-lavender mb-4 md:mb-6 reveal-down"
 		>
 			{t('supporters.heading')}
 		</h1>
@@ -35,7 +35,7 @@ const emptyLabel = t('supporters.empty');
 		<!-- Boosters -->
 		<section class="mb-6 md:mb-8 reveal" data-delay="100">
 			<h2
-				class="text-base md:text-lg font-semibold text-mocha-pink mb-2 md:mb-3 border-b border-mocha-surface0 pb-2 flex items-center gap-2"
+				class="text-base md:text-lg font-semibold text-night-pink mb-2 md:mb-3 border-b border-night-surface0 pb-2 flex items-center gap-2"
 			>
 				<span
 					data-lucide="zap"
@@ -43,7 +43,7 @@ const emptyLabel = t('supporters.empty');
 				{t('supporters.boostersHeading')}
 			</h2>
 			<ul id="boosters-list" class="flex flex-wrap gap-2">
-				<li class="text-xs md:text-sm text-mocha-subtext0">
+				<li class="text-xs md:text-sm text-night-subtext0">
 					{loadingLabel}
 				</li>
 			</ul>
@@ -52,7 +52,7 @@ const emptyLabel = t('supporters.empty');
 		<!-- Donators -->
 		<section class="mb-6 md:mb-8 reveal" data-delay="200">
 			<h2
-				class="text-base md:text-lg font-semibold text-mocha-green mb-2 md:mb-3 border-b border-mocha-surface0 pb-2 flex items-center gap-2"
+				class="text-base md:text-lg font-semibold text-night-green mb-2 md:mb-3 border-b border-night-surface0 pb-2 flex items-center gap-2"
 			>
 				<span
 					data-lucide="heart"
@@ -60,16 +60,16 @@ const emptyLabel = t('supporters.empty');
 				{t('supporters.donatorsHeading')}
 			</h2>
 			<ul id="donators-list" class="flex flex-wrap gap-2">
-				<li class="text-xs md:text-sm text-mocha-subtext0">
+				<li class="text-xs md:text-sm text-night-subtext0">
 					{loadingLabel}
 				</li>
 			</ul>
 		</section>
 
-		<p class="text-xs md:text-sm text-mocha-overlay1">
+		<p class="text-xs md:text-sm text-night-overlay1">
 			{t('supporters.footerBefore')}<a
 				href={mainPageHref}
-				class="text-mocha-lavender hover:text-mocha-blue underline transition-colors"
+				class="text-night-lavender hover:text-night-blue underline transition-colors"
 				>{t('supporters.footerLinkText')}</a
 			>{t('supporters.footerAfter')}
 		</p>
@@ -82,7 +82,7 @@ const emptyLabel = t('supporters.empty');
 
 		if (!members.length) {
 			const li = document.createElement('li');
-			li.className = 'text-xs md:text-sm text-mocha-subtext0 italic';
+			li.className = 'text-xs md:text-sm text-night-subtext0 italic';
 			li.textContent = emptyLabel;
 			el.appendChild(li);
 			return;
@@ -91,7 +91,7 @@ const emptyLabel = t('supporters.empty');
 		members.forEach(m => {
 			const li = document.createElement('li');
 			li.className =
-				'text-xs md:text-sm text-mocha-text bg-mocha-crust border border-mocha-surface0 rounded-lg px-2 md:px-3 py-1 md:py-1.5 hover:border-mocha-lavender transition-all hover:scale-105 transform';
+				'text-xs md:text-sm text-night-text bg-night-crust border border-night-surface0 rounded-lg px-2 md:px-3 py-1 md:py-1.5 hover:border-night-lavender transition-all hover:scale-105 transform';
 			li.textContent = m.username;
 			el.appendChild(li);
 		});

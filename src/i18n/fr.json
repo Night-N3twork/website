@@ -10,6 +10,7 @@
 		"contributors": "Contributeurs",
 		"supporters": "Soutiens",
 		"uptime": "Disponibilité",
+		"docs": "Documentation",
 		"language": "Langue"
 	},
 	"home": {
@@ -20,13 +21,14 @@
 		"memberCountFallback": "des milliers de",
 		"partnersHeading": "Partenaires et sous-organisations",
 		"partners": {
+			"hostedBadge": "Hébergé par Night Network",
 			"titanium": { "name": "Titanium Network", "alt": "TN" },
 			"nebula": { "name": "Nebula Services", "alt": "Nebula" },
 			"terbium": { "name": "TerbiumOS", "alt": "TerbiumOS" },
 			"lunar": { "name": "Lunar", "alt": "Lunar" },
 			"obsidian": { "name": "Obsidian Developer Labs", "alt": "Obsidian" }
 		},
-		"accountsHeading": "Nos comptes",
+		"accountsHeading": "Nos plateformes",
 		"accounts": {
 			"mainGithub": "GitHub principal",
 			"lunarGithub": "GitHub de Lunar",
@@ -38,6 +40,92 @@
 			"youtube": "YouTube",
 			"cashapp": "Cash App",
 			"patreon": "Patreon"
+		},
+		"sponsorship": {
+			"heading": "Soutenir le projet",
+			"description": "Aidez-nous à continuer à créer des outils ouverts et respectueux de la vie privée.",
+			"patreon": "Patreon",
+			"kofi": "Ko-fi"
+		}
+	},
+	"services": {
+		"heading": "Nos projets",
+		"modal": {
+			"close": "Fermer",
+			"visit": "Visiter le projet",
+			"previewAlt": "Aperçu de {name}"
+		},
+		"items": {
+			"space": {
+				"name": "Space",
+				"description": "Space est un proxy de nouvelle génération qui a révolutionné la scène des proxys grâce à son interface incroyable, ses fonctionnalités et sa rapidité. Space est le proxy phare de Night Network, utilisant un masquage par blob inédit, un système de comptes et bien plus encore."
+			},
+			"daydreamx": {
+				"name": "DayDream Browser",
+				"description": "Un navigateur de niveau Chrome écrit en TypeScript, capable de fonctionner sur n'importe quel navigateur, partout. Aucune installation requise. DayDream est un navigateur axé sur la confidentialité, avec un fort accent sur la vitesse, la sécurité et l'expérience utilisateur."
+			},
+			"lunar": {
+				"name": "Lunar",
+				"description": "Proxy inspiré des navigateurs"
+			},
+			"linkArchive": {
+				"name": "Link Archive",
+				"description": "Solution de stockage massif de liens avec catégorisation par filtres, génération automatique de liens et plus encore. Inspirée du chat d'Amplify."
+			},
+			"solar": {
+				"name": "Solar",
+				"description": "Bot Discord de vérification de filtres et utilitaire"
+			},
+			"nyxai": {
+				"name": "NyxAI",
+				"description": "Une IA avancée directement dans votre navigateur. Simple, mais puissante."
+			},
+			"daylight": {
+				"name": "DayLight",
+				"description": "Daylight est un proxy épuré avec des animations fluides, des vitesses rapides, des thèmes personnalisés et des extensions sur mesure. De plus, Daylight propose un système d'onglets verticaux dans un style similaire à Arc."
+			},
+			"starlight": {
+				"name": "StarLight",
+				"description": "StarLight est un proxy simple et respectueux de la vie privée, axé sur une expérience utilisateur sereine. StarLight est le successeur de Light, avec un nouveau design et de nouvelles fonctionnalités, tout en conservant une expérience calme et simple."
+			},
+			"umbra": {
+				"name": "Umbra",
+				"description": "Umbra est un lecteur de musique avec visualisation audio personnalisée, rendu des pochettes, prise en charge et partage de playlists, et plus encore. Umbra offre aussi des vitesses rapides et une musique de haute qualité."
+			},
+			"aurora": {
+				"name": "Aurora",
+				"description": "Comme Umbra pour la musique, Aurora est pour la vidéo. Lisez vos vidéos et médias avec la même simplicité familière qu'Umbra."
+			}
+		}
+	},
+	"libraries": {
+		"heading": "Nos bibliothèques",
+		"modal": {
+			"close": "Fermer",
+			"visit": "Visiter la bibliothèque",
+			"previewAlt": "Aperçu de {name}"
+		},
+		"items": {
+			"Dusk": {
+				"name": "Dusk",
+				"description": "Dusk est un runtime compatible Node.js pour le navigateur. Conçu pour rivaliser avec WebContainers. Dusk prend en charge Shell, Node.js, Python3, SQLITE et bien plus encore à venir."
+			},
+			"dpm": {
+				"name": "dpm",
+				"description": "dpm est un gestionnaire de paquets pour Dusk. Il permet d'installer des paquets depuis npm, GitHub et plus encore. dpm est conçu pour être rapide, sûr et simple à utiliser, même s'il est pensé pour Dusk, il peut aussi être utilisé dans des environnements réels."
+			},
+			"Nova": {
+				"name": "Nova",
+				"description": "Nova est un client compatible Wisp et Moonbeam. Écrit en Rust, Nova est un client extrêmement rapide avec des fonctionnalités qui rivalisent avec libcurl et des performances sans égales. Il est utilisé dans Dusk pour le networking et est le premier client Moonbeam pris en charge."
+			},
+			"Moonbeam": {
+				"name": "Moonbeam",
+				"description": "Moonbeam est une bibliothèque de networking. Elle permet de créer des réseaux privés dans le navigateur avec prise en charge de DHCP, DNS, ICMP et plus encore. Moonbeam utilise Wisp pour le networking de couche 4 vers Internet, permettant à vos clients d'interagir entre eux tout en restant connectés à Internet."
+			},
+			"Moonscale": {
+				"name": "Moonscale",
+				"description": "Tailscale sur le Web : connectez et utilisez Tailscale dans votre navigateur sur un réseau basé sur Moonbeam. Prend en charge MagicDNS, Tailscale Funnel, les nœuds de sortie et plus encore."
+			}
 		}
 	},
 	"projects": {
@@ -50,11 +138,11 @@
 		"items": {
 			"space": {
 				"name": "Space",
-				"description": "Space est un proxy nouvelle génération qui a révolutionné la scène des proxys grâce à son interface incroyable, ses fonctionnalités et sa rapidité. Space est le proxy phare de Night Network, utilisant un masquage par blob inédit, un système de comptes, et bien plus encore !"
+				"description": "Space est un proxy de nouvelle génération qui a révolutionné la scène des proxys grâce à son interface incroyable, ses fonctionnalités et sa rapidité. Space est le proxy phare de Night Network, utilisant un masquage par blob inédit, un système de comptes et bien plus encore."
 			},
 			"daydreamx": {
-				"name": "DayDream X",
-				"description": "Votre navigateur préféré dans un navigateur."
+				"name": "DayDream Browser",
+				"description": "Un navigateur de niveau Chrome écrit en TypeScript, capable de fonctionner sur n'importe quel navigateur, partout. Aucune installation requise. DayDream est un navigateur axé sur la confidentialité, avec un fort accent sur la vitesse, la sécurité et l'expérience utilisateur."
 			},
 			"lunar": {
 				"name": "Lunar",
@@ -62,7 +150,7 @@
 			},
 			"linkArchive": {
 				"name": "Link Archive",
-				"description": "Solution de stockage de liens en masse avec catégorisation par filtres, génération automatique de liens et plus encore. Inspirée du chat d'Amplify."
+				"description": "Solution de stockage massif de liens avec catégorisation par filtres, génération automatique de liens et plus encore. Inspirée du chat d'Amplify."
 			},
 			"solar": {
 				"name": "Solar",
@@ -70,11 +158,15 @@
 			},
 			"nyxai": {
 				"name": "NyxAI",
-				"description": "IA avancée directement dans votre navigateur. Simple, mais puissante."
+				"description": "Une IA avancée directement dans votre navigateur. Simple, mais puissante."
 			},
 			"daylight": {
 				"name": "DayLight",
 				"description": "Daylight est un proxy épuré avec des animations fluides, des vitesses rapides, des thèmes personnalisés et des extensions sur mesure. De plus, Daylight propose un système d'onglets verticaux dans un style similaire à Arc."
+			},
+			"starlight": {
+				"name": "StarLight",
+				"description": "StarLight est un proxy simple et respectueux de la vie privée, axé sur une expérience utilisateur sereine. StarLight est le successeur de Light, avec un nouveau design et de nouvelles fonctionnalités, tout en conservant une expérience calme et simple."
 			},
 			"umbra": {
 				"name": "Umbra",
@@ -93,13 +185,13 @@
 			"visit": "Voir le profil"
 		},
 		"roles": {
-			"owner": "Owners",
-			"co-owner": "Co-Owners",
-			"director": "Directors",
-			"developer": "Developers",
-			"admin": "Admins",
+			"owner": "Propriétaires",
+			"co-owner": "Copropriétaires",
+			"director": "Directeurs",
+			"developer": "Développeurs",
+			"admin": "Administrateurs",
 			"moderator": "Mods",
-			"marketer": "Marketers"
+			"marketer": "Responsables marketing"
 		}
 	},
 	"supporters": {
