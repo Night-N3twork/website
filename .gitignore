@@ -1,0 +1,26 @@
+# dependencies
+/node_modules
+
+# build
+/dist/
+/build/
+/.react-router/
+
+# generated
+*.tsbuildinfo
+
+# tests and reports
+/tests/e2e/glass/visual.spec.ts-snapshots/
+/coverage
+/test-results/
+/playwright-report/
+/.lighthouse/
+
+# env
+.env
+.env.*
+!.env.example
+
+# logs and os
+*.log
+.DS_Store

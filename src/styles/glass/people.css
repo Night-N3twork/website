@@ -1,0 +1,57 @@
+.people { grid-column: 1 / span 10; display: grid; gap: 72px; }
+.people-group { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 6fr); gap: 24px 40px; align-items: start; }
+.people-head { position: sticky; top: 120px; display: grid; gap: 10px; padding-top: 14px; }
+.people-title { font-size: 1.35rem; font-weight: 500; letter-spacing: -0.03em; }
+.people-subnote { font-size: 0.88rem; line-height: 1.45; color: var(--text-dim); }
+.people-count { font: 500 2.6rem/1 var(--font-mono); letter-spacing: -0.04em; color: var(--text-faint); }
+.people-panel { --c: 22px; padding: 10px; }
+.people-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2px; padding: 0; list-style: none; }
+.people-note { padding: 18px 16px; font-size: 0.95rem; line-height: 1.55; color: var(--text-dim); }
+
+.person-card {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  column-gap: 14px;
+  row-gap: 4px;
+  align-items: center;
+  padding: 14px 16px;
+  transition: background-color var(--t-fast), translate var(--t-medium) var(--ease-smooth);
+}
+.person-avatar { grid-row: 1 / 3; width: 48px; height: 48px; border-radius: 50%; background: var(--fill); box-shadow: 0 0 0 1px var(--edge); }
+.person-name { grid-column: 2; grid-row: 1; align-self: end; font-size: 1rem; font-weight: 500; letter-spacing: -0.02em; overflow-wrap: anywhere; }
+.person-card:not(:has(.person-note)) .person-name { grid-row: 1 / 3; align-self: center; }
+.person-note { grid-column: 2; grid-row: 2; align-self: start; font: 500 0.64rem/1.3 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-faint); }
+.person-card .chev { grid-column: 3; grid-row: 1 / 3; color: var(--text-faint); transition: color var(--t-fast), translate var(--t-medium) var(--ease-bounce); }
+a.person-card:is(:hover, :focus-visible) { background: rgb(255 255 255 / 0.04); translate: 3px 0; }
+a.person-card:is(:hover, :focus-visible) .chev { color: var(--gold); translate: 2px 0; }
+
+.people-group[data-group='owner'] .people-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.people-group[data-group='owner'] .person-card { padding: 20px 18px; }
+.people-group[data-group='owner'] .person-name { font-size: 1.3rem; letter-spacing: -0.03em; }
+
+.people-tiers { justify-self: end; width: min(100%, 460px); }
+.tier-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; padding-top: 4px; }
+.tier-name { font-size: 2.2rem; font-weight: 500; line-height: 1; letter-spacing: -0.045em; }
+.tier-price { font: 500 0.78rem/1.3 var(--font-mono); letter-spacing: 0.04em; color: var(--gold); }
+.tier-perks { display: grid; gap: 10px; margin: 0; padding: 14px 0 0; border-top: 1px solid var(--line); list-style: none; font-size: 0.95rem; line-height: 1.5; color: var(--text-dim); text-wrap: pretty; }
+
+@media (max-width: 1100px) {
+  .people { grid-column: 1 / -1; }
+}
+
+@media (max-width: 760px) {
+  .people { gap: 48px; }
+  .people-group { grid-template-columns: 1fr; gap: 14px; }
+  .people-head { position: static; grid-template-columns: 1fr auto; align-items: baseline; }
+  .people-title { grid-column: 1; grid-row: 1; }
+  .people-count { grid-column: 2; grid-row: 1; font-size: 1.4rem; }
+  .people-subnote { grid-column: 1 / -1; grid-row: 2; margin-top: 2px; }
+  .people-panel { padding: 6px; }
+  .people-group[data-group='owner'] .people-grid { grid-template-columns: minmax(0, 1fr); }
+  .people-tiers { justify-self: stretch; width: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .person-card, .person-card .chev { transition: none; }
+}

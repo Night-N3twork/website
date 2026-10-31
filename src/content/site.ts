@@ -1,0 +1,15 @@
+export const SITE = {
+  name: 'Night Network',
+  baseUrl: 'https://night-x.com',
+  founded: 2023,
+  usersPerYear: 6_500_000,
+  discord: 'https://discord.gg/JS6u8KuXf7',
+  github: 'https://github.com/Night-N3twork',
+  githubOrgs: ['https://github.com/Night-N3twork', 'https://github.com/Lunar-Proxy', 'https://github.com/Obsidian-Dev-Labs'],
+  gitlab: 'https://gitlab.com/nightnetwork',
+  youtube: 'https://www.youtube.com/@NightNetworkOffical',
+  instagram: 'https://www.instagram.com/not.amplify.dev',
+  patreon: 'https://www.patreon.com/c/nightNetwork',
+  cashApp: 'https://cash.app/$NightXNetwork',
+  uptime: 'https://uptime.night-x.com/status/all',
+} as const;

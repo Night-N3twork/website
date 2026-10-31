@@ -1,0 +1,306 @@
+{
+  "site": {
+    "name": "Night Network",
+    "description": "6.5 million people a year use Night Network's tools. Most of them run in the browser."
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "contributors": "Contributors",
+    "supporters": "Supporters",
+    "community": "Community",
+    "menu": "Menu",
+    "close": "Close",
+    "explore": "Explore our projects",
+    "language": "Language",
+    "connect": "Connect",
+    "support": "Support",
+    "supportLine": "Patreon and Cash App",
+    "skip": "Skip to content",
+    "languageCurrent": "Current language"
+  },
+  "status": {
+    "down": "Down",
+    "maintenance": "Maintenance",
+    "live": "Live"
+  },
+  "projects": {
+    "title": "{count} projects.",
+    "lede": "Most of what we do can run inside the browser.",
+    "open": "Open {name}",
+    "all": "All projects",
+    "related": "Related",
+    "source": "Source",
+    "npm": "npm package",
+    "addToDiscord": "Add {name} to Discord",
+    "partner": "Partner project",
+    "stages": {
+      "live": "Live",
+      "beta": "Beta",
+      "building": "In development",
+      "planned": "Planned"
+    },
+    "groups": {
+      "platform": {
+        "title": "Platform",
+        "line": "Runtimes, a VM, networking and a GPU engine, all running in a browser tab."
+      },
+      "apps": {
+        "title": "Apps",
+        "line": "A music player, an AI chat client and Night's Discord bots."
+      },
+      "browsers": {
+        "title": "Browsers",
+        "line": "The browsers in a browser."
+      }
+    },
+    "sections": {
+      "what": "Function",
+      "status": "Status"
+    },
+    "items": {
+      "dusk": {
+        "line": "Node-style processes, a Unix shell, Python and SQLite, all in one browser tab.",
+        "features": [
+          "Each process runs its own SpiderMonkey engine in a Web Worker",
+          "Synchronous fs, crypto and child_process calls work on top of async browser APIs",
+          "The shell is Vercel's just-bash, with about 75 commands, pipes and redirects",
+          "python3 and sqlite3 run as ordinary shell commands",
+          "Files are persistent"
+        ]
+      },
+      "moonbeam": {
+        "line": "Gives VMs and WebAssembly in the tab the ability to use a network, over one Wisp connection.",
+        "features": [
+          "DHCP, routing and TCP and UDP NAT for a guest OS",
+          "Several WASM clients share one upstream socket through MessagePorts",
+          "Egress rules are checked per packet at the gateway"
+        ]
+      },
+      "eclipse": {
+        "line": "Boots 64-bit Alpine Linux in a browser tab and gets it online through Wisp.",
+        "features": [
+          "an unmodified Linux with ordinary TCP and UDP",
+          "Its root disk persists in the browser's private file system",
+          "Private and reserved address ranges are blocked by default",
+          "Runs a QEMU-wasm build, with Night's own networking and storage used internally"
+        ]
+      },
+      "luna": {
+        "line": "A WebGPU engine written from scratch.",
+        "features": [
+          "14 hand-written WGSL kernels that need neither shader-f16 nor subgroups",
+          "Reads Google's own q4_0 GGUF file and checks its hash",
+          "Output is checked token by token against a reference model"
+        ]
+      },
+      "moonscale": {
+        "line": "A Tailscale node in the browser.",
+        "features": [
+          "Opens and accepts TCP and UDP connections on a tailnet",
+          "Sends a tab's traffic out through any exit node",
+          "Carries a Wisp session through WireGuard"
+        ]
+      },
+      "nova": {
+        "line": "An HTTPS client written in Rust and compiled to WebAssembly. It connects to Wisp.",
+        "features": [
+          "rustls TLS and HTTP/1.1 over a Wisp stream",
+          "A libcurl.js-style fetch that returns a real Response",
+          "Can share MoonBeam's socket through a MessagePort"
+        ]
+      },
+      "dpm": {
+        "line": "A small npm client with no dependencies, made to run inside Dusk.",
+        "features": [
+          "Its own semver, tar reader and integrity checks",
+          "npm-style hoisting that nests packages when versions clash",
+          "npm, npx and pnpm commands map onto it"
+        ]
+      },
+      "umbra": {
+        "line": "A music player for the web, the desktop, and the mobile phone, with playlists, offline saves, account sync, social features, music transitions, and song visualization.",
+        "features": [
+          "Playlists, a queue, lyrics and rebindable shortcuts",
+          "Saved songs play back from a local cache",
+          "A Night account keeps the library in sync across devices",
+          "Theme Lab builds a whole theme from one color",
+          "Music transitions on-device transition from one song to the next seamlessly",
+          "Song visualization makes your app look cool",
+          "Interact with other Umbra users with our community features"
+        ]
+      },
+      "aurora": {
+        "line": "A video player planned alongside Umbra.",
+        "features": []
+      },
+      "nyxai": {
+        "line": "A chat client for about 40 hosted AI models, with history kept in the browser.",
+        "features": [
+          "Premium models open up with Night+",
+          "Search, fork and incognito chats, stored on the device",
+          "Image input from a file or a screen capture",
+          "Agentic control through eligible browser apps"
+        ]
+      },
+      "solar": {
+        "line": "A Discord bot for checking if web filters block a link.",
+        "features": []
+      },
+      "link-archive": {
+        "line": "Night's Discord bot and dashboard for sharing links, with daily limits and filter checks.",
+        "features": [
+          "Daily limits that reset at midnight Eastern",
+          "Submitted links are checked before they're stored",
+          "A dashboard for teams, reports and analytics",
+          "Partner API keys for fetching links outside Discord",
+          "Automated link creation that is checked with Solar"
+        ]
+      },
+      "ddx": {
+        "line": "A Chrome-style browser that runs inside a web page.",
+        "features": [
+          "Tab groups, pinning, split view and vertical tabs",
+          "Profiles with their own cookies and storage",
+          "Early support for Chrome extensions",
+          "DevTools over the Chrome DevTools Protocol",
+          "It looks hella cool"
+        ]
+      },
+      "daylight": {
+        "line": "A browser with vertical sidebar tabs, 13 themes and Chrome extensions.",
+        "features": [
+          "Arc-style sidebar tabs with pins, favorites and groups",
+          "A card-stack layout on phones",
+          "Installs Chrome extensions from CRX files",
+          "Agentic control with Nyx",
+          "Spaces (profiles) with isolation"
+        ]
+      },
+      "space": {
+        "line": "A browser in a page, with 277 games, 33 apps and five themes.",
+        "features": [
+          "A choice of engine and transport in settings",
+          "Browsing data exports and imports as one file",
+          "Back, forward, fullscreen and built-in devtools",
+          "Free from feature bloat and simple"
+        ]
+      },
+      "lunar": {
+        "line": "A tabbed browser in a page, built by the Lunar team.",
+        "features": [
+          "Tabs, an address bar and search suggestions",
+          "A keyboard shortcut for every menu action",
+          "Games and apps pages"
+        ]
+      }
+    },
+    "status": {
+      "up": "Up and running",
+      "down": "Down right now",
+      "checked": "Last checked {time}"
+    }
+  },
+  "roles": {
+    "owner": "Owners",
+    "co-owner": "Co-Owners",
+    "director": "Directors",
+    "developer": "Developers",
+    "admin": "Admins",
+    "mod": "Mods",
+    "marketer": "Marketers"
+  },
+  "partners": {
+    "title": "Partners",
+    "lede": "We help each other out."
+  },
+  "footer": {
+    "blurb": "Pushing the limits of the web since 2023, built by volunteers.",
+    "explore": "Explore",
+    "connect": "Connect",
+    "support": "Support",
+    "copyright": "© {year} Night Network · founded by amplify.dev"
+  },
+  "contributors": {
+    "title": "Night's volunteers",
+    "lede": "Owners and developers help write the code and synthesize ideas; everybody else helps run the Discord, marketing, and socials.",
+    "ownerSubnote": "All owners are developers.",
+    "since": "since {year}",
+    "join": "Join the community"
+  },
+  "supporters": {
+    "title": "Who keeps Night running",
+    "lede": "Night's projects are paid for by Discord server boosters, donators, small ad revenue, and out-of-pocket.",
+    "boosters": "Server Boosters",
+    "donators": "Donators",
+    "empty": "Nobody here yet.",
+    "unavailable": "The booster list didn't load from Discord. Try again in a few minutes.",
+    "tiers": "Tiers and perks",
+    "tierName": "Night+",
+    "tierPrice": "$9.99 a month on Patreon",
+    "perks": [
+      "Solves Turnstile, hCaptcha and reCAPTCHA checks for you",
+      "4 MB of sync for tabs, history and settings, up from 512 KB",
+      "Night+ Wisp relays, and Mullvad routes by city or country",
+      "Unlimited profiles in DayDream",
+      "Proxy mirrors in the Link Archive feed",
+      "Gemini 3.8 Flash, Claude Sonnet 5.5 and GPT-6.1 Ouna in NyxAI"
+    ],
+    "patreon": "Support on Patreon",
+    "cashApp": "Support on Cash App"
+  },
+  "community": {
+    "title": "Where to find Night",
+    "lede": "The Discord is our main community. Our code is public on GitHub and GitLab.",
+    "discord": "Join the Discord",
+    "contribute": "Contribute",
+    "contributeLede": "Anyone can open an issue or a pull request on GitHub or GitLab. For anything big, ask in the Discord first or DM us.",
+    "partners": "Partners and suborganizations",
+    "conduct": "Code of conduct",
+    "conductPending": "shit is lowk filler lmfao"
+  },
+  "notFound": {
+    "meta": "Page not found",
+    "title": "Ventured too far into the Night.",
+    "lede": "We couldn't find something at that address.",
+    "cta": "Explore our projects"
+  },
+  "serverError": {
+    "meta": "Something broke",
+    "title": "Something broke on our end.",
+    "lede": "This page couldn't load correctly. Try refreshing. If the issue persists, DM the team on Discord.",
+    "cta": "Explore our projects"
+  },
+  "home": {
+    "hero": {
+      "headline": "We push the browser to its limits.",
+      "subline": "Real software, loaded in a tab.",
+      "support": "Night Network is a volunteer-run organization whose projects reimagine what's possible in a browser, from running full Linux systems and terminals to running AI models on-device through the browser.",
+      "cta": "Explore our projects",
+      "community": "Join the community"
+    },
+    "stats": {
+      "countShort": "6.5",
+      "countUnit": "million",
+      "line": "people a year use a Night Network tool."
+    },
+    "products": {
+      "title": "We believe in the power of the web.",
+      "lede": "These seven projects push the limits of what's possible in the browser."
+    },
+    "catalog": {
+      "title": "Apps and browsers.",
+      "lede": "A music player, an AI chat client, two Discord bots and four browsers."
+    },
+    "flagship": {
+      "kicker": "Flagship",
+      "title": "Dusk.",
+      "line": "Node-style processes, a Unix shell, Python and SQLite, all in one browser tab. (description is lowk vibed, idk much about dusk. change later)",
+      "notes": [
+        "each process gets its own SpiderMonkey engine",
+        "python3 and sqlite3 are shell commands",
+        "persistent storage"
+      ]
+    }
+  }
+}

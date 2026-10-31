@@ -1,0 +1,41 @@
+@property --f { syntax: '<number>'; inherits: true; initial-value: 0; }
+@property --p { syntax: '<integer>'; inherits: true; initial-value: 0; }
+
+:root {
+  --night: #04060b;
+  --text: #eef2fb;
+  --text-dim: rgb(238 242 251 / 0.6);
+  --text-faint: rgb(238 242 251 / 0.5);
+  --line: rgb(255 255 255 / 0.09);
+  --edge: rgb(255 255 255 / 0.2);
+  --fill: rgb(8 11 19 / 0.55);
+  --moon: oklch(86% 0.05 255);
+  --gold: oklch(84% 0.12 85);
+  --live: oklch(83% 0.13 160);
+  --down: oklch(72% 0.17 25);
+  --beta: oklch(85% 0.11 85);
+  --build: oklch(80% 0.06 255);
+
+  --font-sans: 'Geist Variable', 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', 'Geist Mono', ui-monospace, monospace;
+  --text-hero: clamp(2.8rem, 1rem + 5vw, 6.25rem);
+  --text-display: clamp(2.6rem, 1rem + 4.4vw, 5.75rem);
+  --text-h2: clamp(2rem, 1rem + 2.6vw, 3.6rem);
+  --text-lede: clamp(1.02rem, 0.94rem + 0.36vw, 1.25rem);
+  --gutter: clamp(16px, 0.5rem + 3vw, 64px);
+
+  --t-micro: 80ms;
+  --t-quick: 150ms;
+  --t-fast: 250ms;
+  --t-medium: 350ms;
+  --t-slow: 400ms;
+  --t-very-slow: 500ms;
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.36, 0.64, 1);
+  --ease-bounce-strong: cubic-bezier(0.34, 3.85, 0.64, 1);
+}
+
+:root[data-backdrop='peak'] {
+  --text-dim: rgb(238 242 251 / 0.85);
+}

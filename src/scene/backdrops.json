@@ -1,0 +1,22 @@
+{
+  "range": {
+    "1280": {
+      "avif": "/backdrops/range-1280.1ba8f33a.avif",
+      "webp": "/backdrops/range-1280.5e112b48.webp"
+    },
+    "2400": {
+      "avif": "/backdrops/range-2400.28ef3ee7.avif",
+      "webp": "/backdrops/range-2400.1b6322ef.webp"
+    }
+  },
+  "peak": {
+    "1280": {
+      "avif": "/backdrops/peak-1280.9bf1f874.avif",
+      "webp": "/backdrops/peak-1280.acb90d1f.webp"
+    },
+    "2400": {
+      "avif": "/backdrops/peak-2400.264d8c62.avif",
+      "webp": "/backdrops/peak-2400.ca36257b.webp"
+    }
+  }
+}
