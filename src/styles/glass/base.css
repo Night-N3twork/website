@@ -277,7 +277,7 @@ main { position: relative; z-index: 10; }
   text-shadow: 0 2px 36px rgb(0 0 0 / 0.45);
 }
 
-.sec-products { display: block; align-content: start; min-height: calc(100svh + var(--steps) * 48svh); padding: 0; }
+.sec-products { display: block; align-content: start; min-height: calc(100svh + var(--steps) * 24svh); padding: 0; }
 .sec-products .pin {
   position: sticky;
   top: 0;

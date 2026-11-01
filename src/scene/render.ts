@@ -2,6 +2,7 @@ import { HalfFloatType, NeutralToneMapping, PerspectiveCamera, Scene, Vector2, W
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { SMAAPass } from 'three/addons/postprocessing/SMAAPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { BLOOM, CAMERA_Z, FOV, MAX_PIXEL_RATIO } from './frames';
 import { buildEnvironment } from './glass';
@@ -18,7 +19,7 @@ export interface RenderParts {
 }
 
 export function createRenderParts(canvas: HTMLCanvasElement): RenderParts {
-  const renderer = new WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+  const renderer = new WebGLRenderer({ canvas, powerPreference: 'high-performance' });
   renderer.toneMapping = NeutralToneMapping;
   renderer.toneMappingExposure = 1.05;
   const scene = new Scene();
@@ -26,11 +27,13 @@ export function createRenderParts(canvas: HTMLCanvasElement): RenderParts {
   camera.position.z = CAMERA_Z;
   let environment = buildEnvironment(renderer);
   scene.environment = environment.texture;
-  const composer = new EffectComposer(renderer, new WebGLRenderTarget(1, 1, { type: HalfFloatType, samples: 4 }));
+  const composer = new EffectComposer(renderer, new WebGLRenderTarget(1, 1, { type: HalfFloatType }));
   const bloom = new UnrealBloomPass(new Vector2(1, 1), BLOOM.strength, 0.6, 0.86);
+  const smaa = new SMAAPass();
   composer.addPass(new RenderPass(scene, camera));
   composer.addPass(bloom);
   composer.addPass(new OutputPass());
+  composer.addPass(smaa);
   return {
     renderer, scene, camera, composer, bloom,
     resize(width, height) {
@@ -50,6 +53,7 @@ export function createRenderParts(canvas: HTMLCanvasElement): RenderParts {
     dispose() {
       environment.dispose();
       bloom.dispose();
+      smaa.dispose();
       composer.dispose();
       renderer.dispose();
     },
