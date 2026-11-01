@@ -1,4 +1,6 @@
 import { expect, type Page, test } from '@playwright/test';
+import fr from '../../../messages/fr.json' with { type: 'json' };
+import { getProject } from '../../../src/content/projects';
 
 const ready = (page: Page) => page.waitForSelector('html.intro-done', { timeout: 20_000 });
 const probe = (page: Page) => page.locator('canvas#gl').evaluate((el) => (el.dataset.probe = '1'));
@@ -37,6 +39,29 @@ test('language switch keeps the shell and drops the prefix', async ({ page }) =>
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://night-x.com/projects');
   await expect(probed(page)).toBeAttached();
+});
+
+test('language switch translates the split headings', async ({ page }) => {
+  await page.goto('/es');
+  await ready(page);
+  await page.locator('footer.foot').getByRole('link', { name: 'Français' }).click();
+  await expect(page).toHaveURL('/fr');
+  await expect(page.locator('h1.headline')).toHaveText(fr.home.hero.headline);
+  await expect(page.locator('h1.headline')).not.toHaveAttribute('aria-label', /Llevamos/);
+  await expect(page.locator('main h2.title').first()).toHaveText(fr.home.products.title);
+});
+
+test('moving between two projects swaps the split title', async ({ page }) => {
+  const next = getProject('dpm');
+  if (!next) throw new Error('dpm');
+  await page.goto('/projects/dusk');
+  await ready(page);
+  const link = page.locator(`main a[href="/projects/${next.slug}"]`).first();
+  await link.scrollIntoViewIfNeeded();
+  await expect(link).toBeVisible();
+  await link.click();
+  await expect(page).toHaveURL(`/projects/${next.slug}`);
+  await expect(page.locator('h1').first()).toHaveText(next.name);
 });
 
 test('rail jumps to a section on home', async ({ page }) => {

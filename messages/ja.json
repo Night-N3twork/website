@@ -1,1 +1,305 @@
-{}
+{
+  "site": {
+    "name": "Night Network",
+    "description": "Night Network のツールは年間 650 万人に使われています。そのほとんどはブラウザで動きます。"
+  },
+  "nav": {
+    "home": "ホーム",
+    "projects": "プロジェクト",
+    "contributors": "コントリビューター",
+    "supporters": "サポーター",
+    "community": "コミュニティ",
+    "menu": "メニュー",
+    "close": "閉じる",
+    "explore": "プロジェクトを見る",
+    "language": "言語",
+    "connect": "SNS",
+    "support": "支援する",
+    "supportLine": "Patreon と Cash App",
+    "skip": "本文へスキップ",
+    "languageCurrent": "現在の言語"
+  },
+  "status": {
+    "down": "停止中",
+    "maintenance": "メンテナンス中",
+    "live": "稼働中"
+  },
+  "projects": {
+    "title": "全 {count} プロジェクト。",
+    "lede": "私たちが作るものの多くは、ブラウザの中で動きます。",
+    "open": "{name} を開く",
+    "all": "すべてのプロジェクト",
+    "related": "関連プロジェクト",
+    "source": "ソースコード",
+    "npm": "npm パッケージ",
+    "addToDiscord": "{name} を Discord に追加",
+    "partner": "パートナープロジェクト",
+    "stages": {
+      "live": "公開中",
+      "beta": "ベータ",
+      "building": "開発中",
+      "planned": "計画中"
+    },
+    "groups": {
+      "platform": {
+        "title": "プラットフォーム",
+        "line": "ランタイム、VM、ネットワーク、GPU エンジン。すべてがブラウザのタブ一つで動きます。"
+      },
+      "apps": {
+        "title": "アプリ",
+        "line": "音楽プレイヤー、AI チャットクライアント、そして Night の Discord ボット。"
+      },
+      "browsers": {
+        "title": "ブラウザ",
+        "line": "ブラウザの中で動くブラウザ。"
+      }
+    },
+    "sections": {
+      "what": "機能",
+      "status": "ステータス"
+    },
+    "items": {
+      "dusk": {
+        "line": "Node 風のプロセス、Unix シェル、Python、SQLite。すべてがブラウザのタブ一つで動きます。",
+        "features": [
+          "各プロセスが Web Worker 上で専用の SpiderMonkey エンジンを実行",
+          "同期的な fs、crypto、child_process の呼び出しが、ブラウザの非同期 API の上で動作",
+          "シェルは Vercel の just-bash。約 75 のコマンド、パイプ、リダイレクトに対応",
+          "python3 と sqlite3 は通常のシェルコマンドとして実行",
+          "ファイルは永続的に保存"
+        ]
+      },
+      "moonbeam": {
+        "line": "タブ内の VM や WebAssembly に、一本の Wisp 接続でネットワークを提供します。",
+        "features": [
+          "ゲスト OS 向けの DHCP、ルーティング、TCP と UDP の NAT",
+          "複数の WASM クライアントが MessagePort 経由で一つの上流ソケットを共有",
+          "送信ルールはゲートウェイでパケットごとにチェック"
+        ]
+      },
+      "eclipse": {
+        "line": "64 ビット版 Alpine Linux をブラウザのタブで起動し、Wisp 経由でインターネットにつなぎます。",
+        "features": [
+          "改変なしの Linux と、通常の TCP・UDP",
+          "ルートディスクはブラウザのプライベートファイルシステムに永続保存",
+          "プライベートおよび予約済みのアドレス範囲はデフォルトでブロック",
+          "QEMU-wasm ビルド上で動作し、内部では Night 独自のネットワークとストレージを使用"
+        ]
+      },
+      "luna": {
+        "line": "ゼロから書き上げた WebGPU エンジン。",
+        "features": [
+          "shader-f16 も subgroups も不要な、手書きの WGSL カーネル 14 本",
+          "Google 公式の q4_0 GGUF ファイルを読み込み、ハッシュを検証",
+          "出力はリファレンスモデルとトークン単位で照合"
+        ]
+      },
+      "moonscale": {
+        "line": "ブラウザの中で動く Tailscale ノード。",
+        "features": [
+          "tailnet 上で TCP と UDP の接続を開始・受け入れ",
+          "タブの通信を任意の出口ノード経由で送出",
+          "Wisp セッションを WireGuard 経由で転送"
+        ]
+      },
+      "nova": {
+        "line": "Rust で書かれ、WebAssembly にコンパイルされた HTTPS クライアント。Wisp に接続します。",
+        "features": [
+          "Wisp ストリーム上の rustls による TLS と HTTP/1.1",
+          "本物の Response を返す、libcurl.js 風の fetch",
+          "MessagePort 経由で MoonBeam のソケットを共有可能"
+        ]
+      },
+      "dpm": {
+        "line": "Dusk の中で動かすために作られた、依存関係ゼロの小さな npm クライアント。",
+        "features": [
+          "独自の semver、tar リーダー、整合性チェック",
+          "バージョンが衝突したらパッケージをネストする、npm 流の巻き上げ",
+          "npm、npx、pnpm コマンドはすべて dpm に割り当て"
+        ]
+      },
+      "umbra": {
+        "line": "Web、デスクトップ、スマートフォンで使える音楽プレイヤー。プレイリスト、オフライン保存、アカウント同期、ソーシャル機能、曲間トランジション、楽曲ビジュアライザーを備えています。",
+        "features": [
+          "プレイリスト、再生キュー、歌詞、変更可能なショートカット",
+          "保存した曲はローカルキャッシュから再生",
+          "Night アカウントでライブラリをデバイス間で同期",
+          "Theme Lab が一色からテーマ全体を作成",
+          "デバイス上で処理する、曲から曲へ途切れないトランジション",
+          "楽曲ビジュアライザーでアプリの見た目がぐっとクールに",
+          "コミュニティ機能で他の Umbra ユーザーと交流"
+        ]
+      },
+      "aurora": {
+        "line": "Umbra と並行して計画中の動画プレイヤー。",
+        "features": []
+      },
+      "nyxai": {
+        "line": "約 40 のホスト型 AI モデルに対応したチャットクライアント。履歴はブラウザに保存されます。",
+        "features": [
+          "Night+ でプレミアムモデルが利用可能に",
+          "検索、チャットの分岐、シークレットチャット。すべてデバイスに保存",
+          "ファイルや画面キャプチャから画像を入力",
+          "対応ブラウザアプリのエージェント操作"
+        ]
+      },
+      "solar": {
+        "line": "リンクが Web フィルターにブロックされるかを確認する Discord ボット。",
+        "features": []
+      },
+      "link-archive": {
+        "line": "リンク共有のための Night の Discord ボットとダッシュボード。1 日の上限とフィルターチェック付き。",
+        "features": [
+          "1 日の上限は米国東部時間の深夜 0 時にリセット",
+          "投稿されたリンクは保存前にチェック",
+          "チーム、レポート、アナリティクスのためのダッシュボード",
+          "Discord の外からリンクを取得できるパートナー API キー",
+          "Solar でチェックされるリンクの自動作成"
+        ]
+      },
+      "ddx": {
+        "line": "Web ページの中で動く、Chrome 風のブラウザ。",
+        "features": [
+          "タブグループ、ピン留め、分割表示、縦タブ",
+          "Cookie とストレージが独立したプロファイル",
+          "Chrome 拡張機能に試験的に対応",
+          "Chrome DevTools Protocol による DevTools",
+          "見た目がめちゃくちゃかっこいい"
+        ]
+      },
+      "daylight": {
+        "line": "縦型のサイドバータブ、13 種類のテーマ、Chrome 拡張機能を備えたブラウザ。",
+        "features": [
+          "ピン、お気に入り、グループに対応した Arc 風のサイドバータブ",
+          "スマートフォンではカードを重ねたレイアウト",
+          "CRX ファイルから Chrome 拡張機能をインストール",
+          "Nyx によるエージェント操作",
+          "互いに分離されたスペース（プロファイル）"
+        ]
+      },
+      "space": {
+        "line": "ページの中で動くブラウザ。277 本のゲーム、33 のアプリ、5 種類のテーマを収録。",
+        "features": [
+          "エンジンとトランスポートを設定で選択可能",
+          "閲覧データを一つのファイルでエクスポート・インポート",
+          "戻る、進む、全画面表示、内蔵の開発者ツール",
+          "余計な機能のない、シンプルな作り"
+        ]
+      },
+      "lunar": {
+        "line": "Lunar チームが作った、ページの中で動くタブ型ブラウザ。",
+        "features": [
+          "タブ、アドレスバー、検索候補",
+          "すべてのメニュー操作にキーボードショートカット",
+          "ゲームとアプリのページ"
+        ]
+      }
+    },
+    "status": {
+      "up": "正常に稼働中",
+      "down": "現在停止中",
+      "checked": "最終確認 {time}"
+    }
+  },
+  "roles": {
+    "owner": "オーナー",
+    "co-owner": "共同オーナー",
+    "director": "ディレクター",
+    "developer": "開発者",
+    "admin": "管理者",
+    "mod": "モデレーター",
+    "marketer": "マーケター"
+  },
+  "partners": {
+    "title": "パートナー",
+    "lede": "お互いに助け合っています。"
+  },
+  "footer": {
+    "blurb": "2023 年から Web の限界に挑み続ける、ボランティアによるチームです。",
+    "explore": "コンテンツ",
+    "connect": "SNS",
+    "support": "支援",
+    "copyright": "© {year} Night Network · 創設者 amplify.dev"
+  },
+  "contributors": {
+    "title": "Night のボランティア",
+    "lede": "オーナーと開発者がコードを書き、アイデアを形にしています。ほかのメンバーは Discord、マーケティング、SNS の運営を担っています。",
+    "ownerSubnote": "オーナーは全員が開発者です。",
+    "since": "{year} 年から",
+    "join": "コミュニティに参加"
+  },
+  "supporters": {
+    "title": "Night を支える人たち",
+    "lede": "Night のプロジェクトは、Discord サーバーのブースト、寄付、わずかな広告収入、そしてメンバーの自腹でまかなわれています。",
+    "boosters": "サーバーブースター",
+    "donators": "寄付してくれた方々",
+    "empty": "まだ誰もいません。",
+    "unavailable": "Discord からブースターの一覧を読み込めませんでした。数分後にもう一度お試しください。",
+    "tiers": "プランと特典",
+    "tierName": "Night+",
+    "tierPrice": "Patreon で月額 $9.99",
+    "perks": [
+      "Turnstile、hCaptcha、reCAPTCHA の認証を自動で解決",
+      "タブ、履歴、設定の同期容量が 512 KB から 4 MB に",
+      "Night+ 専用の Wisp リレーと、都市・国ごとの Mullvad ルート",
+      "DayDream でプロファイルが無制限に",
+      "Link Archive のフィードにプロキシのミラーを追加",
+      "NyxAI で Gemini 3.8 Flash、Claude Sonnet 5.5、GPT-6.1 Ouna が利用可能に"
+    ],
+    "patreon": "Patreon で支援する",
+    "cashApp": "Cash App で支援する"
+  },
+  "community": {
+    "title": "Night に会える場所",
+    "lede": "メインのコミュニティは Discord です。コードは GitHub と GitLab で公開しています。",
+    "discord": "Discord に参加",
+    "contribute": "コントリビュート",
+    "contributeLede": "GitHub や GitLab では誰でも Issue やプルリクエストを作成できます。大きな変更の場合は、先に Discord で相談するか DM をください。",
+    "partners": "パートナーと関連団体",
+    "conduct": "行動規範"
+  },
+  "notFound": {
+    "meta": "ページが見つかりません",
+    "title": "Night の奥深くに迷い込んでしまいました。",
+    "lede": "このアドレスには何も見つかりませんでした。",
+    "cta": "プロジェクトを見る"
+  },
+  "serverError": {
+    "meta": "エラーが発生しました",
+    "title": "こちら側で問題が発生しました。",
+    "lede": "このページを正しく読み込めませんでした。ページを再読み込みしてみてください。問題が続く場合は、Discord でチームに DM してください。",
+    "cta": "プロジェクトを見る"
+  },
+  "home": {
+    "hero": {
+      "headline": "ブラウザの限界を押し広げる。",
+      "subline": "本物のソフトウェアを、タブ一つで。",
+      "support": "Night Network はボランティアが運営する団体です。Linux システムやターミナルを丸ごと動かすことから、AI モデルをデバイス上で動かすことまで、ブラウザでできることを塗り替えるプロジェクトに取り組んでいます。",
+      "cta": "プロジェクトを見る",
+      "community": "コミュニティに参加"
+    },
+    "stats": {
+      "countShort": "650",
+      "countUnit": "万人",
+      "line": "年間で Night Network のツールを使う人の数。"
+    },
+    "products": {
+      "title": "私たちは Web の力を信じています。",
+      "lede": "この 7 つのプロジェクトが、ブラウザでできることの限界を押し広げています。"
+    },
+    "catalog": {
+      "title": "アプリとブラウザ。",
+      "lede": "音楽プレイヤー、AI チャットクライアント、2 つの Discord ボット、4 つのブラウザ。"
+    },
+    "flagship": {
+      "kicker": "フラッグシップ",
+      "title": "Dusk.",
+      "line": "Node 風のプロセス、Unix シェル、Python、SQLite。すべてがブラウザのタブ一つで動きます。",
+      "notes": [
+        "プロセスごとに専用の SpiderMonkey エンジン",
+        "python3 と sqlite3 はシェルコマンド",
+        "永続ストレージ"
+      ]
+    }
+  }
+}

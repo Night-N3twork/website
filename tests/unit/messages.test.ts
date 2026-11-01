@@ -1,4 +1,8 @@
 import { describe, expect, it } from 'vitest';
+import en from '../../messages/en.json';
+import es from '../../messages/es.json';
+import fr from '../../messages/fr.json';
+import ja from '../../messages/ja.json';
 import { loadMessages, mergeMessages } from '@/i18n/messages';
 
 describe('mergeMessages', () => {
@@ -45,8 +49,15 @@ describe('loadMessages', () => {
     expect(en.nav.projects).toBe('Projects');
   });
 
-  it('falls back to English keys for a locale with an empty file', async () => {
-    const ja = await loadMessages('ja');
-    expect(ja.nav.projects).toBe('Projects');
+  it('reads a locale file over English', async () => {
+    const loaded = await loadMessages('ja');
+    expect(loaded.nav.projects).toBe(ja.nav.projects);
+  });
+
+  it('has no locale key that English lacks', () => {
+    const paths = (node: unknown, prefix = ''): string[] =>
+      typeof node === 'object' && node !== null && !Array.isArray(node) ? Object.entries(node).flatMap(([key, value]) => paths(value, prefix ? `${prefix}.${key}` : key)) : [prefix];
+    const known = new Set(paths(en));
+    for (const [locale, file] of Object.entries({ es, fr, ja })) expect(paths(file).filter((path) => !known.has(path)), locale).toEqual([]);
   });
 });

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import es from '../../messages/es.json';
 import { siteChrome } from '@/app/chrome';
 import { languageLinks } from '@/i18n/languages';
 
@@ -11,7 +12,7 @@ describe('siteChrome', () => {
       ['supporters', '/supporters'],
       ['community', '/community'],
     ]);
-    expect(chrome.nav[0].label).toBe('Projects');
+    expect(chrome.nav[0].label).toBe(es.nav.projects);
   });
 
   it('links each language to the same page and marks the current one', () => {

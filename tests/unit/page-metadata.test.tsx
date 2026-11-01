@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import en from '../../messages/en.json';
+import es from '../../messages/es.json';
+import fr from '../../messages/fr.json';
 import { getProject } from '@/content/projects';
 import type { Locale } from '@/i18n/locales';
 import { translator } from '@/i18n/translate';
@@ -21,8 +23,8 @@ describe('page metadata', () => {
 
   it('titles the inner pages by their nav label and describes them by their lede', async () => {
     expect(await inner('en', '/projects', 'projects', 'projects')).toMatchObject({ title: 'Projects · Night Network', description: en.projects.lede, canonical: 'https://night-x.com/projects' });
-    expect(await inner('es', '/contributors', 'contributors', 'contributors')).toMatchObject({ title: 'Contributors · Night Network', canonical: 'https://night-x.com/es/contributors' });
-    expect(await inner('fr', '/supporters', 'supporters', 'supporters')).toMatchObject({ title: 'Supporters · Night Network', canonical: 'https://night-x.com/fr/supporters' });
+    expect(await inner('es', '/contributors', 'contributors', 'contributors')).toMatchObject({ title: `${es.nav.contributors} · Night Network`, description: es.contributors.lede, canonical: 'https://night-x.com/es/contributors' });
+    expect(await inner('fr', '/supporters', 'supporters', 'supporters')).toMatchObject({ title: `${fr.nav.supporters} · Night Network`, description: fr.supporters.lede, canonical: 'https://night-x.com/fr/supporters' });
     const community = await inner('en', '/community', 'community', 'community');
     expect(community.title).toBe('Community · Night Network');
     expect(community.alternates).toContainEqual({ hreflang: 'ja', href: 'https://night-x.com/ja/community' });
@@ -38,7 +40,7 @@ describe('page metadata', () => {
 
   it('calls an unknown address missing in the tab title', async () => {
     const [site, t] = await Promise.all([translator('es', 'site'), translator('es', 'notFound')]);
-    expect(missingHead({ title: t('meta'), description: site('description') }).title).toBe(`${en.notFound.meta} · Night Network`);
+    expect(missingHead({ title: t('meta'), description: site('description') }).title).toBe(`${es.notFound.meta} · Night Network`);
   });
 
   it('describes a project page as a SoftwareApplication under the projects breadcrumb', async () => {

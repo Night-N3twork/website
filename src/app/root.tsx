@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useRef } from 'react';
+import { Fragment, type ReactNode, useEffect, useRef } from 'react';
 import { Links, Meta, Outlet, Scripts, useLocation, useMatches, useRouteLoaderData } from 'react-router';
 import { DEFAULT_LOCALE } from '@/i18n/locales';
 import { languageLinks } from '@/i18n/languages';
@@ -101,10 +101,11 @@ export function Layout({ children }: { children: ReactNode }) {
 
 function RouteMain({ children }: { children: ReactNode }) {
   const main = useRef<HTMLElement>(null);
+  const { pathname } = useLocation();
   useRouteMotion(main);
   return (
     <main id="main" tabIndex={-1} ref={main}>
-      {children}
+      <Fragment key={pathname}>{children}</Fragment>
     </main>
   );
 }

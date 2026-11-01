@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { translator } from '@/i18n/translate';
 import en from '../../messages/en.json';
+import es from '../../messages/es.json';
+import fr from '../../messages/fr.json';
 
 describe('translator', () => {
   it('reads a key inside a namespace', async () => {
@@ -13,9 +15,9 @@ describe('translator', () => {
     expect(t('site.name')).toBe(en.site.name);
   });
 
-  it('falls back to English where a locale has no translation', async () => {
+  it('reads a translated locale', async () => {
     const t = await translator('es', 'nav');
-    expect(t('projects')).toBe(en.nav.projects);
+    expect(t('projects')).toBe(es.nav.projects);
   });
 
   it('fills ICU arguments', async () => {
@@ -25,7 +27,7 @@ describe('translator', () => {
 
   it('prints a bare number argument as is', async () => {
     const t = await translator('fr', 'projects');
-    expect(t('title', { count: 1000 })).toBe(en.projects.title.replace('{count}', '1000'));
+    expect(t('title', { count: 1000 })).toBe(fr.projects.title.replace('{count}', '1000'));
   });
 
   it('returns lists and maps untouched through raw', async () => {
