@@ -47,14 +47,20 @@ describe('translator', () => {
 });
 
 describe('english copy', () => {
-  const values = (node: unknown): string[] => {
-    if (typeof node === 'string') return [node];
-    if (Array.isArray(node)) return node.flatMap(values);
-    if (node && typeof node === 'object') return Object.values(node).flatMap(values);
+  const leaves = (node: unknown, path = ''): [string, string][] => {
+    if (typeof node === 'string') return [[path, node]];
+    if (Array.isArray(node)) return node.flatMap((item, index) => leaves(item, `${path}.${index}`));
+    if (node && typeof node === 'object') return Object.entries(node).flatMap(([key, value]) => leaves(value, path ? `${path}.${key}` : key));
     return [];
   };
 
-  it('no placeholder copy ships', () => {
-    expect(values(en).filter((value) => value.includes('[temp]'))).toEqual([]);
+  const placeholders = (tree: unknown) => leaves(tree).filter(([, value]) => value.includes('[temp]')).map(([path]) => path);
+
+  it('ships no placeholder copy anywhere', () => {
+    expect(placeholders(en)).toEqual([]);
+  });
+
+  it('flags a placeholder at any key, including the consent, legal and conduct copy', () => {
+    expect(placeholders({ consent: { text: '[temp]', accept: 'Accept' }, legal: { terms: { lede: '[temp]' } }, home: { hero: '[temp]' }, community: { conductText: '[temp]', lede: 'Fine' } })).toEqual(['consent.text', 'legal.terms.lede', 'home.hero', 'community.conductText']);
   });
 });

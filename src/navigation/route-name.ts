@@ -1,4 +1,4 @@
-const PAGES: ReadonlySet<string> = new Set(['home', 'projects', 'project', 'community', 'contributors', 'supporters']);
+const PAGES: ReadonlySet<string> = new Set(['home', 'projects', 'project', 'community', 'contributors', 'supporters', 'privacy', 'terms', 'requests']);
 
 export interface RouteMatchLike {
   id: string;

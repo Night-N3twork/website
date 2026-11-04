@@ -1,7 +1,11 @@
+import type { LegalStage } from '@/content/legal-facts';
+import { LEGAL_PATHS, type LegalKind } from '@/content/legal-pages';
 import { SITE } from '@/content/site';
 import type { Locale } from '@/i18n/locales';
 import type { InternalPath } from '@/i18n/paths';
-import { translator } from '@/i18n/translate';
+import { type Translate, translator } from '@/i18n/translate';
+import { env } from '@/lib/env';
+import { LEGAL_STAGE } from '@/lib/legal-stage';
 
 export interface NavItem {
   key: string;
@@ -22,12 +26,30 @@ export interface ExternalLink {
 
 export type ChromeLabel = 'menu' | 'close' | 'language' | 'languageCurrent' | 'connect' | 'support' | 'supportLine' | 'skip';
 
+export interface LegalLink {
+  key: LegalKind;
+  path: InternalPath;
+  label: string;
+}
+
+export interface LegalColumn {
+  title: string;
+  links: LegalLink[];
+  cookieSettings: string | null;
+}
+
+export interface ChromeOptions {
+  stage?: LegalStage;
+  analytics?: boolean;
+}
+
 export interface Chrome {
   nav: NavItem[];
   labels: Record<ChromeLabel, string>;
   socials: SocialLink[];
   support: ExternalLink[];
   footer: { blurb: string; copyright: string; explore: string; connect: string; support: string };
+  legal: LegalColumn | null;
 }
 
 const NAV: readonly { key: string; path: InternalPath }[] = [
@@ -52,7 +74,22 @@ const SUPPORT: readonly ExternalLink[] = [
 
 const LABELS: readonly ChromeLabel[] = ['menu', 'close', 'language', 'languageCurrent', 'connect', 'support', 'supportLine', 'skip'];
 
-export async function siteChrome(locale: Locale, year: number = new Date().getFullYear()): Promise<Chrome> {
+const LEGAL_KINDS: readonly LegalKind[] = ['privacy', 'terms', 'requests'];
+
+function legalColumn(footer: Translate, stage: LegalStage, analytics: boolean): LegalColumn | null {
+  if (stage === 'held') return null;
+  return {
+    title: footer('legal'),
+    links: LEGAL_KINDS.map((key) => ({ key, path: LEGAL_PATHS[key], label: footer(key) })),
+    cookieSettings: analytics ? footer('cookieSettings') : null,
+  };
+}
+
+export async function siteChrome(
+  locale: Locale,
+  year: number = new Date().getFullYear(),
+  { stage = LEGAL_STAGE, analytics = env.gaId !== null }: ChromeOptions = {},
+): Promise<Chrome> {
   const [nav, footer] = await Promise.all([translator(locale, 'nav'), translator(locale, 'footer')]);
   return {
     nav: NAV.map((item) => ({ ...item, label: nav(item.key) })),
@@ -60,5 +97,6 @@ export async function siteChrome(locale: Locale, year: number = new Date().getFu
     socials: [...SOCIALS],
     support: [...SUPPORT],
     footer: { blurb: footer('blurb'), copyright: footer('copyright', { year }), explore: footer('explore'), connect: footer('connect'), support: footer('support') },
+    legal: legalColumn(footer, stage, analytics),
   };
 }

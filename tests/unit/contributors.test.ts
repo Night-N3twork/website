@@ -7,6 +7,7 @@ import { ROLES } from '@/content/roles';
 import { withMembers } from '@/lib/data/contributors';
 import { UNAVAILABLE, UNCONFIGURED } from '@/lib/data/discord-parse';
 import { selectSupporters } from '@/lib/data/supporters';
+import { toPerson } from '@/ui/glass/people/person';
 
 describe('CONTRIBUTORS', () => {
   it('lists sixteen people with unique snowflake ids, orbit order, and only known roles', () => {
@@ -46,6 +47,15 @@ describe('withMembers', () => {
     expect(cards[0]).toMatchObject({ avatarUrl: null, since: null });
     const odd = { ok: true as const, members: [{ id: '419430400000000000', name: 'Ghost', avatarUrl: 'https://cdn.discordapp.com/embed/avatars/4.png', joinedAt: 'unknown', roles: [] }] };
     expect(withMembers([{ id: '419430400000000000', name: 'Ghost', role: 'mod', link: null }], odd)[0].since).toBeNull();
+  });
+});
+
+describe('toPerson', () => {
+  it('points every avatar at the same-origin proxy, whatever address Discord reported', () => {
+    const [card] = withMembers([{ id: '713488984596021291', name: 'Crllect', role: 'owner', link: null }], membersFixture());
+    expect(card.avatarUrl).toContain('cdn.discordapp.com');
+    expect(toPerson(card, '2024', null).avatar).toBe('/api/users/713488984596021291/avatar');
+    expect(toPerson({ id: '419430400000000000', name: 'Ghost' }).avatar).toBe('/api/users/419430400000000000/avatar');
   });
 });
 

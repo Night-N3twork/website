@@ -104,6 +104,8 @@ h1[tabindex='-1']:focus-visible { outline: none; }
 .note-text { font-size: 0.98rem; line-height: 1.6; color: var(--text-dim); }
 .note.is-pending .note-text { font-family: var(--font-mono); font-size: 0.86rem; }
 .note-caret { display: inline-block; width: 0.55em; height: 1em; margin-left: 4px; vertical-align: -0.12em; background: var(--text-dim); animation: blink 1.1s steps(1) infinite; }
+.note-link { justify-self: start; font-size: 0.98rem; color: var(--text); text-decoration: underline; text-decoration-color: var(--edge); text-underline-offset: 3px; transition: text-decoration-color var(--t-fast); }
+.note-link:hover { text-decoration-color: currentColor; }
 
 .partners-copy { grid-column: 1 / span 6; }
 .partners { grid-column: 1 / span 9; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; margin-top: 40px; padding: 0; list-style: none; }
@@ -158,7 +160,7 @@ h1[tabindex='-1']:focus-visible { outline: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .stage, .index-row, .index-row::before, .partner, .back .chev, .index-row .chev, .partner .chev { transition: none; }
+  .stage, .index-row, .index-row::before, .partner, .back .chev, .index-row .chev, .partner .chev, .note-link { transition: none; }
   .note-caret { animation: none; }
 }
 

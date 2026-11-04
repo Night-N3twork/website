@@ -6,7 +6,7 @@ import type { ServerBuild } from 'react-router';
 import sirv from 'sirv';
 import { contextWithNonce } from '@/app/nonce';
 import { redirectFor } from '@/i18n/route';
-import { readCdnBase, serverEnv } from '@/lib/data/env';
+import { serverEnv } from '@/lib/data/env';
 import { requestNonce } from '@/lib/security/nonce';
 import { requestUrl } from '@/lib/security/request-url';
 import { type Handler, siteListener } from '@/lib/security/site-listener';
@@ -41,7 +41,7 @@ const handler: Handler = (req, res) => {
 
 const port = Number(process.env.PORT ?? 3000);
 const host = process.env.HOST ?? '0.0.0.0';
-const server = createServer(siteListener(handler, { cdnBase: readCdnBase(process.env) }));
+const server = createServer(siteListener(handler));
 
 server.listen(port, host, () => console.info(`Listening on http://${host}:${port}`));
 for (const signal of ['SIGINT', 'SIGTERM'] as const) process.once(signal, () => server.close(() => process.exit(0)));

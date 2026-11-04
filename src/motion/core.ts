@@ -40,7 +40,11 @@ export function glide(target: number | HTMLElement): void {
   scrollTo({ top, behavior: 'auto' });
 }
 
-export function jumpToTop(): void {
-  if (lenis) lenis.scrollTo(0, { immediate: true, force: true });
-  else scrollTo(0, 0);
+export function jumpTo(top: number): void {
+  if (lenis) {
+    lenis.resize();
+    lenis.scrollTo(top, { immediate: true, force: true });
+  } else scrollTo(0, top);
 }
+
+export const jumpToTop = (): void => jumpTo(0);

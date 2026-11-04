@@ -11,7 +11,10 @@ test('community shows partners and notes', async ({ page }) => {
   await expect(page.locator('.sec-page .actions .btn')).toHaveCount(3);
   await expect(page.locator('.sec-page .actions .btn').first()).toHaveClass(/btn-primary/);
   await expect(page.locator('.notes .note')).toHaveCount(2);
-  await expect(page.locator('.notes .note.is-pending .note-caret')).toHaveCount(1);
+  await expect(page.locator('.notes .note.is-pending')).toHaveCount(0);
+  await expect(page.locator('.notes .note-caret')).toHaveCount(0);
+  await expect(page.locator('.notes a.note-link')).toHaveCount(1);
+  await expect(page.locator('.notes a.note-link')).toHaveAttribute('href', '/terms#acceptable-use');
   await reach(page, '.partners');
   await expect(page.locator('.partners a.partner')).toHaveCount(5);
   await expect(page.locator('.partners a.partner').first()).toHaveAttribute('target', '_blank');

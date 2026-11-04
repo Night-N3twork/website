@@ -1,4 +1,5 @@
 import { type Donator, DONATORS } from '@/content/donators';
+import { HIDDEN_PEOPLE } from '@/content/hidden-people';
 import { getMembers } from './discord';
 import { holdersOf, type Member, type MemberDirectory } from './discord-parse';
 import { serverEnv } from './env';
@@ -15,10 +16,18 @@ function fromRoster(roster: readonly Donator[], directory: MemberDirectory): Sup
   });
 }
 
-export function selectSupporters(directory: MemberDirectory, boosterRoleId: string | null, roster: readonly Donator[] = DONATORS): Supporters {
+export function selectSupporters(
+  directory: MemberDirectory,
+  boosterRoleId: string | null,
+  roster: readonly Donator[] = DONATORS,
+  hidden: readonly string[] = HIDDEN_PEOPLE,
+): Supporters {
   const donators = fromRoster(roster, directory);
   if (!directory.ok) return { ok: false, boosters: [], donators };
-  return { ok: true, boosters: holdersOf(directory, boosterRoleId).map(fromMember), donators };
+  const boosters = holdersOf(directory, boosterRoleId)
+    .filter((member) => !hidden.includes(member.id))
+    .map(fromMember);
+  return { ok: true, boosters, donators };
 }
 
 export async function getSupporters(): Promise<Supporters> {

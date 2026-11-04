@@ -41,6 +41,31 @@ test('language switch keeps the shell and drops the prefix', async ({ page }) =>
   await expect(probed(page)).toBeAttached();
 });
 
+test('footer Legal links navigate in app, keep the canvas and focus the heading', async ({ page }) => {
+  await page.goto('/projects');
+  await ready(page);
+  await probe(page);
+  for (const [label, path] of [['Privacy', '/privacy'], ['Terms', '/terms'], ['Requests', '/requests']]) {
+    await page.locator('footer.foot').getByRole('link', { name: label, exact: true }).click();
+    await expect(page).toHaveURL(path);
+    await expect(page.locator('h1#page-heading')).toBeFocused();
+    await expect(probed(page)).toBeAttached();
+  }
+});
+
+test('language switch keeps a legal page and the shell', async ({ page }) => {
+  await page.goto('/es/terms');
+  await ready(page);
+  await probe(page);
+  await expect(page.locator('.legal-notice')).toBeVisible();
+  await page.locator('footer.foot').getByRole('link', { name: 'English' }).click();
+  await expect(page).toHaveURL('/terms');
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://night-x.com/terms');
+  await expect(page.locator('.legal-notice')).toHaveCount(0);
+  await expect(probed(page)).toBeAttached();
+});
+
 test('language switch translates the split headings', async ({ page }) => {
   await page.goto('/es');
   await ready(page);

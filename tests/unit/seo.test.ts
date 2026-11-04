@@ -2,7 +2,8 @@ import { describe, expect, it, vi } from 'vitest';
 import { getProject, PROJECTS } from '@/content/projects';
 import { ogLocale } from '@/lib/og/locale';
 import { breadcrumbJsonLd, organizationJsonLd, serializeJsonLd, softwareApplicationJsonLd, webSiteJsonLd } from '@/lib/seo/jsonld';
-import { absoluteUrl, hreflangUrls, localizedPath, PAGE_PATHS } from '@/lib/seo/paths';
+import { absoluteUrl, hreflangUrls, localizedPath } from '@/lib/seo/paths';
+import { PAGE_PATHS } from '@/lib/seo/routes';
 
 const CONTEXT = 'https://schema.org' as const;
 const PROJECTS_HREFLANG = {

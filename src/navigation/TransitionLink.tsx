@@ -4,6 +4,7 @@ import type { Locale } from '@/i18n/locales';
 import { splitLocale, localizePath } from '@/i18n/paths';
 import { glide } from '@/motion/core';
 import { activeController } from './active';
+import { hashTarget, hashTop, splitHash } from './hash-target';
 
 const EXTERNAL = /^(?:[a-z][a-z\d+.-]*:|\/\/)/i;
 
@@ -30,7 +31,11 @@ export function TransitionLink({ to: target, locale, onClick, children, ...rest 
     onClick?.(e);
     if (e.defaultPrevented || modified(e) || rest.target === '_blank') return;
     e.preventDefault();
-    if (to === pathname) return glide(0);
+    const { path, hash } = splitHash(to);
+    if (path === pathname) {
+      const anchor = hashTarget(hash);
+      return glide(anchor ? hashTop(anchor) : 0);
+    }
     const controller = activeController();
     if (controller) void controller.go(to);
     else void navigate(to);

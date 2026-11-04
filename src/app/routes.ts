@@ -15,5 +15,8 @@ export default [
   route(':locale?/community', 'routes/community.tsx', { id: 'community' }),
   route(':locale?/contributors', 'routes/contributors.tsx', { id: 'contributors' }),
   route(':locale?/supporters', 'routes/supporters.tsx', { id: 'supporters' }),
+  route(':locale?/privacy', 'routes/privacy.tsx', { id: 'privacy' }),
+  route(':locale?/terms', 'routes/terms.tsx', { id: 'terms' }),
+  route(':locale?/requests', 'routes/requests.tsx', { id: 'requests' }),
   route('*', 'routes/lost.tsx', { id: 'lost' }),
 ] satisfies RouteConfig;

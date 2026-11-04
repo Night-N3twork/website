@@ -15,9 +15,18 @@ function mount(to: string) {
   return { go, link: screen.getByText('link') };
 }
 
+function clause(top: number): void {
+  const section = document.createElement('section');
+  section.id = 'clause';
+  vi.spyOn(section, 'getBoundingClientRect').mockReturnValue({ top } as DOMRect);
+  document.body.append(section);
+}
+
 afterEach(() => {
   setActiveController(null);
   glide.mockClear();
+  vi.restoreAllMocks();
+  document.getElementById('clause')?.remove();
 });
 
 describe('TransitionLink', () => {
@@ -38,6 +47,28 @@ describe('TransitionLink', () => {
     fireEvent.click(link, { button: 0 });
     expect(glide).toHaveBeenCalledWith(0);
     expect(go).not.toHaveBeenCalled();
+  });
+
+  it('glides to the hash target on a click to the current route with a hash', () => {
+    clause(640);
+    const { go, link } = mount('/#clause');
+    fireEvent.click(link, { button: 0 });
+    expect(glide).toHaveBeenCalledWith(640);
+    expect(go).not.toHaveBeenCalled();
+  });
+
+  it('glides to the top when the hash on the current route names nothing', () => {
+    const { go, link } = mount('/#missing');
+    fireEvent.click(link, { button: 0 });
+    expect(glide).toHaveBeenCalledWith(0);
+    expect(go).not.toHaveBeenCalled();
+  });
+
+  it('keeps the hash when a click goes to another route', () => {
+    const { go, link } = mount('/projects#clause');
+    fireEvent.click(link, { button: 0 });
+    expect(go).toHaveBeenCalledWith('/projects#clause');
+    expect(glide).not.toHaveBeenCalled();
   });
 
   it('renders external hrefs as plain anchors', () => {

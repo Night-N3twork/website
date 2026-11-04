@@ -219,7 +219,56 @@
     "explore": "Explorar",
     "connect": "Redes",
     "support": "Apoyo",
+    "legal": "Legal",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "requests": "Solicitudes",
+    "cookieSettings": "Ajustes de cookies",
     "copyright": "© {year} Night Network · fundada por amplify.dev"
+  },
+  "consent": {
+    "text": "Aceptar permite que Google Analytics cuente las visitas a este sitio y guarde cookies en tu navegador. Si rechazas, no se envía nada a Google; el sitio funciona igual en ambos casos.",
+    "accept": "Aceptar",
+    "decline": "Rechazar",
+    "privacy": "Privacidad",
+    "region": "Opciones de privacidad"
+  },
+  "legal": {
+    "updated": "Última actualización: {date}",
+    "notice": "El texto legal de esta página está en inglés, y la versión en inglés es la que rige.",
+    "graph": {
+      "heading": "Qué recopila y comparte cada servicio",
+      "listHeading": "El mapa en texto",
+      "collects": "Recopila",
+      "shares": "Comparte datos con",
+      "separator": ", ",
+      "nodes": {
+        "night-network": "Night Network",
+        "website": "Sitio web",
+        "bots": "Bots de Discord",
+        "account": "Cuenta Night y Night+",
+        "libraries": "Bibliotecas de desarrollo",
+        "registry-cdn": "Registro y CDN",
+        "wireguard": "Salidas WireGuard",
+        "captcha": "Resolutor de captchas",
+        "ip-address": "Dirección IP",
+        "discord-id": "ID de Discord",
+        "email": "Correo",
+        "links": "Enlaces",
+        "synced-data": "Datos sincronizados",
+        "captcha-data": "Datos de desafíos de captcha",
+        "cloudflare": "Cloudflare",
+        "google": "Google",
+        "discord": "Discord",
+        "patreon": "Patreon",
+        "cash-app": "Cash App",
+        "mullvad": "Mullvad",
+        "two-captcha": "2Captcha"
+      }
+    },
+    "privacy": { "title": "Privacidad" },
+    "terms": { "title": "Términos" },
+    "requests": { "title": "Solicitudes" }
   },
   "contributors": {
     "title": "Los voluntarios de Night",
@@ -256,7 +305,8 @@
     "contribute": "Contribuir",
     "contributeLede": "Cualquiera puede abrir un issue o un pull request en GitHub o GitLab. Si es algo grande, pregunta primero en el Discord o escríbenos por DM.",
     "partners": "Socios y suborganizaciones",
-    "conduct": "Código de conducta"
+    "conduct": "Código de conducta",
+    "conductLink": "Uso aceptable"
   },
   "notFound": {
     "meta": "Página no encontrada",

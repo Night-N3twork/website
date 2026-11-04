@@ -5,11 +5,19 @@ const GA_ID = 'G-ABC123XYZ';
 
 describe('readEnv', () => {
   it('defaults the site url and leaves analytics off when unset', () => {
-    expect(readEnv({})).toEqual({ siteUrl: 'https://night-x.com', gaId: null });
+    expect(readEnv({})).toEqual({ siteUrl: 'https://night-x.com', gaId: null, legalPreview: false });
   });
 
   it('treats empty strings as unset', () => {
-    expect(readEnv({ SITE_URL: '', GA_ID: '' })).toEqual({ siteUrl: 'https://night-x.com', gaId: null });
+    expect(readEnv({ SITE_URL: '', GA_ID: '' })).toEqual({ siteUrl: 'https://night-x.com', gaId: null, legalPreview: false });
+  });
+
+  it('turns the legal preview on only for the exact value 1', () => {
+    expect(readEnv({ LEGAL_PREVIEW: '1' }).legalPreview).toBe(true);
+    expect(readEnv({}).legalPreview).toBe(false);
+    expect(readEnv({ LEGAL_PREVIEW: '' }).legalPreview).toBe(false);
+    expect(readEnv({ LEGAL_PREVIEW: '0' }).legalPreview).toBe(false);
+    expect(readEnv({ LEGAL_PREVIEW: 'yes' }).legalPreview).toBe(false);
   });
 
   it('accepts a Google Analytics 4 measurement id and rejects other formats', () => {

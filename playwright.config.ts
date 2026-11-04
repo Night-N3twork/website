@@ -19,6 +19,7 @@ const fixtureEnv = {
   DISCORD_BOOSTER_ROLE_ID: '1198297300477432099',
   REVALIDATE_SECRET: '',
   GA_ID: '',
+  LEGAL_PREVIEW: '1',
   PORT: String(PORT),
 };
 

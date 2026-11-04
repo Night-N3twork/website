@@ -219,7 +219,265 @@
     "explore": "Explore",
     "connect": "Connect",
     "support": "Support",
+    "legal": "Legal",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "requests": "Requests",
+    "cookieSettings": "Cookie settings",
     "copyright": "© {year} Night Network · founded by amplify.dev"
+  },
+  "consent": {
+    "text": "Accept lets Google Analytics count visits to this site and set cookies in your browser. If you decline, nothing goes to Google; the site works the same either way.",
+    "accept": "Accept",
+    "decline": "Decline",
+    "privacy": "Privacy",
+    "region": "Privacy choices"
+  },
+  "legal": {
+    "updated": "Last updated {date}",
+    "contents": "On this page",
+    "notice": "The legal text on this page is in English, and the English version governs.",
+    "graph": {
+      "heading": "What each service collects and shares",
+      "listHeading": "The map in text",
+      "collects": "Collects",
+      "shares": "Shares data with",
+      "separator": ", ",
+      "nodes": {
+        "night-network": "Night Network",
+        "website": "Website",
+        "bots": "Discord bots",
+        "account": "Night account and Night+",
+        "libraries": "Developer libraries",
+        "registry-cdn": "Registry and CDN",
+        "wireguard": "WireGuard exits",
+        "captcha": "Captcha solver",
+        "ip-address": "IP address",
+        "discord-id": "Discord ID",
+        "email": "Email",
+        "links": "Links",
+        "synced-data": "Synced data",
+        "captcha-data": "Captcha challenge data",
+        "cloudflare": "Cloudflare",
+        "google": "Google",
+        "discord": "Discord",
+        "patreon": "Patreon",
+        "cash-app": "Cash App",
+        "mullvad": "Mullvad",
+        "two-captcha": "2Captcha"
+      }
+    },
+    "privacy": {
+      "kicker": "Legal",
+      "title": "Privacy",
+      "lede": "What data Night Network's website, bots, Night accounts, package registry and CDN, and WireGuard exits collect, who else receives it, and how to see or delete it.",
+      "order": ["short", "website", "people", "bots", "account", "libraries", "wireguard", "recipients", "advertising", "rights", "children", "retention"],
+      "sections": {
+        "short": {
+          "title": "In short",
+          "body": [
+            "Night Network is a volunteer organization. It is not a legal entity and has no postal address; contact is on Discord, by direct message or ticket.",
+            "The website has no accounts or forms and sets no cookies of its own, and Google Analytics runs only if you accept. The bots, Night accounts and Night+ keep the data listed below while the account or bot is active, and delete it within 30 days of a request, apart from anything the law requires them to keep. The WireGuard exits do not log the destination hosts you connect to.",
+            "This page covers night-x.com, the Discord bots, the developer libraries, and the services Night Network runs behind them: the package registry and CDN, Night accounts and Night+, and the WireGuard exits. Products with their own websites (Space, DayDreamX, Lunar, Link Archive's dashboard, Umbra and NyxAI) are not covered here; check each site for its own policy."
+          ]
+        },
+        "website": {
+          "title": "This website",
+          "body": [
+            "night-x.com has no accounts and no forms, and the site sets no cookies of its own. Cloudflare sits in front of the site and forwards requests to Night Network's server.",
+            "The web server, Caddy, writes no access log. When a request fails on the server, for example with a 502 error, Caddy records an error entry in the system journal with the visitor's IP address, country, browser and the address requested. The journal has a size limit but no time limit, so those entries stay until it rotates them out.",
+            "Google Analytics measures visits: how many people come and which pages they read. It runs only after you press Accept. Until then, and if you decline, no Google script loads and nothing is sent to Google.",
+            "If you accept, Google Analytics sets cookies in your browser, and Google receives the pages you open together with your IP address and browser details. Night Network stores your choice in your browser's local storage so the consent bar does not appear again; the Cookie settings link in the footer reopens it."
+          ]
+        },
+        "people": {
+          "title": "Contributors and Supporters",
+          "body": [
+            "The Contributors and Supporters pages list people by name, Discord avatar and role, and some entries also show a join year or personal links. Night Network's own roster holds contributors' names, Discord IDs, roles and links; avatars and join years come from Discord. Boosters are whoever holds the booster role on Discord, read live, and donators come from a list Night Network keeps by hand.",
+            "night-x.com serves the avatars itself, so your browser never contacts Discord to load them; Discord sees Night Network's server, not the visitor. Anyone listed can ask to be removed, and Night Network then deletes the entry from the live site."
+          ]
+        },
+        "bots": {
+          "title": "Discord bots",
+          "body": [
+            "Night Network runs two Discord bots, Solar and Link Archive. Between them they store Discord user IDs and server IDs; the links people submit and who submitted them; usage counts and dashboard analytics; and the API keys and team data of partners.",
+            "Night Network keeps this data while the bot is active and deletes it within 30 days of a request, apart from anything the law requires it to keep. Discord's own privacy policy covers what Discord itself collects."
+          ]
+        },
+        "account": {
+          "title": "Night account and Night+",
+          "body": [
+            "A Night account stores an email address and a hashed password, a Discord ID if you sign in with Discord, your Patreon membership status for Night+, and the tabs, history, settings and library you sync.",
+            "Patreon runs the billing for Night+ and tells Night Network whether a membership is active. Night Network keeps account data while the account is active and deletes it within 30 days of a request, apart from anything the law requires it to keep."
+          ]
+        },
+        "libraries": {
+          "title": "Developer libraries",
+          "body": [
+            "The developer libraries (Dusk, MoonBeam, Eclipse, Luna, Moonscale, Nova and dpm) run on the user's device. Apart from requests to the package registry and CDN, they contact no Night Network server by default. For relays, developers supply their own server; Night Network runs no default relay for the libraries, and the Night+ Wisp relays are the WireGuard exits described below, a separate subscriber service.",
+            "The registry and CDN see the IP address of each request and what it asks for. They sit behind the same web server as the website, so the same error entries apply; what the services themselves record is covered under Retention and changes."
+          ]
+        },
+        "wireguard": {
+          "title": "WireGuard exits and the captcha solver",
+          "body": [
+            "The Night+ Wisp relays are WireGuard exits that Night Network runs, and only Night+ subscribers can use them. The WireGuard exits do not log the destination hosts (the sites and servers) you connect to. If you choose a Mullvad route by city or country, your traffic passes on to Mullvad, a third party with its own privacy policy.",
+            "The Night+ captcha solver sees the page or challenge it is solving. 2Captcha receives {fact:captchaFields}."
+          ]
+        },
+        "recipients": {
+          "title": "Who else receives data",
+          "body": [
+            "Seven outside services receive data from Night Network's tools: Cloudflare, Google, Discord, Patreon, Cash App, Mullvad and 2Captcha. Each has its own privacy policy.",
+            "Every request to night-x.com goes through Cloudflare. Google receives visit data from this site only after you accept analytics.",
+            "Discord is the platform the bots run on and hosts the Night Network Discord server. It also provides Discord sign-in for Night accounts and supplies the avatars, join years and booster list that the Contributors and Supporters pages show.",
+            "Patreon bills Night+ and tells Night Network each member's status; Patreon and Cash App also take donations.",
+            "Mullvad receives the traffic that Night+ users send through a Mullvad route, and 2Captcha receives captcha challenge data."
+          ]
+        },
+        "advertising": {
+          "title": "Ads",
+          "body": ["night-x.com shows no ads. Some Night Network product sites do, and they have their own privacy policies."]
+        },
+        "rights": {
+          "title": "Your rights",
+          "body": [
+            "Night Network gives everyone the same rights over their data, wherever they live: to see it, correct it, delete it, take a copy of it, object to a use of it, and withdraw consent they gave. It answers requests within 30 days; how to make one is on the Requests page."
+          ]
+        },
+        "children": {
+          "title": "Children",
+          "body": [
+            "Night Network's services are for people aged 13 and over. In countries where the age of consent for data processing is higher than 13, anyone below that age also needs a parent's permission."
+          ]
+        },
+        "retention": {
+          "title": "Retention and changes",
+          "body": [
+            "Night Network keeps account and bot data while the account or bot is active and deletes it within 30 days of a request, apart from anything the law requires it to keep. Website error entries stay in the system journal until it rotates them out, and your consent choice stays in your browser until you clear it.",
+            "The web server's error entries are separate from anything the services behind Night accounts, Night+, the registry and the CDN record themselves. {fact:appLogs}",
+            "The date at the top shows when this policy last changed, and the team announces material changes in the Night Network Discord. Send questions to the team by direct message or ticket."
+          ]
+        }
+      }
+    },
+    "terms": {
+      "kicker": "Legal",
+      "title": "Terms",
+      "lede": "The rules for using Night Network's website, bots, libraries, package registry and CDN, Night account, Night+ and WireGuard exits.",
+      "order": ["scope", "eligibility", "accounts", "acceptable-use", "money", "content", "third-parties", "liability", "termination", "changes", "governing-law", "contact"],
+      "sections": {
+        "scope": {
+          "title": "What these terms cover",
+          "body": [
+            "These terms cover night-x.com, the Night Network Discord bots, the developer libraries, the package registry and CDN, Night accounts and Night+, and the WireGuard exits that Night+ subscribers use. Using any of them means you accept these terms.",
+            "Products with their own websites (Space, DayDreamX, Lunar, Link Archive's dashboard, Umbra and NyxAI) are not covered by these terms; check each site for its own terms."
+          ]
+        },
+        "eligibility": {
+          "title": "Eligibility",
+          "body": ["You must be at least 13 to use Night Network's services. In countries where the age of consent for data processing is higher than 13, you also need a parent's permission below that age."]
+        },
+        "accounts": {
+          "title": "Accounts",
+          "body": [
+            "A Night account holds your synced tabs, history, settings and library, plus your membership status if you have Night+. You sign in with an email address and password or with Discord. Keep your password private; what happens through your account is your responsibility. To have the account deleted, follow the steps on the Requests page; Night Network deletes it within 30 days, apart from anything the law requires it to keep."
+          ]
+        },
+        "acceptable-use": {
+          "title": "Acceptable use",
+          "body": [
+            "You are responsible for how you use Night Network's tools. Do not use them for anything illegal, and do not abuse Night Network's infrastructure, such as the WireGuard exits, the package registry and CDN, Night accounts and the bots.",
+            "Night Network can block anyone who does either."
+          ]
+        },
+        "money": {
+          "title": "Night+, donations and boosts",
+          "body": [
+            "Night+ is a Patreon membership. Billing, cancellation and refunds go through Patreon and follow Patreon's terms. Night Network can change the Night+ perks.",
+            "Donations, through Patreon or Cash App, are voluntary and not refundable. Boosts of the Night Network Discord server are Discord's product and follow Discord's terms. Ads run only on product sites, never on night-x.com."
+          ]
+        },
+        "content": {
+          "title": "Ownership",
+          "body": ["Night Network keeps all rights to its name, logo and the design of this site."]
+        },
+        "third-parties": {
+          "title": "Third-party services",
+          "body": [
+            "Night Network's services work with the outside services listed in the Privacy policy: Cloudflare, Google, Discord, Patreon, Cash App, Mullvad and 2Captcha. Each of those runs under its own terms and privacy policy. Night Network does not control them, or the other websites the site links to."
+          ]
+        },
+        "liability": {
+          "title": "As is, and limits on liability",
+          "body": [
+            "Night Network is run by volunteers and provides its tools as they are. It does not promise that they stay available or that they work without errors.",
+            "To the extent the law allows, Night Network and the people who run it are not liable for losses that come from using the tools or from being unable to use them. Where the law does not allow this limit, it does not apply."
+          ]
+        },
+        "termination": {
+          "title": "Suspension and termination",
+          "body": [
+            "You can stop using Night Network's services at any time. Night Network can suspend or end an account, and block access to the services it runs, when someone breaks these terms."
+          ]
+        },
+        "changes": {
+          "title": "Changes",
+          "body": ["Night Network updates the date at the top whenever these terms change and announces material changes in its Discord. Using the services after a change means you accept it."]
+        },
+        "governing-law": {
+          "title": "Governing law",
+          "body": ["These terms are governed by the laws of the US state of {fact:governingState}."]
+        },
+        "contact": {
+          "title": "Contact",
+          "body": ["Contact Night Network on Discord only: send the team a direct message or open a ticket in {fact:ticketChannel}."]
+        }
+      }
+    },
+    "requests": {
+      "kicker": "Legal",
+      "title": "Requests",
+      "lede": "How to see, correct or delete your data, and how to be removed from the Contributors and Supporters pages; Night Network answers within 30 days.",
+      "order": ["rights", "removal", "how-to-ask", "proof", "response-time", "message"],
+      "sections": {
+        "rights": {
+          "title": "What you can ask for",
+          "body": [
+            "Everyone can make a request, wherever they live. You can ask for access to the data Night Network holds about you and how it uses that data, for correction of anything that is wrong, and for a copy in a form you can reuse.",
+            "You can ask for your data to be deleted, object to a use of it, or withdraw consent you gave; the Cookie settings link in the footer also lets you withdraw consent to Google Analytics without a request.",
+            "Deletion has one limit: Night Network keeps what the law requires it to keep."
+          ]
+        },
+        "removal": {
+          "title": "Leaving Contributors and Supporters",
+          "body": [
+            "A contributor, booster or donator listed on the Contributors and Supporters pages can ask to be removed, and Night Network then deletes the entry from the live site. Night Network has no partial or anonymous listing, so removal deletes the whole entry."
+          ]
+        },
+        "how-to-ask": {
+          "title": "How to ask",
+          "body": ["Send the Night Network team a direct message on Discord, or open a ticket in {fact:ticketChannel}. Those are the only two routes."]
+        },
+        "proof": {
+          "title": "Showing the account is yours",
+          "body": [
+            "To act on a request about an account, Night Network first checks that the account is yours. For data tied to a Discord account, such as the bots, Discord sign-in and the Contributors and Supporters pages, write from that Discord account. For a Night account, Night Network confirms by email to the address on the account."
+          ]
+        },
+        "response-time": {
+          "title": "Response time",
+          "body": ["Each request gets an answer from {fact:responder} within 30 days of arriving, and Night Network finishes any deletion within the same 30 days."]
+        },
+        "message": {
+          "title": "A message to copy",
+          "body": [
+            "Copy this message, keep the option you want and fill in the brackets.",
+            "Hello Night Network. I am asking for [access to my data | correction of my data | deletion of my data | a copy of my data | a stop to how my data is used | withdrawal of my consent | removal from the Contributors and Supporters pages]. I am writing from the Discord account this concerns. If I have a Night account, its email address is [email address]."
+          ]
+        }
+      }
+    }
   },
   "contributors": {
     "title": "Night's volunteers",
@@ -257,7 +515,9 @@
     "contributeLede": "Anyone can open an issue or a pull request on GitHub or GitLab. For anything big, ask in the Discord first or DM us.",
     "partners": "Partners and suborganizations",
     "conduct": "Code of conduct",
-    "conductPending": "shit is lowk filler lmfao"
+    "conductPending": "shit is lowk filler lmfao",
+    "conductText": "The rules for using Night Network's tools and infrastructure are in the terms.",
+    "conductLink": "Acceptable use"
   },
   "notFound": {
     "meta": "Page not found",

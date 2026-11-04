@@ -7,7 +7,7 @@ export const HTML_TYPE = 'text/html; charset=utf-8';
 const HASHED_ASSET = /^\/assets\/[\w.-]+-[\w-]{8,}\.(?:js|css|woff2|avif|webp|png|svg)$/;
 const HASHED_BACKDROP = /^\/backdrops\/(?:range|peak)-(?:1280|2400)\.[0-9a-f]{8}\.(?:avif|webp)$/;
 
-type Options = { cdnBase: string; dev: boolean; nonce?: string };
+type Options = { dev: boolean; nonce?: string };
 
 export function withSiteHeaders(response: Response, options: Options): Response {
   const headers = new Headers(response.headers);

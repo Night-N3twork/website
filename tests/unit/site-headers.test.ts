@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { assetCache, IMMUTABLE, PAGE_CACHE, withSiteHeaders } from '@/lib/security/site-headers';
 
-const OPTIONS = { cdnBase: 'https://cdn.discordapp.com', dev: false };
+const OPTIONS = { dev: false };
 const html = (status = 200, headers: Record<string, string> = {}) => new Response('<p>hi</p>', { status, headers: { 'content-type': 'text/html', ...headers } });
 
 describe('withSiteHeaders', () => {

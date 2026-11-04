@@ -3,7 +3,7 @@ import { MEASUREMENT_ID } from './analytics';
 
 const RENAMED = { NEXT_PUBLIC_SITE_URL: 'SITE_URL', NEXT_PUBLIC_GA_ID: 'GA_ID' } as const;
 
-export type Env = { siteUrl: string; gaId: string | null };
+export type Env = { siteUrl: string; gaId: string | null; legalPreview: boolean };
 
 export function readEnv(source: Record<string, string | undefined>): Env {
   const stale = Object.entries(RENAMED).find(([old]) => source[old]);
@@ -20,7 +20,7 @@ export function readEnv(source: Record<string, string | undefined>): Env {
   if (rawGa && !MEASUREMENT_ID.test(rawGa)) {
     throw new Error('Invalid environment: GA_ID: must be a Google Analytics 4 measurement id such as G-XXXXXXXXXX');
   }
-  return { siteUrl, gaId: rawGa ?? null };
+  return { siteUrl, gaId: rawGa ?? null, legalPreview: source.LEGAL_PREVIEW === '1' };
 }
 
 export const env: Env = readEnv(typeof process === 'undefined' ? {} : process.env);

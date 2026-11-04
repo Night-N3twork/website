@@ -1,8 +1,13 @@
+import type { LegalStage } from '@/content/legal-facts';
+import { LEGAL_PATHS } from '@/content/legal-pages';
 import { PROJECTS } from '@/content/projects';
 import { DEFAULT_LOCALE, LOCALES, type Locale } from '@/i18n/locales';
 import { env } from '@/lib/env';
 
-export const PAGE_PATHS: readonly string[] = ['/', '/projects', ...PROJECTS.map((p) => `/projects/${p.slug}`), '/contributors', '/supporters', '/community'];
+export function pagePaths(stage: LegalStage): string[] {
+  const legal = stage === 'live' ? Object.values(LEGAL_PATHS) : [];
+  return ['/', '/projects', ...PROJECTS.map((p) => `/projects/${p.slug}`), '/contributors', '/supporters', '/community', ...legal];
+}
 
 export function localizedPath(locale: Locale, path: string): string {
   if (locale === DEFAULT_LOCALE) return path;

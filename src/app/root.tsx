@@ -6,6 +6,7 @@ import { splitLocale } from '@/i18n/paths';
 import { type Translate, translator } from '@/i18n/translate';
 import { analyticsTags } from '@/lib/analytics';
 import { env } from '@/lib/env';
+import { LEGAL_STAGE } from '@/lib/legal-stage';
 import { useRouteMotion } from '@/navigation/useRouteMotion';
 import geistWoff2 from '@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url';
 import basePath from '@/styles/glass/base.css?url';
@@ -13,6 +14,7 @@ import chromePath from '@/styles/glass/chrome.css?url';
 import fontsPath from '@/styles/glass/fonts.css?url';
 import pagesPath from '@/styles/glass/pages.css?url';
 import tokensPath from '@/styles/glass/tokens.css?url';
+import { ConsentBar } from '@/ui/glass/chrome/ConsentBar';
 import { Cursor } from '@/ui/glass/chrome/Cursor';
 import { Footer } from '@/ui/glass/chrome/Footer';
 import { Rail } from '@/ui/glass/chrome/Rail';
@@ -44,9 +46,23 @@ export const links: Route.LinksFunction = () => [
 
 export async function loader({ request }: Route.LoaderArgs) {
   const { locale } = pageLocation(request);
-  const [chrome, lost, broken] = await Promise.all([siteChrome(locale), translator(locale, 'notFound'), translator(locale, 'serverError')]);
+  const analytics = analyticsTags(env.gaId);
+  const [chrome, lost, broken, consent] = await Promise.all([
+    siteChrome(locale, undefined, { stage: LEGAL_STAGE, analytics: analytics !== null }),
+    translator(locale, 'notFound'),
+    translator(locale, 'serverError'),
+    translator(locale, 'consent'),
+  ]);
   const errorCopy = (t: Translate) => ({ meta: t('meta'), title: t('title'), lede: t('lede'), cta: t('cta') });
-  return { locale, chrome, notFound: errorCopy(lost), serverError: errorCopy(broken) };
+  return {
+    locale,
+    chrome,
+    notFound: errorCopy(lost),
+    serverError: errorCopy(broken),
+    analytics,
+    legal: LEGAL_STAGE,
+    consent: { text: consent('text'), accept: consent('accept'), decline: consent('decline'), privacy: consent('privacy'), region: consent('region') },
+  };
 }
 
 export function Layout({ children }: { children: ReactNode }) {
@@ -55,7 +71,6 @@ export function Layout({ children }: { children: ReactNode }) {
   const { locale, path } = splitLocale(useLocation().pathname);
   const languages = languageLinks(locale, path);
   const nonce = useNonce();
-  const analytics = analyticsTags(env.gaId);
   useEffect(() => {
     if (!finePointer()) return;
     void import('@/motion/micro').then(({ mountGlobalMicro }) => mountGlobalMicro());
@@ -66,12 +81,6 @@ export function Layout({ children }: { children: ReactNode }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script nonce={nonce} suppressHydrationWarning dangerouslySetInnerHTML={{ __html: MOTION_CLASS }} />
-        {analytics && (
-          <>
-            <script async src={analytics.loader} nonce={nonce} suppressHydrationWarning />
-            <script nonce={nonce} suppressHydrationWarning dangerouslySetInnerHTML={{ __html: analytics.setup }} />
-          </>
-        )}
         <Meta />
         <Links />
         <SiteJsonLd />
@@ -89,6 +98,7 @@ export function Layout({ children }: { children: ReactNode }) {
         {data && <Nav chrome={data.chrome} path={path} languages={languages} />}
         <RouteMain>{children}</RouteMain>
         {data && <Footer chrome={data.chrome} path={path} languages={languages} />}
+        {data?.analytics && data.legal !== 'held' && <ConsentBar tags={data.analytics} labels={data.consent} />}
         {route === 'home' && <Rail label="Sections" />}
         <Cursor />
         <div className="grain" aria-hidden="true" />

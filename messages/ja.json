@@ -219,7 +219,56 @@
     "explore": "コンテンツ",
     "connect": "SNS",
     "support": "支援",
+    "legal": "法的情報",
+    "privacy": "プライバシー",
+    "terms": "利用規約",
+    "requests": "データ請求",
+    "cookieSettings": "Cookie の設定",
     "copyright": "© {year} Night Network · 創設者 amplify.dev"
+  },
+  "consent": {
+    "text": "「同意する」を選ぶと、Google Analytics がこのサイトの訪問を計測し、ブラウザーに Cookie を保存します。「拒否する」を選んだ場合、Google には何も送信されません。どちらを選んでもサイトは同じように動作します。",
+    "accept": "同意する",
+    "decline": "拒否する",
+    "privacy": "プライバシー",
+    "region": "プライバシーの選択"
+  },
+  "legal": {
+    "updated": "最終更新日：{date}",
+    "notice": "このページの法的文書は英語で書かれており、英語版が優先されます。",
+    "graph": {
+      "heading": "各サービスが収集・共有するデータ",
+      "listHeading": "テキスト版のマップ",
+      "collects": "収集するデータ",
+      "shares": "データの共有先",
+      "separator": "、",
+      "nodes": {
+        "night-network": "Night Network",
+        "website": "ウェブサイト",
+        "bots": "Discordボット",
+        "account": "NightアカウントとNight+",
+        "libraries": "開発者向けライブラリ",
+        "registry-cdn": "レジストリとCDN",
+        "wireguard": "WireGuard出口",
+        "captcha": "キャプチャ解決",
+        "ip-address": "IPアドレス",
+        "discord-id": "Discord ID",
+        "email": "メール",
+        "links": "リンク",
+        "synced-data": "同期データ",
+        "captcha-data": "キャプチャ課題",
+        "cloudflare": "Cloudflare",
+        "google": "Google",
+        "discord": "Discord",
+        "patreon": "Patreon",
+        "cash-app": "Cash App",
+        "mullvad": "Mullvad",
+        "two-captcha": "2Captcha"
+      }
+    },
+    "privacy": { "title": "プライバシー" },
+    "terms": { "title": "利用規約" },
+    "requests": { "title": "データ請求" }
   },
   "contributors": {
     "title": "Night のボランティア",
@@ -256,7 +305,8 @@
     "contribute": "コントリビュート",
     "contributeLede": "GitHub や GitLab では誰でも Issue やプルリクエストを作成できます。大きな変更の場合は、先に Discord で相談するか DM をください。",
     "partners": "パートナーと関連団体",
-    "conduct": "行動規範"
+    "conduct": "行動規範",
+    "conductLink": "利用規定"
   },
   "notFound": {
     "meta": "ページが見つかりません",

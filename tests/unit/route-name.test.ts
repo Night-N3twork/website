@@ -9,6 +9,10 @@ describe('routeName', () => {
     expect(routeName([match('root'), match('home')])).toBe('home');
   });
 
+  it('names the legal pages', () => {
+    for (const id of ['privacy', 'terms', 'requests']) expect(routeName([match('root'), match(id)])).toBe(id);
+  });
+
   it('calls an errored leaf lost', () => {
     expect(routeName([match('root'), { id: 'home', loaderData: undefined }])).toBe('lost');
     expect(routeName([match('root'), { id: 'project', loaderData: undefined }])).toBe('lost');

@@ -9,14 +9,11 @@ const servers: Server[] = [];
 
 async function serve(status = 200, implicit = false): Promise<string> {
   const server = createServer(
-    siteListener(
-      (_req, res) => {
-        if (implicit) res.statusCode = status;
-        else res.writeHead(status, { 'content-type': 'text/html' });
-        res.end(status === 304 ? undefined : BODY);
-      },
-      { cdnBase: 'https://cdn.discordapp.com' },
-    ),
+    siteListener((_req, res) => {
+      if (implicit) res.statusCode = status;
+      else res.writeHead(status, { 'content-type': 'text/html' });
+      res.end(status === 304 ? undefined : BODY);
+    }),
   );
   servers.push(server);
   await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));

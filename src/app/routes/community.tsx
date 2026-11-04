@@ -1,9 +1,11 @@
 import { PARTNERS } from '@/content/partners';
 import { SITE } from '@/content/site';
 import { translator } from '@/i18n/translate';
+import { LEGAL_STAGE } from '@/lib/legal-stage';
 import { headModel } from '@/lib/seo/head';
 import { Community } from '@/ui/glass/community/Community';
 import { RouteError } from '@/ui/glass/Lost';
+import { conductCopy } from '../conduct';
 import { headMeta, lostMeta, rootLost } from '../head';
 import { localeOf, pagePath } from '../locale';
 import type { Route } from './+types/community';
@@ -24,8 +26,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
       ],
       contribute: t('community.contribute'),
       contributeLede: t('community.contributeLede'),
-      conduct: t('community.conduct'),
-      conductPending: t('community.conductPending'),
+      conduct: conductCopy(t, LEGAL_STAGE),
       partnersTitle: t('partners.title'),
       partnersLede: t('partners.lede'),
       partners: PARTNERS.map((p) => ({ id: p.id, name: p.name, url: p.url, host: new URL(p.url).hostname })),

@@ -1,16 +1,16 @@
 type Header = { key: string; value: string };
-type Options = { cdnBase: string; dev: boolean; nonce: string };
+type Options = { dev: boolean; nonce: string };
 
 const ONE_YEAR_SECONDS = 31_536_000;
 const TAG_MANAGER = 'https://www.googletagmanager.com';
 const ANALYTICS = ['https://*.google-analytics.com', 'https://*.analytics.google.com', 'https://*.g.doubleclick.net', 'https://www.google.com'];
 
-function contentPolicy({ cdnBase, dev, nonce }: Options): string {
+function contentPolicy({ dev, nonce }: Options): string {
   const directives: Record<string, string[]> = {
     'default-src': ["'self'"],
     'script-src': ["'self'", `'nonce-${nonce}'`, TAG_MANAGER, ...(dev ? ["'unsafe-eval'"] : [])],
     'style-src': ["'self'", "'unsafe-inline'"],
-    'img-src': ["'self'", 'data:', 'blob:', new URL(cdnBase).origin, TAG_MANAGER, ...ANALYTICS],
+    'img-src': ["'self'", 'data:', 'blob:', TAG_MANAGER, ...ANALYTICS],
     'font-src': ["'self'"],
     'connect-src': ["'self'", TAG_MANAGER, ...ANALYTICS],
     'worker-src': ["'self'", 'blob:'],

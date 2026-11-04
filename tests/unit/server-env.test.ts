@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { readCdnBase, readServerEnv } from '@/lib/data/env';
+import { readServerEnv } from '@/lib/data/env';
 
 const TOKEN = 'MTIzNDU2Nzg5MDEyMzQ1Njc4.abcdef.ghijklmnopqrstuvwxyz';
 const GUILD = '1158510129075982467';
@@ -46,13 +46,5 @@ describe('readServerEnv', () => {
     const env = readServerEnv({ UPTIME_KUMA_BASE: 'http://127.0.0.1:3900', DISCORD_API_BASE: 'http://127.0.0.1:3900/discord', DISCORD_CDN_BASE: 'http://127.0.0.1:3900/cdn', DISCORD_BOT_TOKEN: 'browser-tests', DISCORD_GUILD_ID: GUILD });
     expect(env.discord?.apiBase).toBe('http://127.0.0.1:3900/discord');
     expect(env.cdnBase).toBe('http://127.0.0.1:3900/cdn');
-  });
-});
-
-describe('readCdnBase', () => {
-  it('reads only the avatar host, so an unrelated bad setting does not stop a build', () => {
-    expect(readCdnBase({ REVALIDATE_SECRET: 'short', DISCORD_BOT_TOKEN: TOKEN })).toBe('https://cdn.discordapp.com');
-    expect(readCdnBase({ DISCORD_CDN_BASE: 'http://127.0.0.1:3900/cdn/' })).toBe('http://127.0.0.1:3900/cdn');
-    expect(() => readCdnBase({ DISCORD_CDN_BASE: 'ftp://cdn.example' })).toThrow(/DISCORD_CDN_BASE/);
   });
 });

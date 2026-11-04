@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
-import type { Chrome } from '@/app/chrome';
+import type { Chrome, LegalColumn } from '@/app/chrome';
 import type { LanguageLink } from '@/i18n/languages';
+import { openConsent } from '@/lib/consent';
 import { TransitionLink } from '@/navigation/TransitionLink';
 import { Mark } from '../parts';
 import { ExternalLink } from './ExternalLink';
@@ -17,11 +18,30 @@ function FootColumn({ title, children }: { title: string; children: ReactNode })
   );
 }
 
+function LegalLinks({ legal }: { legal: LegalColumn }) {
+  return (
+    <FootColumn title={legal.title}>
+      {legal.links.map((link) => (
+        <li key={link.key}>
+          <TransitionLink to={link.path}>{link.label}</TransitionLink>
+        </li>
+      ))}
+      {legal.cookieSettings && (
+        <li>
+          <button type="button" className="foot-link" onClick={() => openConsent()}>
+            {legal.cookieSettings}
+          </button>
+        </li>
+      )}
+    </FootColumn>
+  );
+}
+
 export function Footer({ chrome, path, languages }: { chrome: Chrome; path: string; languages: LanguageLink[] }) {
-  const { footer, labels } = chrome;
+  const { footer, labels, legal } = chrome;
   return (
     <footer className="foot">
-      <div className="foot-top">
+      <div className="foot-top" data-legal={legal ? '' : undefined}>
         <TransitionLink className="brand" to="/">
           <Mark size={26} id="foot-cut" />
           <span>{WORD}</span>
@@ -51,6 +71,7 @@ export function Footer({ chrome, path, languages }: { chrome: Chrome; path: stri
               </li>
             ))}
           </FootColumn>
+          {legal && <LegalLinks legal={legal} />}
         </div>
       </div>
       <LanguageLinks label={labels.language} currentLabel={labels.languageCurrent} path={path} languages={languages} />

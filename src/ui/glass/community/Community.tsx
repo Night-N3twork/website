@@ -1,3 +1,4 @@
+import { TransitionLink } from '@/navigation/TransitionLink';
 import { ExternalLink } from '../chrome/ExternalLink';
 import { Button, Chevron, Glare, pad, Section } from '../parts';
 
@@ -13,6 +14,13 @@ export interface CommunityPartner {
   host: string;
 }
 
+export interface ConductCopy {
+  title: string;
+  text: string;
+  href: string | null;
+  linkLabel: string;
+}
+
 export interface CommunityCopy {
   kicker: string;
   title: string;
@@ -20,14 +28,20 @@ export interface CommunityCopy {
   links: CommunityLink[];
   contribute: string;
   contributeLede: string;
-  conduct: string;
-  conductPending: string;
+  conduct: ConductCopy;
   partnersTitle: string;
   partnersLede: string;
   partners: CommunityPartner[];
 }
 
-function Note({ title, text, pending = false }: { title: string; text: string; pending?: boolean }) {
+interface NoteProps {
+  title: string;
+  text: string;
+  pending?: boolean;
+  link?: CommunityLink;
+}
+
+function Note({ title, text, pending = false, link }: NoteProps) {
   return (
     <article className={pending ? 'note cut is-pending' : 'note cut'} data-reveal="">
       <h2 className="note-title">{title}</h2>
@@ -35,8 +49,19 @@ function Note({ title, text, pending = false }: { title: string; text: string; p
         {text}
         {pending ? <span className="note-caret" aria-hidden="true" /> : null}
       </p>
+      {link ? (
+        <TransitionLink className="note-link" to={link.href}>
+          {link.label}
+        </TransitionLink>
+      ) : null}
     </article>
   );
+}
+
+function ConductNote({ conduct }: { conduct: ConductCopy }) {
+  const { title, text, href, linkLabel } = conduct;
+  if (href === null) return <Note title={title} text={text} pending />;
+  return <Note title={title} text={text} link={{ href, label: linkLabel }} />;
 }
 
 function Partner({ partner, n }: { partner: CommunityPartner; n: number }) {
@@ -81,7 +106,7 @@ export function Community({ copy }: { copy: CommunityCopy }) {
       <Section frame="list" side="left" aria-label={copy.contribute}>
         <div className="notes">
           <Note title={copy.contribute} text={copy.contributeLede} />
-          <Note title={copy.conduct} text={copy.conductPending} pending />
+          <ConductNote conduct={copy.conduct} />
         </div>
       </Section>
       <Section frame="related" side="left" aria-labelledby="partners-heading">

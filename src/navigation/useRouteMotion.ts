@@ -3,9 +3,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { type RefObject, useEffect, useLayoutEffect, useRef } from 'react';
 import { useLocation, useMatches, useNavigate } from 'react-router';
 import { introFinished } from '@/motion/boot';
-import { initMotion, jumpToTop, motionEnabled } from '@/motion/core';
+import { initMotion, jumpTo, jumpToTop, motionEnabled } from '@/motion/core';
 import { withScene } from '@/scene/slot';
 import { setActiveController } from './active';
+import { hashTarget, hashTop } from './hash-target';
 import { publishSections } from './sections';
 import { createCommitGate } from './commit-gate';
 import { createController } from './controller';
@@ -55,9 +56,11 @@ function finished(tl: gsap.core.Timeline): Promise<void> {
   return new Promise((resolve) => tl.eventCallback('onComplete', () => resolve()));
 }
 
-function enter(main: HTMLElement, home: boolean): Promise<void> {
+function enter(main: HTMLElement, home: boolean, hash: string): Promise<void> {
   restoreRoute(main);
-  jumpToTop();
+  const target = hashTarget(hash);
+  if (target) jumpTo(hashTop(target));
+  else jumpToTop();
   focusHeading();
   if (!motionEnabled()) return Promise.resolve();
   return import('@/motion/entrances').then(({ heroTimeline, pageTimeline }) => {
@@ -68,10 +71,14 @@ function enter(main: HTMLElement, home: boolean): Promise<void> {
 }
 
 export function useRouteMotion(main: RefObject<HTMLElement | null>): void {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const home = routeName(useMatches()) === 'home';
   const entered = useRef<string | null>(null);
+  const landing = useRef(hash);
   useController(main, pathname);
+  useLayoutEffect(() => {
+    landing.current = hash;
+  }, [hash]);
   useLayoutEffect(() => {
     const el = main.current;
     if (!el) return;
@@ -82,7 +89,7 @@ export function useRouteMotion(main: RefObject<HTMLElement | null>): void {
     let live = true;
     let chapters = (): void => undefined;
     const ctx = gsap.context((self: gsap.Context) => {
-      const entered = first ? introFinished() : enter(el, home);
+      const entered = first ? introFinished() : enter(el, home, landing.current);
       if (motionEnabled()) {
         void Promise.all([import('@/motion/reveals'), import('@/motion/chapters')]).then(([{ buildRouteReveals }, { buildRouteChapters }]) => {
           if (live) {

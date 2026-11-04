@@ -1,5 +1,7 @@
 import { expect, test } from '@playwright/test';
 
+const LEGAL = ['/privacy', '/terms', '/requests'];
+const PREFIXES = ['', '/es', '/fr', '/ja'];
 const html = async (request: import('@playwright/test').APIRequestContext, path: string) => (await request.get(path)).text();
 const ldTypes = (body: string) => [...body.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1])['@type']);
 
@@ -24,6 +26,18 @@ test('a project page has its own card and structured data', async ({ request }) 
   expect(ldTypes(body)).toEqual(expect.arrayContaining(['SoftwareApplication', 'BreadcrumbList']));
 });
 
+test('a legal page is noindex while previewed and points its canonical and alternates at itself', async ({ request }) => {
+  for (const prefix of PREFIXES) {
+    for (const path of LEGAL) {
+      const body = await html(request, `${prefix}${path}`);
+      expect(body, `${prefix}${path}`).toContain('<meta name="robots" content="noindex"');
+      expect(body, `${prefix}${path}`).toContain(`<link rel="canonical" href="https://night-x.com${prefix}${path}"`);
+      expect(body, `${prefix}${path}`).toContain(`hrefLang="x-default" href="https://night-x.com${path}"`);
+      expect(body, `${prefix}${path}`).toContain(`<html lang="${prefix.slice(1) || 'en'}"`);
+    }
+  }
+});
+
 test('a missing page is noindex', async ({ request }) => {
   const body = await html(request, '/nope');
   expect(body).toContain('<meta name="robots" content="noindex"');
@@ -44,9 +58,10 @@ test('pages load without console errors', async ({ page }) => {
     if (msg.type() === 'error') errors.push(msg.text());
   });
   page.on('pageerror', (err) => errors.push(err.message));
-  for (const path of ['/', '/projects']) {
+  for (const path of ['/', '/projects', ...LEGAL]) {
     await page.goto(path);
     await page.waitForSelector('html.intro-done', { timeout: 20_000 });
+    if (path === '/privacy') await page.locator('svg.legal-graph').waitFor();
   }
   expect(errors).toEqual([]);
 });
@@ -59,7 +74,7 @@ test('no third-party requests for fonts or backdrops', async ({ page }) => {
       thirdParty.push(url);
     }
   });
-  for (const path of ['/', '/projects']) {
+  for (const path of ['/', '/projects', ...LEGAL]) {
     await page.goto(path);
     await page.waitForSelector('html.intro-done', { timeout: 20_000 });
   }

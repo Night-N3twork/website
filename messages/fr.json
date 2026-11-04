@@ -219,7 +219,56 @@
     "explore": "Découvrir",
     "connect": "Réseaux",
     "support": "Soutenir",
+    "legal": "Légal",
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "requests": "Demandes",
+    "cookieSettings": "Paramètres des cookies",
     "copyright": "© {year} Night Network · fondé par amplify.dev"
+  },
+  "consent": {
+    "text": "Accepter permet à Google Analytics de compter les visites sur ce site et de déposer des cookies dans votre navigateur. Si vous refusez, rien n’est envoyé à Google ; le site fonctionne de la même façon dans les deux cas.",
+    "accept": "Accepter",
+    "decline": "Refuser",
+    "privacy": "Confidentialité",
+    "region": "Choix de confidentialité"
+  },
+  "legal": {
+    "updated": "Dernière mise à jour : {date}",
+    "notice": "Le texte juridique de cette page est en anglais, et seule la version anglaise fait foi.",
+    "graph": {
+      "heading": "Ce que chaque service collecte et partage",
+      "listHeading": "La carte en texte",
+      "collects": "Collecte",
+      "shares": "Partage des données avec",
+      "separator": ", ",
+      "nodes": {
+        "night-network": "Night Network",
+        "website": "Site web",
+        "bots": "Bots Discord",
+        "account": "Compte Night et Night+",
+        "libraries": "Bibliothèques pour développeurs",
+        "registry-cdn": "Registre et CDN",
+        "wireguard": "Sorties WireGuard",
+        "captcha": "Solveur de captchas",
+        "ip-address": "Adresse IP",
+        "discord-id": "ID Discord",
+        "email": "E-mail",
+        "links": "Liens",
+        "synced-data": "Données synchronisées",
+        "captcha-data": "Données des défis captcha",
+        "cloudflare": "Cloudflare",
+        "google": "Google",
+        "discord": "Discord",
+        "patreon": "Patreon",
+        "cash-app": "Cash App",
+        "mullvad": "Mullvad",
+        "two-captcha": "2Captcha"
+      }
+    },
+    "privacy": { "title": "Confidentialité" },
+    "terms": { "title": "Conditions" },
+    "requests": { "title": "Demandes" }
   },
   "contributors": {
     "title": "Les bénévoles de Night",
@@ -256,7 +305,8 @@
     "contribute": "Contribuer",
     "contributeLede": "Tout le monde peut ouvrir une issue ou une pull request sur GitHub ou GitLab. Pour un gros changement, demandez d’abord sur le Discord ou écrivez-nous en DM.",
     "partners": "Partenaires et sous-organisations",
-    "conduct": "Code de conduite"
+    "conduct": "Code de conduite",
+    "conductLink": "Utilisation acceptable"
   },
   "notFound": {
     "meta": "Page introuvable",

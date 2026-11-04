@@ -51,12 +51,6 @@ export function readServerEnv(source: Record<string, string | undefined>): Serve
   return { uptime: { base: trimSlash(v.UPTIME_KUMA_BASE), slug: v.UPTIME_KUMA_SLUG }, discord, cdnBase, revalidateSecret: v.REVALIDATE_SECRET ?? null };
 }
 
-export function readCdnBase(source: Record<string, string | undefined>): string {
-  const parsed = cdnBaseField.safeParse(source.DISCORD_CDN_BASE);
-  if (!parsed.success) throw new Error(`Invalid environment: DISCORD_CDN_BASE: ${parsed.error.issues[0]?.message}`);
-  return trimSlash(parsed.data);
-}
-
 export function serverEnv(): ServerEnv {
   return readServerEnv(process.env);
 }

@@ -12,6 +12,7 @@ describe('analyticsTags', () => {
 
   it('loads gtag for the measurement id and configures it', () => {
     const tags = analyticsTags('G-ABC123');
+    expect(tags?.id).toBe('G-ABC123');
     expect(tags?.loader).toBe('https://www.googletagmanager.com/gtag/js?id=G-ABC123');
     expect(tags?.setup).toBe("window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-ABC123')");
   });

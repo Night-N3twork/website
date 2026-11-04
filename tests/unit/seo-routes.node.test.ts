@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import en from '../../messages/en.json';
 import { LOCALES } from '@/i18n/locales';
-import { PAGE_PATHS } from '@/lib/seo/paths';
+import { pagePaths } from '@/lib/seo/paths';
+import { PAGE_PATHS, sitemapXml } from '@/lib/seo/routes';
 import { loader as manifestLoader } from '@/app/routes/manifest';
 import { loader as robotsLoader } from '@/app/routes/robots';
 import { loader as sitemapLoader } from '@/app/routes/sitemap';
@@ -34,6 +35,26 @@ describe('sitemap.xml', () => {
     expect(body).toContain(HOME_ENTRY);
     expect(body).toMatch(/<loc>https:\/\/night-x\.com\/es\/projects\/umbra<\/loc>\n(?:<xhtml:link [^\n]+\n){5}<changefreq>monthly<\/changefreq>\n<priority>0\.8<\/priority>/);
     expect(body).toMatch(/<loc>https:\/\/night-x\.com\/ja\/community<\/loc>\n(?:<xhtml:link [^\n]+\n){5}<changefreq>monthly<\/changefreq>\n<priority>0\.6<\/priority>/);
+  });
+});
+
+describe('legal pages in the sitemap', () => {
+  const LEGAL = ['/privacy', '/terms', '/requests'];
+
+  it('lists the legal pages only once they go live', () => {
+    expect(pagePaths('live')).toEqual(expect.arrayContaining(LEGAL));
+    for (const stage of ['preview', 'held'] as const) for (const path of LEGAL) expect(pagePaths(stage)).not.toContain(path);
+    expect(pagePaths('held')).toEqual(pagePaths('preview'));
+  });
+
+  it('gives each live legal page its hreflang set', () => {
+    const body = sitemapXml(pagePaths('live'));
+    expect(body.match(/<url>/g)).toHaveLength(pagePaths('live').length * LOCALES.length);
+    for (const path of LEGAL) {
+      expect(body).toContain(
+        `<url>\n<loc>https://night-x.com/fr${path}</loc>\n<xhtml:link rel="alternate" hreflang="en" href="https://night-x.com${path}" />\n<xhtml:link rel="alternate" hreflang="es" href="https://night-x.com/es${path}" />\n<xhtml:link rel="alternate" hreflang="fr" href="https://night-x.com/fr${path}" />\n<xhtml:link rel="alternate" hreflang="ja" href="https://night-x.com/ja${path}" />\n<xhtml:link rel="alternate" hreflang="x-default" href="https://night-x.com${path}" />\n<changefreq>monthly</changefreq>\n<priority>0.6</priority>\n</url>`,
+      );
+    }
   });
 });
 

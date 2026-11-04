@@ -14,6 +14,11 @@ describe('localizePath', () => {
     expect(localizePath('/supporters', 'ja')).toBe('/ja/supporters');
     expect(localizePath('/', 'es')).toBe('/es');
   });
+
+  it('prefixes the legal pages like any other', () => {
+    expect(localizePath('/privacy', 'ja')).toBe('/ja/privacy');
+    expect(localizePath('/requests', 'en')).toBe('/requests');
+  });
 });
 
 describe('splitLocale', () => {

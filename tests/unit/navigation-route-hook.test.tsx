@@ -25,11 +25,12 @@ function Shell() {
   );
 }
 
-function Page({ title, to }: { title: string; to: string }) {
+function Page({ title, to, clause = false }: { title: string; to: string; clause?: boolean }) {
   return (
     <section data-frame="hero">
       <h1 id="page-heading" tabIndex={-1}>{title}</h1>
       <TransitionLink to={to}>next</TransitionLink>
+      {clause ? <section id="clause">Clause</section> : null}
     </section>
   );
 }
@@ -41,6 +42,7 @@ function fakeScene() {
 vi.stubGlobal('matchMedia', (query: string) => ({ matches: false, media: query, addEventListener: () => {}, removeEventListener: () => {}, addListener: () => {}, removeListener: () => {} }));
 
 afterEach(() => {
+  vi.restoreAllMocks();
   setScene(null);
   document.documentElement.className = '';
 });
@@ -71,5 +73,51 @@ describe('useRouteMotion', () => {
     expect(scene.nudge).toHaveBeenCalledWith('route');
     expect(document.activeElement?.textContent).toBe('Projects');
     await vi.waitFor(() => expect(entered).toEqual(['Projects']));
+  });
+
+  describe('scroll after a route change', () => {
+    const CLAUSE_TOP = 480;
+
+    async function visit(to: string) {
+      vi.spyOn(Element.prototype, 'getBoundingClientRect').mockImplementation(function (this: Element) {
+        return { top: this.id === 'clause' ? CLAUSE_TOP : 0 } as DOMRect;
+      });
+      const scrollTo = vi.spyOn(window, 'scrollTo').mockImplementation(() => undefined);
+      const Stub = createRoutesStub([
+        {
+          Component: Shell,
+          children: [
+            { path: '/', id: 'home', loader: () => ({}), Component: () => <Page title="Home" to={to} /> },
+            { path: '/projects', id: 'projects', loader: () => ({}), Component: () => <Page title="Projects" to="/" clause /> },
+          ],
+        },
+      ]);
+      render(<Stub initialEntries={['/']} />);
+      await screen.findByText('Home');
+      scrollTo.mockClear();
+      await act(async () => {
+        fireEvent.click(screen.getByText('next'));
+      });
+      await screen.findByText('Projects');
+      return scrollTo;
+    }
+
+    it('lands on the element a hash names and leaves focus on the heading', async () => {
+      const scrollTo = await visit('/projects#clause');
+      expect(scrollTo).toHaveBeenCalledWith(0, CLAUSE_TOP);
+      expect(scrollTo).not.toHaveBeenCalledWith(0, 0);
+      expect(document.activeElement?.textContent).toBe('Projects');
+    });
+
+    it('still lands at the top when there is no hash', async () => {
+      const scrollTo = await visit('/projects');
+      expect(scrollTo).toHaveBeenCalledWith(0, 0);
+      expect(scrollTo).not.toHaveBeenCalledWith(0, CLAUSE_TOP);
+    });
+
+    it('lands at the top when the hash names nothing on the new page', async () => {
+      const scrollTo = await visit('/projects#missing');
+      expect(scrollTo).toHaveBeenCalledWith(0, 0);
+    });
   });
 });

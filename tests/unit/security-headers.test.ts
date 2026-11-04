@@ -1,11 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { securityHeaders } from '@/lib/security/headers';
 
-const CDN = 'https://cdn.discordapp.com';
 const NONCE = 'test-nonce';
 
-const headerMap = (dev = false, cdnBase = CDN, nonce = NONCE) =>
-  Object.fromEntries(securityHeaders({ cdnBase, dev, nonce }).map(({ key, value }) => [key, value]));
+const headerMap = (dev = false, nonce = NONCE) => Object.fromEntries(securityHeaders({ dev, nonce }).map(({ key, value }) => [key, value]));
 const directives = (policy: string) =>
   Object.fromEntries(policy.split(';').map((part) => part.trim().split(/\s+/)).map(([name, ...sources]) => [name, sources]));
 
@@ -32,22 +30,29 @@ describe('securityHeaders', () => {
     expect(policy['script-src']).not.toContain("'unsafe-inline'");
   });
 
-  it('allows the avatar host, analytics and the inline boot scripts and nothing that frames or plugs in', () => {
+  it('allows analytics and the inline boot scripts and nothing that frames or plugs in', () => {
     const policy = directives(headerMap()['Content-Security-Policy']);
     expect(policy['default-src']).toEqual(["'self'"]);
-    expect(policy['img-src']).toContain(CDN);
     expect(policy['connect-src']).toEqual(expect.arrayContaining(['https://*.google-analytics.com', 'https://*.g.doubleclick.net', 'https://www.google.com']));
-    expect(policy['img-src']).toEqual(expect.arrayContaining(['https://*.g.doubleclick.net', 'https://www.google.com']));
     expect(policy['frame-ancestors']).toEqual(["'none'"]);
     expect(policy['object-src']).toEqual(["'none'"]);
     expect(policy['base-uri']).toEqual(["'self'"]);
     expect(policy['form-action']).toEqual(["'self'"]);
   });
 
-  it('takes the avatar host from the configured cdn origin', () => {
-    const policy = directives(headerMap(false, 'http://127.0.0.1:3900/cdn')['Content-Security-Policy']);
-    expect(policy['img-src']).toContain('http://127.0.0.1:3900');
-    expect(policy['img-src']).not.toContain(CDN);
+  it('loads images only from this site, inline data and the analytics hosts, never from Discord', () => {
+    const policy = directives(headerMap()['Content-Security-Policy']);
+    expect(policy['img-src']).toEqual([
+      "'self'",
+      'data:',
+      'blob:',
+      'https://www.googletagmanager.com',
+      'https://*.google-analytics.com',
+      'https://*.analytics.google.com',
+      'https://*.g.doubleclick.net',
+      'https://www.google.com',
+    ]);
+    expect(headerMap()['Content-Security-Policy']).not.toContain('discordapp');
   });
 
   it('lets the dev server evaluate code and keeps production from doing so', () => {

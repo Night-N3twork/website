@@ -4,6 +4,7 @@ import { expect, type Page, test } from '@playwright/test';
 const ready = (page: Page) => page.waitForSelector('html.intro-done', { timeout: 20_000 });
 const reach = (page: Page, selector: string) => page.locator(selector).first().evaluate((el) => el.scrollIntoView({ block: 'center' }));
 const BROKEN_PORT = 3125;
+const FIXTURE_CDN = 'http://127.0.0.1:3900';
 
 test('contributors are grouped by role', async ({ page }) => {
   await page.goto('/contributors');
@@ -37,6 +38,24 @@ test('supporters show boosters and donators', async ({ page }) => {
   await expect(page.locator('.people-tiers .tier-name')).toHaveText('Night+');
   await expect(page.locator('.people-tiers .tier-price')).toHaveText('$9.99 a month on Patreon');
   await expect(page.locator('.people-tiers .tier-perks li')).toHaveCount(6);
+});
+
+test('avatars come through the site and are never fetched from the Discord host', async ({ page }) => {
+  const cdnRequests: string[] = [];
+  page.on('request', (request) => {
+    if (request.url().startsWith(FIXTURE_CDN)) cdnRequests.push(request.url());
+  });
+  for (const path of ['/contributors', '/supporters']) {
+    await page.goto(path);
+    await ready(page);
+    const avatars = page.locator('.person img');
+    const sources = await avatars.evaluateAll((els) => els.map((el) => el.getAttribute('src') ?? ''));
+    expect(sources.length).toBeGreaterThan(0);
+    for (const src of sources) expect(src).toMatch(/^\/api\/users\//);
+    await reach(page, '.person img');
+    await expect.poll(() => avatars.first().evaluate((el) => el instanceof HTMLImageElement && el.complete && el.naturalWidth > 0)).toBe(true);
+  }
+  expect(cdnRequests).toEqual([]);
 });
 
 test('people pages keep the glass following', async ({ page }) => {
