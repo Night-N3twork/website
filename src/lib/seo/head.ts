@@ -22,9 +22,9 @@ export function pageTitle(title: string): string {
   return title === SITE.name ? title : `${title} · ${SITE.name}`;
 }
 
-export function shareImage(locale: Locale, slug?: string): HeadImage {
+export function shareImage(locale: Locale, slug?: string, alt: string = SITE.name): HeadImage {
   const card = slug ? `/${locale}/projects/${slug}/opengraph-image` : `/${locale}/opengraph-image`;
-  return { url: absoluteUrl(card), alt: SITE.name, ...OG_SIZE, type: 'image/png' };
+  return { url: absoluteUrl(card), alt, ...OG_SIZE, type: 'image/png' };
 }
 
 export function headModel({ locale, path, title, description, image = null }: Input): HeadModel {

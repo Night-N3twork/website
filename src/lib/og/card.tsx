@@ -2,21 +2,22 @@ import { createElement, type CSSProperties, type ReactElement } from 'react';
 import { PRODUCT_ICONS } from '@/content/product-icons';
 import type { ProductSlug } from '@/content/projects';
 import { SITE } from '@/content/site';
-import { bodySvg } from '@/lib/art/BodyArt';
 import { PALETTE } from '@/lib/art/palette';
 
-export const FONT = 'Unbounded';
+export const FONT = 'Geist';
 const PAD = 72;
-const BODY_SIZE = 640;
-const BODY_OFFSET = { right: -140, top: -80 } as const;
-const ICON_SIZE = 380;
-const ICON_OFFSET = { right: 96, top: 125 } as const;
-const ICON_STROKE = 0.9;
-const ICON_BASE_OPACITY = 0.3;
-const BRAND_TOP = 64;
-const TEXT_MAX_WIDTH = 800;
-const MARK_SIZE = 36;
-const TITLE = { longFrom: 18, small: 64, large: 92 } as const;
+const BRAND_TOP = 60;
+const BOTTOM = 68;
+const TEXT_WIDTH = 600;
+const SUBTITLE_WIDTH = 700;
+const MARK_SIZE = 40;
+const TILE_SIZE = 84;
+const TILE_ICON = 48;
+const ICON_STROKE = 1.1;
+const ICON_BASE_OPACITY = 0.4;
+const TITLE = { longFrom: 18, small: 76, large: 108 } as const;
+const SUBTITLE_COLOR = '#B7BFDA';
+const SCRIM = 'linear-gradient(90deg, rgba(5,6,11,0.78) 0%, rgba(5,6,11,0.5) 38%, rgba(5,6,11,0) 64%)';
 const MARK =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><defs><mask id="m"><rect width="64" height="64" fill="#fff"/><circle cx="39.36" cy="28.16" r="15.04" fill="#000"/></mask></defs><rect width="64" height="64" rx="15.36" fill="#141831"/><circle cx="32" cy="32" r="18.56" fill="#EDEBF5" mask="url(#m)"/></svg>';
 
@@ -30,25 +31,31 @@ function iconSvg(slug: ProductSlug): string {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="${ICON_STROKE}" stroke-linecap="round" stroke-linejoin="round">${paths(base, PALETTE.text, ICON_BASE_OPACITY)}${paths(accent, PALETTE.accent, 1)}</svg>`;
 }
 
-function art(icon: ProductSlug | undefined) {
-  if (icon) return picture(iconSvg(icon), ICON_SIZE, { position: 'absolute', ...ICON_OFFSET });
-  return picture(bodySvg('space', BODY_SIZE), BODY_SIZE, { position: 'absolute', ...BODY_OFFSET });
+function tile(slug: ProductSlug) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: TILE_SIZE, height: TILE_SIZE, borderRadius: 22, background: 'rgba(237,235,245,0.08)', border: '1px solid rgba(237,235,245,0.2)' }}>
+      {picture(iconSvg(slug), TILE_ICON)}
+    </div>
+  );
 }
 
-export type CardInput = { title: string; subtitle: string; icon?: ProductSlug };
+export type CardInput = { title: string; subtitle: string; icon?: ProductSlug; scene: string };
 
-export function card({ title, subtitle, icon }: CardInput): ReactElement {
-  const glow = `radial-gradient(circle at 82% 22%, ${PALETTE.atmo}55 0%, ${PALETTE.night}00 55%)`;
+export function card({ title, subtitle, icon, scene }: CardInput): ReactElement {
   return (
-    <div style={{ width: '100%', height: '100%', display: 'flex', position: 'relative', background: PALETTE.night, backgroundImage: glow, color: PALETTE.text, fontFamily: FONT, padding: PAD }}>
-      {art(icon)}
-      <div style={{ position: 'absolute', left: PAD, top: BRAND_TOP, display: 'flex', alignItems: 'center', gap: 16, fontSize: 18, letterSpacing: 4, textTransform: 'uppercase' }}>
+    <div style={{ width: '100%', height: '100%', display: 'flex', position: 'relative', background: PALETTE.night, color: PALETTE.text, fontFamily: FONT }}>
+      {createElement('img', { src: scene, width: 1200, height: 630, alt: '', style: { position: 'absolute', left: 0, top: 0 } })}
+      <div style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', display: 'flex', backgroundImage: SCRIM }} />
+      <div style={{ position: 'absolute', left: PAD, top: BRAND_TOP, display: 'flex', alignItems: 'center', gap: 14, fontSize: 24, fontWeight: 600, letterSpacing: -0.3 }}>
         {picture(MARK, MARK_SIZE)}
         {SITE.name}
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: 22, maxWidth: TEXT_MAX_WIDTH }}>
-        <div style={{ fontSize: title.length > TITLE.longFrom ? TITLE.small : TITLE.large, lineHeight: 1, letterSpacing: -2 }}>{title}</div>
-        <div style={{ fontSize: 22, color: PALETTE.muted, lineHeight: 1.45 }}>{subtitle}</div>
+      <div style={{ position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', display: 'flex', alignItems: 'flex-end', padding: `0 ${PAD}px ${BOTTOM}px` }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 24, width: SUBTITLE_WIDTH }}>
+          {icon ? tile(icon) : null}
+          <div style={{ display: 'flex', width: TEXT_WIDTH, fontSize: title.length > TITLE.longFrom ? TITLE.small : TITLE.large, lineHeight: 1.02, letterSpacing: -2, fontWeight: 600 }}>{title}</div>
+          <div style={{ fontSize: 28, fontWeight: 400, color: SUBTITLE_COLOR, lineHeight: 1.4 }}>{subtitle}</div>
+        </div>
       </div>
     </div>
   );

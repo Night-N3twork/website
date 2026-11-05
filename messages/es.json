@@ -1,7 +1,8 @@
 {
   "site": {
     "name": "Night Network",
-    "description": "6,5 millones de personas al año usan las herramientas de Night Network. La mayoría funcionan en el navegador."
+    "description": "6,5 millones de personas al año usan las herramientas que hacen los voluntarios de Night Network, casi todas en el navegador. Incluyen un shell Unix, chat con IA y cuatro navegadores.",
+    "imageAlt": "Una luna creciente de cristal sobre un pico nevado de noche, con el texto \"Llevamos el navegador al límite.\""
   },
   "nav": {
     "home": "Inicio",
@@ -324,7 +325,7 @@
     "hero": {
       "headline": "Llevamos el navegador al límite.",
       "subline": "Software de verdad, cargado en una pestaña.",
-      "support": "Night Network es una organización de voluntarios cuyos proyectos redefinen lo que se puede hacer en un navegador, desde ejecutar sistemas Linux completos y terminales hasta ejecutar modelos de IA en el propio dispositivo a través del navegador.",
+      "support": "Night Network es una organización de voluntarios cuyos proyectos redefinen lo que un navegador puede hacer. Ejecutamos sistemas Linux completos, modelos de IA en el propio dispositivo y navegadores enteros dentro de una sola pestaña.",
       "cta": "Explora nuestros proyectos",
       "community": "Únete a la comunidad"
     },

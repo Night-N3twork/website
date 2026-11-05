@@ -1,7 +1,8 @@
 {
   "site": {
     "name": "Night Network",
-    "description": "6.5 million people a year use Night Network's tools. Most of them run in the browser."
+    "description": "6.5 million people a year use Night Network's volunteer-built tools, most of which run in a browser tab. They include a Unix shell, AI chat and four browsers.",
+    "imageAlt": "A glass crescent moon over a snow peak at night, with the text \"We push the browser to its limits.\""
   },
   "nav": {
     "home": "Home",
@@ -224,7 +225,7 @@
     "terms": "Terms",
     "requests": "Requests",
     "cookieSettings": "Cookie settings",
-    "copyright": "© {year} Night Network · founded by amplify.dev"
+    "copyright": "© {year} Night Network · founded by amplify"
   },
   "consent": {
     "text": "Accept lets Google Analytics count visits to this site and set cookies in your browser. If you decline, nothing goes to Google; the site works the same either way.",
@@ -535,7 +536,7 @@
     "hero": {
       "headline": "We push the browser to its limits.",
       "subline": "Real software, loaded in a tab.",
-      "support": "Night Network is a volunteer-run organization whose projects reimagine what's possible in a browser, from running full Linux systems and terminals to running AI models on-device through the browser.",
+      "support": "Night Network is a volunteer-run organization whose projects reimagine what a browser can do. We run full Linux systems, on-device AI models, and whole browsers inside a single tab.",
       "cta": "Explore our projects",
       "community": "Join the community"
     },

@@ -6,6 +6,8 @@ import type { Route } from './+types/og.site';
 
 export async function loader({ params }: Route.LoaderArgs): Promise<Response> {
   if (!isLocale(params.locale)) return new Response(null, { status: 404 });
-  const t = await translator(ogLocale(params.locale), 'home.hero');
-  return ogImage({ title: t('headline'), subtitle: t('support') });
+  const locale = ogLocale(params.locale);
+  const hero = await translator(locale, 'home.hero');
+  const stats = await translator(locale, 'home.stats');
+  return ogImage({ title: hero('headline'), subtitle: [stats('countShort'), stats('countUnit'), stats('line')].join(' ') });
 }

@@ -74,7 +74,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
     copy,
     monitorId: project.monitorId,
     monitor,
-    seo: headModel({ locale, path: pagePath(request), title: project.name, description: copy.line, image: shareImage(locale, project.slug) }),
+    seo: headModel({ locale, path: pagePath(request), title: project.name, description: copy.line, image: shareImage(locale, project.slug, `${project.name}: ${copy.line}`) }),
     crumbs: { home: t('nav.home'), projects: t('nav.projects') },
   };
 }

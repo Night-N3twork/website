@@ -39,7 +39,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   const locale = localeOf(params.locale);
   const t = await translator(locale);
   return {
-    seo: headModel({ locale, path: pagePath(request), title: t('site.name'), description: t('site.description'), image: shareImage(locale) }),
+    seo: headModel({ locale, path: pagePath(request), title: t('site.name'), description: t('site.description'), image: shareImage(locale, undefined, t('site.imageAlt')) }),
     hero: {
       subline: t('home.hero.subline'),
       headline: t('home.hero.headline'),

@@ -22,6 +22,14 @@ describe('headMeta', () => {
     expect(meta).toContainEqual({ name: 'twitter:card', content: 'summary_large_image' });
   });
 
+  it('describes the share image with the given alt text and falls back to the site name', () => {
+    const described = headMeta(headModel({ locale: 'en', path: '/', title: 'Night Network', description: 'd', image: shareImage('en', undefined, 'A glass crescent moon over a snow peak.') }));
+    const plain = headMeta(projects);
+    expect(described).toContainEqual({ property: 'og:image:alt', content: 'A glass crescent moon over a snow peak.' });
+    expect(described).toContainEqual({ name: 'twitter:image:alt', content: 'A glass crescent moon over a snow peak.' });
+    expect(plain).toContainEqual({ property: 'og:image:alt', content: 'Night Network' });
+  });
+
   it('marks a missing page noindex with no canonical', () => {
     const meta = headMeta(missingHead({ title: 'Page not found', description: 'gone' }));
     expect(meta).toContainEqual({ name: 'robots', content: 'noindex' });

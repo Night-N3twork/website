@@ -7,19 +7,28 @@ import { OG_SIZE } from './size';
 
 export { OG_SIZE };
 
-const FONT_FILE = 'src/assets/fonts/Unbounded-Bold-Latin.ttf';
+const FONT_FILES = [
+  { file: 'src/assets/fonts/Geist-Regular-Latin.woff', weight: 400 },
+  { file: 'src/assets/fonts/Geist-SemiBold-Latin.woff', weight: 600 },
+] as const;
+const SCENE_FILE = 'src/assets/og/night-scene.jpg';
 const OG_HEADERS = { 'content-type': 'image/png', 'cache-control': 'public, max-age=0, must-revalidate' } as const;
 
-const font = await readFile(join(process.cwd(), FONT_FILE));
+export type OgInput = Omit<CardInput, 'scene'>;
+
+const fonts = await Promise.all(
+  FONT_FILES.map(async ({ file, weight }) => ({ name: FONT, data: await readFile(join(process.cwd(), file)), style: 'normal' as const, weight })),
+);
+const scene = `data:image/jpeg;base64,${(await readFile(join(process.cwd(), SCENE_FILE))).toString('base64')}`;
 const drawn = new Map<string, Promise<Uint8Array<ArrayBuffer>>>();
 
-async function draw(input: CardInput): Promise<Uint8Array<ArrayBuffer>> {
-  const svg = await satori(card(input), { ...OG_SIZE, fonts: [{ name: FONT, data: font, style: 'normal', weight: 700 }] });
+async function draw(input: OgInput): Promise<Uint8Array<ArrayBuffer>> {
+  const svg = await satori(card({ ...input, scene }), { ...OG_SIZE, fonts });
   const png = await renderAsync(svg, { fitTo: { mode: 'width', value: OG_SIZE.width } });
   return new Uint8Array(png.asPng());
 }
 
-function drawOnce(input: CardInput): Promise<Uint8Array<ArrayBuffer>> {
+function drawOnce(input: OgInput): Promise<Uint8Array<ArrayBuffer>> {
   const key = JSON.stringify([input.title, input.subtitle, input.icon ?? null]);
   const known = drawn.get(key);
   if (known) return known;
@@ -29,6 +38,6 @@ function drawOnce(input: CardInput): Promise<Uint8Array<ArrayBuffer>> {
   return pending;
 }
 
-export async function ogImage(input: CardInput): Promise<Response> {
+export async function ogImage(input: OgInput): Promise<Response> {
   return new Response(await drawOnce(input), { headers: OG_HEADERS });
 }

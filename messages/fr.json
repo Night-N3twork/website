@@ -1,7 +1,8 @@
 {
   "site": {
     "name": "Night Network",
-    "description": "6,5 millions de personnes par an utilisent les outils de Night Network. La plupart tournent dans le navigateur."
+    "description": "6,5 millions de personnes par an utilisent les outils des bénévoles de Night Network, presque tous dans le navigateur. On y trouve un shell Unix, un chat IA et quatre navigateurs.",
+    "imageAlt": "Un croissant de lune en verre au-dessus d'un sommet enneigé, de nuit, avec le texte \"Nous poussons le navigateur dans ses retranchements.\""
   },
   "nav": {
     "home": "Accueil",
@@ -324,7 +325,7 @@
     "hero": {
       "headline": "Nous poussons le navigateur dans ses retranchements.",
       "subline": "De vrais logiciels, chargés dans un onglet.",
-      "support": "Night Network est une organisation de bénévoles dont les projets réinventent ce qu’un navigateur peut faire, des systèmes Linux complets et des terminaux jusqu’aux modèles d’IA exécutés sur l’appareil, dans le navigateur.",
+      "support": "Night Network est une organisation de bénévoles dont les projets réinventent ce qu’un navigateur peut faire. Nous faisons tourner des systèmes Linux complets, des modèles d’IA sur l’appareil et des navigateurs entiers dans un seul onglet.",
       "cta": "Découvrir nos projets",
       "community": "Rejoindre la communauté"
     },
