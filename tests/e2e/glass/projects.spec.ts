@@ -17,6 +17,8 @@ test('filter reveals a group that started below the fold', async ({ page }) => {
   await page.goto('/projects');
   await ready(page);
   await page.locator('.filter [data-filter="apps"]').click();
+  await expect.poll(() => visibleGroups(page)).toEqual(['apps']);
+  await page.locator('[data-group="apps"] .index-panel').scrollIntoViewIfNeeded();
   for (const part of ['.index-head', '.index-panel']) await expect(page.locator(`[data-group="apps"] ${part}`)).toHaveCSS('opacity', '1');
 });
 
@@ -50,4 +52,49 @@ test('status labels and the current language carry no dot', async ({ page }) => 
   await ready(page);
   await expect(page.locator('.detail-status .status-label')).toHaveCount(1);
   expect(await marks('.detail-status .status-label')).toEqual(['none']);
+});
+
+const band = (page: Page) => page.getByRole('region', { name: 'Screenshots' });
+const shotGroups = (page: Page) => band(page).locator('.shot').evaluateAll((els) => els.map((el) => el.getAttribute('data-group')));
+
+test('screenshots step with next and previous', async ({ page }) => {
+  await page.goto('/projects');
+  await ready(page);
+  const total = await band(page).locator('.shot').count();
+  test.skip(total < 2, 'needs two screenshots');
+  const prev = band(page).getByRole('button', { name: 'Previous screenshot' });
+  const next = band(page).getByRole('button', { name: 'Next screenshot' });
+  const reel = band(page).locator('.shots-reel .sr-only');
+  await expect(prev).toHaveAttribute('aria-disabled', 'true');
+  for (let i = 2; i <= total; i += 1) {
+    await next.click();
+    await expect(reel).toHaveText(String(i).padStart(2, '0'));
+  }
+  await expect(next).toHaveAttribute('aria-disabled', 'true');
+  await expect(next).toBeFocused();
+  await prev.click();
+  await expect(prev).toHaveAttribute('aria-disabled', 'false');
+  await expect(reel).toHaveText(String(total - 1).padStart(2, '0'));
+});
+
+test('screenshots follow the filter', async ({ page }) => {
+  await page.goto('/projects');
+  await ready(page);
+  const groups = await shotGroups(page);
+  for (const value of ['platform', 'apps', 'browsers', 'all']) {
+    await page.locator(`.filter [data-filter="${value}"]`).click();
+    const expected = value === 'all' ? groups.length : groups.filter((group) => group === value).length;
+    await expect(band(page).locator('.shot')).toHaveCount(expected);
+    if (expected === 0) await expect(band(page)).toHaveCount(0);
+    if (expected === 1) await expect(band(page).locator('.shots-bar')).toHaveCount(0);
+  }
+});
+
+test('a screenshot opens its project', async ({ page }) => {
+  await page.goto('/projects');
+  await ready(page);
+  const link = band(page).locator('a.shot-link').first();
+  const href = await link.getAttribute('href');
+  await link.click();
+  await expect(page).toHaveURL(new RegExp(`${href}$`));
 });

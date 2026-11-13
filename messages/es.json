@@ -31,6 +31,12 @@
     "lede": "La mayor parte de lo que hacemos puede funcionar dentro del navegador.",
     "open": "Abrir {name}",
     "all": "Todos los proyectos",
+    "shots": {
+      "label": "Capturas de pantalla",
+      "prev": "Captura anterior",
+      "next": "Captura siguiente",
+      "alt": "{name}, captura {n} de {total}"
+    },
     "related": "Relacionados",
     "source": "Código fuente",
     "npm": "Paquete npm",

@@ -111,3 +111,27 @@ test('detail landmarks have distinct names', async ({ page }) => {
   );
   expect(new Set(names).size).toBe(names.length);
 });
+
+test('a project with screenshots shows them all in order and steps through them', async ({ page }) => {
+  await page.goto('/projects/umbra');
+  await ready(page);
+  const gallery = page.getByRole('region', { name: 'Screenshots' });
+  const shots = gallery.getByRole('img');
+  const total = await shots.count();
+  expect(total).toBeGreaterThan(1);
+  await expect(shots.first()).toHaveAttribute('alt', `Umbra, screenshot 1 of ${total}`);
+  await expect(gallery.getByRole('list', { name: 'Screenshots' })).toHaveAttribute('tabindex', '0');
+  await reach(page, '.gallery .shots-bar');
+  const next = gallery.getByRole('button', { name: 'Next screenshot' });
+  for (let i = 2; i <= total; i += 1) {
+    await next.click();
+    await expect(gallery.locator('.shots-reel .sr-only')).toHaveText(String(i).padStart(2, '0'));
+  }
+  await expect(next).toHaveAttribute('aria-disabled', 'true');
+});
+
+test('a project without screenshots has no gallery', async ({ page }) => {
+  await page.goto('/projects/dpm');
+  await ready(page);
+  await expect(page.locator('.gallery')).toHaveCount(0);
+});

@@ -57,4 +57,10 @@ describe('assetCache', () => {
     expect(assetCache('/backdrops/peak-1280.9e8f7a6b.webp')).toBe(IMMUTABLE);
     for (const pathname of ['/backdrops/range-2400.avif', '/backdrops/../x.avif']) expect(assetCache(pathname), pathname).toBeNull();
   });
+
+  it('caches hashed project screenshots for a year', () => {
+    expect(assetCache('/shots/umbra-01-1600.dac10524.avif')).toBe(IMMUTABLE);
+    expect(assetCache('/shots/link-archive-05-960.1331380b.webp')).toBe(IMMUTABLE);
+    for (const pathname of ['/shots/umbra-01-1600.avif', '/shots/../x.avif', '/shots/umbra-01-1600.dac10524.png', '/shots/umbra-1600.dac10524.avif']) expect(assetCache(pathname), pathname).toBeNull();
+  });
 });

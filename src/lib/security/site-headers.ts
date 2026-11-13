@@ -6,6 +6,7 @@ export const IMMUTABLE = 'public, max-age=31536000, immutable';
 export const HTML_TYPE = 'text/html; charset=utf-8';
 const HASHED_ASSET = /^\/assets\/[\w.-]+-[\w-]{8,}\.(?:js|css|woff2|avif|webp|png|svg)$/;
 const HASHED_BACKDROP = /^\/backdrops\/(?:range|peak)-(?:1280|2400)\.[0-9a-f]{8}\.(?:avif|webp)$/;
+const HASHED_SHOT = /^\/shots\/[a-z][a-z0-9-]*-\d{2}-\d{2,4}\.[0-9a-f]{8}\.(?:avif|webp)$/;
 
 type Options = { dev: boolean; nonce?: string };
 
@@ -19,5 +20,5 @@ export function withSiteHeaders(response: Response, options: Options): Response 
 }
 
 export function assetCache(pathname: string): string | null {
-  return HASHED_ASSET.test(pathname) || HASHED_BACKDROP.test(pathname) ? IMMUTABLE : null;
+  return [HASHED_ASSET, HASHED_BACKDROP, HASHED_SHOT].some((pattern) => pattern.test(pathname)) ? IMMUTABLE : null;
 }

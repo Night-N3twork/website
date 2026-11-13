@@ -1,0 +1,434 @@
+{
+  "daylight": [
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/daylight-01-960.914a49e2.avif",
+          "webp": "/shots/daylight-01-960.6a7599d2.webp"
+        },
+        "1600": {
+          "avif": "/shots/daylight-01-1600.9c5b7fc0.avif",
+          "webp": "/shots/daylight-01-1600.db4d14d8.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/daylight-02-960.646b0611.avif",
+          "webp": "/shots/daylight-02-960.a0126e3f.webp"
+        },
+        "1600": {
+          "avif": "/shots/daylight-02-1600.47ddd92f.avif",
+          "webp": "/shots/daylight-02-1600.85143769.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/daylight-03-960.ff957fe6.avif",
+          "webp": "/shots/daylight-03-960.2dfaea86.webp"
+        },
+        "1600": {
+          "avif": "/shots/daylight-03-1600.f51cec5e.avif",
+          "webp": "/shots/daylight-03-1600.c31fe2ae.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/daylight-04-960.dad96e8b.avif",
+          "webp": "/shots/daylight-04-960.aa21d8e6.webp"
+        },
+        "1600": {
+          "avif": "/shots/daylight-04-1600.15ae3f5e.avif",
+          "webp": "/shots/daylight-04-1600.8a4caf38.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/daylight-05-960.929c0b83.avif",
+          "webp": "/shots/daylight-05-960.37497116.webp"
+        },
+        "1600": {
+          "avif": "/shots/daylight-05-1600.accfecb7.avif",
+          "webp": "/shots/daylight-05-1600.dea3458a.webp"
+        }
+      }
+    }
+  ],
+  "ddx": [
+    {
+      "width": 1493,
+      "height": 933,
+      "files": {
+        "960": {
+          "avif": "/shots/ddx-01-960.4f3ee38f.avif",
+          "webp": "/shots/ddx-01-960.4ae4f877.webp"
+        },
+        "1493": {
+          "avif": "/shots/ddx-01-1493.5a5f7437.avif",
+          "webp": "/shots/ddx-01-1493.9d70432f.webp"
+        }
+      }
+    },
+    {
+      "width": 1493,
+      "height": 933,
+      "files": {
+        "960": {
+          "avif": "/shots/ddx-02-960.e97cda2f.avif",
+          "webp": "/shots/ddx-02-960.e726dd05.webp"
+        },
+        "1493": {
+          "avif": "/shots/ddx-02-1493.d70eb785.avif",
+          "webp": "/shots/ddx-02-1493.8667bbb8.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/ddx-03-960.02f826cb.avif",
+          "webp": "/shots/ddx-03-960.6a080d79.webp"
+        },
+        "1600": {
+          "avif": "/shots/ddx-03-1600.f9523e9f.avif",
+          "webp": "/shots/ddx-03-1600.3973e9bd.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/ddx-04-960.67355abc.avif",
+          "webp": "/shots/ddx-04-960.23d55d23.webp"
+        },
+        "1600": {
+          "avif": "/shots/ddx-04-1600.d00ee4d6.avif",
+          "webp": "/shots/ddx-04-1600.79709df3.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/ddx-05-960.1091a4f9.avif",
+          "webp": "/shots/ddx-05-960.9e0a1f0b.webp"
+        },
+        "1600": {
+          "avif": "/shots/ddx-05-1600.53ff2085.avif",
+          "webp": "/shots/ddx-05-1600.db248035.webp"
+        }
+      }
+    }
+  ],
+  "lunar": [
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/lunar-01-960.e3cd6179.avif",
+          "webp": "/shots/lunar-01-960.87e9ebf1.webp"
+        },
+        "1600": {
+          "avif": "/shots/lunar-01-1600.64b2c9a3.avif",
+          "webp": "/shots/lunar-01-1600.6a2072b7.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/lunar-02-960.41e808b1.avif",
+          "webp": "/shots/lunar-02-960.e2aea931.webp"
+        },
+        "1600": {
+          "avif": "/shots/lunar-02-1600.2309c69e.avif",
+          "webp": "/shots/lunar-02-1600.b7313817.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/lunar-03-960.59aab3de.avif",
+          "webp": "/shots/lunar-03-960.38c56008.webp"
+        },
+        "1600": {
+          "avif": "/shots/lunar-03-1600.cd15775a.avif",
+          "webp": "/shots/lunar-03-1600.b6d15406.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/lunar-04-960.ab901a12.avif",
+          "webp": "/shots/lunar-04-960.081c11fd.webp"
+        },
+        "1600": {
+          "avif": "/shots/lunar-04-1600.80158d38.avif",
+          "webp": "/shots/lunar-04-1600.21f66a64.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/lunar-05-960.41eae98e.avif",
+          "webp": "/shots/lunar-05-960.9295b58b.webp"
+        },
+        "1600": {
+          "avif": "/shots/lunar-05-1600.2022990b.avif",
+          "webp": "/shots/lunar-05-1600.2e2de771.webp"
+        }
+      }
+    }
+  ],
+  "nyxai": [
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/nyxai-01-960.c22d0f57.avif",
+          "webp": "/shots/nyxai-01-960.c5c78bf2.webp"
+        },
+        "1600": {
+          "avif": "/shots/nyxai-01-1600.709d0e90.avif",
+          "webp": "/shots/nyxai-01-1600.6e78b281.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/nyxai-02-960.3a787558.avif",
+          "webp": "/shots/nyxai-02-960.961ac9aa.webp"
+        },
+        "1600": {
+          "avif": "/shots/nyxai-02-1600.4ef37550.avif",
+          "webp": "/shots/nyxai-02-1600.a48cc74a.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/nyxai-03-960.67b41bec.avif",
+          "webp": "/shots/nyxai-03-960.085e2462.webp"
+        },
+        "1600": {
+          "avif": "/shots/nyxai-03-1600.4c00c378.avif",
+          "webp": "/shots/nyxai-03-1600.e465e5e0.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/nyxai-04-960.1b065bdb.avif",
+          "webp": "/shots/nyxai-04-960.d18060a4.webp"
+        },
+        "1600": {
+          "avif": "/shots/nyxai-04-1600.b85771a3.avif",
+          "webp": "/shots/nyxai-04-1600.c24a93c1.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/nyxai-05-960.dfc8fc54.avif",
+          "webp": "/shots/nyxai-05-960.29a2ed32.webp"
+        },
+        "1600": {
+          "avif": "/shots/nyxai-05-1600.ce4d58c1.avif",
+          "webp": "/shots/nyxai-05-1600.97546459.webp"
+        }
+      }
+    }
+  ],
+  "space": [
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/space-01-960.4c73ec60.avif",
+          "webp": "/shots/space-01-960.927ca757.webp"
+        },
+        "1600": {
+          "avif": "/shots/space-01-1600.e3be9680.avif",
+          "webp": "/shots/space-01-1600.c2b1f0ac.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/space-02-960.ff7f5cad.avif",
+          "webp": "/shots/space-02-960.d33acc10.webp"
+        },
+        "1600": {
+          "avif": "/shots/space-02-1600.6ae55ea1.avif",
+          "webp": "/shots/space-02-1600.fb3b54f7.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/space-03-960.86c0c84f.avif",
+          "webp": "/shots/space-03-960.fe9c6b24.webp"
+        },
+        "1600": {
+          "avif": "/shots/space-03-1600.c6564370.avif",
+          "webp": "/shots/space-03-1600.3448bd13.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/space-04-960.da67b410.avif",
+          "webp": "/shots/space-04-960.59355ddc.webp"
+        },
+        "1600": {
+          "avif": "/shots/space-04-1600.c907a875.avif",
+          "webp": "/shots/space-04-1600.d529c228.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/space-05-960.6f6c9a47.avif",
+          "webp": "/shots/space-05-960.e7cb5091.webp"
+        },
+        "1600": {
+          "avif": "/shots/space-05-1600.1582eb00.avif",
+          "webp": "/shots/space-05-1600.94dd4696.webp"
+        }
+      }
+    }
+  ],
+  "umbra": [
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/umbra-01-960.f700a51c.avif",
+          "webp": "/shots/umbra-01-960.8674eca0.webp"
+        },
+        "1600": {
+          "avif": "/shots/umbra-01-1600.90b0aa97.avif",
+          "webp": "/shots/umbra-01-1600.31aab6e1.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/umbra-02-960.cac75dff.avif",
+          "webp": "/shots/umbra-02-960.74880b79.webp"
+        },
+        "1600": {
+          "avif": "/shots/umbra-02-1600.fbc227c3.avif",
+          "webp": "/shots/umbra-02-1600.3f1e6398.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/umbra-03-960.3e99ab34.avif",
+          "webp": "/shots/umbra-03-960.51216c20.webp"
+        },
+        "1600": {
+          "avif": "/shots/umbra-03-1600.e6988655.avif",
+          "webp": "/shots/umbra-03-1600.08b6cd8c.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/umbra-04-960.eac9ec7a.avif",
+          "webp": "/shots/umbra-04-960.b2af8ea3.webp"
+        },
+        "1600": {
+          "avif": "/shots/umbra-04-1600.cf3b55b8.avif",
+          "webp": "/shots/umbra-04-1600.fd18be13.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/umbra-05-960.b1008b7e.avif",
+          "webp": "/shots/umbra-05-960.1ffeaf03.webp"
+        },
+        "1600": {
+          "avif": "/shots/umbra-05-1600.5fe4efa5.avif",
+          "webp": "/shots/umbra-05-1600.0b17d1a0.webp"
+        }
+      }
+    }
+  ]
+}

@@ -1,7 +1,9 @@
 import type { Stage } from '@/content/projects';
+import type { ShotImage } from '@/content/shots';
 import type { StatusMonitor } from '@/lib/data/status-poll';
 import { TransitionLink } from '@/navigation/TransitionLink';
 import { Button, Chevron, Chip, Glare, pad, Row, type RowItem, Section } from '../parts';
+import { Gallery, type GalleryCopy } from './Gallery';
 import { type StatusCopy, StatusPanel } from './StatusPanel';
 
 export interface DetailAction {
@@ -32,6 +34,7 @@ interface ProjectDetailProps {
   locale: string;
   monitorId: number | null;
   monitor: StatusMonitor | null;
+  gallery: { copy: GalleryCopy; images: ShotImage[] };
 }
 
 function Sep() {
@@ -122,11 +125,12 @@ function Related({ title, items, stages }: { title: string; items: RowItem[]; st
   );
 }
 
-export function ProjectDetail({ copy, locale, monitorId, monitor }: ProjectDetailProps) {
+export function ProjectDetail({ copy, locale, monitorId, monitor, gallery }: ProjectDetailProps) {
   const hasFeatures = copy.features.length > 0;
   return (
     <>
       <Intro copy={copy} />
+      <Gallery copy={gallery.copy} images={gallery.images} />
       <Section frame="list" side="left">
         <div className={hasFeatures ? 'detail-body' : 'detail-body is-solo'}>
           {hasFeatures ? <Features title={copy.featuresTitle} features={copy.features} /> : null}

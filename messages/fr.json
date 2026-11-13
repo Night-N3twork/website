@@ -31,6 +31,12 @@
     "lede": "L’essentiel de ce que nous faisons peut tourner dans le navigateur.",
     "open": "Ouvrir {name}",
     "all": "Tous les projets",
+    "shots": {
+      "label": "Captures d’écran",
+      "prev": "Capture précédente",
+      "next": "Capture suivante",
+      "alt": "{name}, capture {n} sur {total}"
+    },
     "related": "Voir aussi",
     "source": "Code source",
     "npm": "Paquet npm",

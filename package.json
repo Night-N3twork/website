@@ -18,6 +18,7 @@
     "upstream": "node tests/e2e/upstream.mjs",
     "lighthouse": "node scripts/lighthouse.mjs",
     "partners": "node scripts/partner-logos.mjs",
+    "shots": "node scripts/project-shots.mjs",
     "og:scene": "node scripts/og-scene.mjs",
     "e2e:peak": "GLASS_BACKDROP=peak playwright test visual.spec.ts a11y.spec.ts"
   },

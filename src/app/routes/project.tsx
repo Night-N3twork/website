@@ -1,5 +1,6 @@
 import type { MetaDescriptor } from 'react-router';
 import { getProject, type Project, type Stage } from '@/content/projects';
+import { shotsOf } from '@/content/shots';
 import type { Locale } from '@/i18n/locales';
 import { type Translate, translator } from '@/i18n/translate';
 import { projectMonitor } from '@/lib/data/status';
@@ -8,12 +9,25 @@ import { relatedProjects } from '@/lib/projects/related';
 import { headModel, shareImage } from '@/lib/seo/head';
 import { breadcrumbJsonLd, softwareApplicationJsonLd } from '@/lib/seo/jsonld';
 import { RouteError } from '@/ui/glass/Lost';
+import type { GalleryCopy } from '@/ui/glass/projects/Gallery';
 import { type DetailAction, type DetailCopy, ProjectDetail } from '@/ui/glass/projects/ProjectDetail';
+import shotsPath from '@/styles/glass/shots.css?url';
 import { headMeta, jsonLd, lostMeta, rootLost } from '../head';
 import { localeOf, pagePath } from '../locale';
 import type { Route } from './+types/project';
 
 const STAGES: Stage[] = ['live', 'beta', 'building', 'planned'];
+
+export const links: Route.LinksFunction = () => [{ rel: 'stylesheet', href: shotsPath }];
+
+function galleryCopy(project: Project, total: number, t: Translate): GalleryCopy {
+  return {
+    label: t('projects.shots.label'),
+    prev: t('projects.shots.prev'),
+    next: t('projects.shots.next'),
+    alts: Array.from({ length: total }, (_, i) => t('projects.shots.alt', { name: project.name, n: i + 1, total })),
+  };
+}
 
 function actions(project: Project, t: Translate): DetailAction[] {
   const links: (DetailAction | null)[] = [
@@ -69,9 +83,11 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   if (!project) throw new Response(null, { status: 404, statusText: 'Not Found' });
   const [t, monitor] = await Promise.all([translator(locale), liveMonitor(project.slug)]);
   const copy = detailCopy(project, t);
+  const images = shotsOf(project.slug);
   return {
     locale,
     copy,
+    gallery: { copy: galleryCopy(project, images.length, t), images },
     monitorId: project.monitorId,
     monitor,
     seo: headModel({ locale, path: pagePath(request), title: project.name, description: copy.line, image: shareImage(locale, project.slug, `${project.name}: ${copy.line}`) }),
@@ -95,8 +111,8 @@ export const meta: Route.MetaFunction = ({ loaderData, matches, params, error })
 };
 
 export default function ProjectRoute({ loaderData }: Route.ComponentProps) {
-  const { copy, locale, monitorId, monitor } = loaderData;
-  return <ProjectDetail copy={copy} locale={locale} monitorId={monitorId} monitor={monitor} />;
+  const { copy, locale, monitorId, monitor, gallery } = loaderData;
+  return <ProjectDetail copy={copy} locale={locale} monitorId={monitorId} monitor={monitor} gallery={gallery} />;
 }
 
 export const ErrorBoundary = RouteError;

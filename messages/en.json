@@ -31,6 +31,12 @@
     "lede": "Most of what we do can run inside the browser.",
     "open": "Open {name}",
     "all": "All projects",
+    "shots": {
+      "label": "Screenshots",
+      "prev": "Previous screenshot",
+      "next": "Next screenshot",
+      "alt": "{name}, screenshot {n} of {total}"
+    },
     "related": "Related",
     "source": "Source",
     "npm": "npm package",
