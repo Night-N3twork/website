@@ -7,6 +7,7 @@
   "nav": {
     "home": "Accueil",
     "projects": "Projets",
+    "docs": "Docs",
     "contributors": "Contributeurs",
     "supporters": "Soutiens",
     "community": "Communauté",
@@ -308,6 +309,18 @@
     "partners": "Partenaires et sous-organisations",
     "conduct": "Code de conduite",
     "conductLink": "Utilisation acceptable"
+  },
+  "docs": {
+    "docs": "Docs",
+    "browse": "Parcourir la documentation",
+    "contents": "Sur cette page",
+    "pager": "Page précédente et suivante",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "copy": "Copier",
+    "copied": "Copié",
+    "copyFailed": "Échec de la copie",
+    "notice": "Cette documentation est rédigée en anglais."
   },
   "notFound": {
     "meta": "Page introuvable",

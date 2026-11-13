@@ -7,6 +7,7 @@
   "nav": {
     "home": "Home",
     "projects": "Projects",
+    "docs": "Docs",
     "contributors": "Contributors",
     "supporters": "Supporters",
     "community": "Community",
@@ -519,6 +520,18 @@
     "conductPending": "shit is lowk filler lmfao",
     "conductText": "The rules for using Night Network's tools and infrastructure are in the terms.",
     "conductLink": "Acceptable use"
+  },
+  "docs": {
+    "docs": "Docs",
+    "browse": "Browse the docs",
+    "contents": "On this page",
+    "pager": "Previous and next page",
+    "previous": "Previous",
+    "next": "Next",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyFailed": "Copy failed",
+    "notice": "These docs are in English."
   },
   "notFound": {
     "meta": "Page not found",

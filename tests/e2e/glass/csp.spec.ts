@@ -1,6 +1,6 @@
 import { expect, type Page, test } from '@playwright/test';
 
-const PAGES = ['/', '/projects', '/projects/link-archive', '/community', '/contributors', '/supporters', '/privacy', '/terms', '/requests', '/nope'];
+const PAGES = ['/', '/projects', '/projects/link-archive', '/community', '/contributors', '/supporters', '/privacy', '/terms', '/requests', '/docs', '/docs/dusk/installation', '/nope'];
 const GA_ORIGIN = 'http://localhost:3002';
 
 function monitorViolations(page: Page): () => Promise<unknown[]> {

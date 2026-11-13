@@ -1,11 +1,12 @@
 import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react';
 import { configDefaults, defineConfig } from 'vitest/config';
+import { docsMdx } from './src/lib/docs/mdx-plugin.ts';
 
 const NODE_TESTS = 'tests/unit/**/*.node.test.ts';
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [docsMdx(fileURLToPath(new URL('./src/content/docs', import.meta.url))), react()],
   test: {
     pool: 'vmThreads',
     coverage: {

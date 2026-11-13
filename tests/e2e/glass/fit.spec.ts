@@ -1,7 +1,7 @@
 import { expect, type Page, test } from '@playwright/test';
 import { padText } from './pseudo';
 
-const PAGES = ['/', '/projects', '/projects/link-archive', '/community', '/contributors', '/supporters', '/privacy', '/terms', '/requests', '/nope'];
+const PAGES = ['/', '/projects', '/projects/link-archive', '/community', '/contributors', '/supporters', '/privacy', '/terms', '/requests', '/docs', '/docs/services/daydream/configuration', '/nope'];
 const WIDTHS = [320, 375, 768, 1024, 1440, 1920];
 const FOOT_WIDTHS = [761, 800, 900, 901, 1000, 1023, 1024];
 const FOOT_LOCALES = ['', '/es', '/fr', '/ja'];

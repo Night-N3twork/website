@@ -18,5 +18,6 @@ export default [
   route(':locale?/privacy', 'routes/privacy.tsx', { id: 'privacy' }),
   route(':locale?/terms', 'routes/terms.tsx', { id: 'terms' }),
   route(':locale?/requests', 'routes/requests.tsx', { id: 'requests' }),
+  route(':locale?/docs/*', 'routes/docs.tsx', { id: 'docs' }),
   route('*', 'routes/lost.tsx', { id: 'lost' }),
 ] satisfies RouteConfig;

@@ -4,15 +4,17 @@ import { siteChrome } from '@/app/chrome';
 import { languageLinks } from '@/i18n/languages';
 
 describe('siteChrome', () => {
-  it('lists the four destinations with localized paths and labels', async () => {
+  it('lists the five destinations with localized paths and labels', async () => {
     const chrome = await siteChrome('es', 2026, { stage: 'held', analytics: false });
     expect(chrome.nav.map((n) => [n.key, n.path])).toEqual([
       ['projects', '/projects'],
+      ['docs', '/docs'],
       ['contributors', '/contributors'],
       ['supporters', '/supporters'],
       ['community', '/community'],
     ]);
     expect(chrome.nav[0].label).toBe(es.nav.projects);
+    expect(chrome.nav[1].label).toBe(es.nav.docs);
   });
 
   it('links each language to the same page and marks the current one', () => {

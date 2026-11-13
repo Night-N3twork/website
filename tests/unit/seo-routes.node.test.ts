@@ -3,6 +3,7 @@ import en from '../../messages/en.json';
 import { LOCALES } from '@/i18n/locales';
 import { pagePaths } from '@/lib/seo/paths';
 import { PAGE_PATHS, sitemapXml } from '@/lib/seo/routes';
+import { DOC_PATHS } from '@/app/docs.server';
 import { loader as manifestLoader } from '@/app/routes/manifest';
 import { loader as robotsLoader } from '@/app/routes/robots';
 import { loader as sitemapLoader } from '@/app/routes/sitemap';
@@ -31,10 +32,27 @@ describe('sitemap.xml', () => {
     const body = await response.text();
     expect(body.startsWith('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n<url>')).toBe(true);
     expect(body.endsWith('</url>\n</urlset>\n')).toBe(true);
-    expect(body.match(/<url>/g)).toHaveLength(PAGE_PATHS.length * LOCALES.length);
+    expect(body.match(/<url>/g)).toHaveLength(PAGE_PATHS.length * LOCALES.length + DOC_PATHS.length);
     expect(body).toContain(HOME_ENTRY);
     expect(body).toMatch(/<loc>https:\/\/night-x\.com\/es\/projects\/umbra<\/loc>\n(?:<xhtml:link [^\n]+\n){5}<changefreq>monthly<\/changefreq>\n<priority>0\.8<\/priority>/);
     expect(body).toMatch(/<loc>https:\/\/night-x\.com\/ja\/community<\/loc>\n(?:<xhtml:link [^\n]+\n){5}<changefreq>monthly<\/changefreq>\n<priority>0\.6<\/priority>/);
+  });
+});
+
+describe('docs in the sitemap', () => {
+  it('lists each docs page once, in English, without alternates', () => {
+    const body = sitemapXml([], ['/docs', '/docs/dusk']);
+    expect(body).toContain('<url>\n<loc>https://night-x.com/docs</loc>\n<changefreq>monthly</changefreq>\n<priority>0.5</priority>\n</url>\n');
+    expect(body).toContain('<url>\n<loc>https://night-x.com/docs/dusk</loc>\n<changefreq>monthly</changefreq>\n<priority>0.5</priority>\n</url>\n');
+    expect(body).not.toContain('/ja/docs');
+    expect(body.match(/<url>/g)).toHaveLength(2);
+  });
+
+  it('serves the published docs and leaves drafts out', async () => {
+    const body = await (await sitemapRoute()).text();
+    expect(DOC_PATHS).toContain('/docs/dusk/dpm/registry');
+    expect(body).toContain('<loc>https://night-x.com/docs/dusk/dpm/registry</loc>');
+    expect(body).not.toContain('/docs/eclipse');
   });
 });
 

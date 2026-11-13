@@ -7,6 +7,7 @@
   "nav": {
     "home": "Inicio",
     "projects": "Proyectos",
+    "docs": "Docs",
     "contributors": "Colaboradores",
     "supporters": "Mecenas",
     "community": "Comunidad",
@@ -308,6 +309,18 @@
     "partners": "Socios y suborganizaciones",
     "conduct": "Código de conducta",
     "conductLink": "Uso aceptable"
+  },
+  "docs": {
+    "docs": "Docs",
+    "browse": "Explorar la documentación",
+    "contents": "En esta página",
+    "pager": "Página anterior y siguiente",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "copyFailed": "No se pudo copiar",
+    "notice": "Esta documentación está en inglés."
   },
   "notFound": {
     "meta": "Página no encontrada",

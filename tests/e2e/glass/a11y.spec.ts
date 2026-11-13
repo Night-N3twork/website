@@ -4,7 +4,8 @@ import { rgbContrast } from '../../../src/lib/color/contrast';
 import { backdropContrast, type Reading } from './backdrop-contrast';
 
 const LEGAL = ['/privacy', '/terms', '/requests'];
-const PAGES = ['/', '/projects', '/projects/link-archive', '/community', '/contributors', '/supporters', ...LEGAL, '/nope'];
+const DOCS = ['/docs', '/docs/services/daydream/configuration', '/ja/docs/dusk'];
+const PAGES = ['/', '/projects', '/projects/link-archive', '/community', '/contributors', '/supporters', ...LEGAL, ...DOCS, '/nope'];
 const GA_ORIGIN = 'http://localhost:3002';
 const GRAPH = 'svg.legal-graph';
 const LEGAL_INK = [

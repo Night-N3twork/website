@@ -54,6 +54,7 @@ export interface Chrome {
 
 const NAV: readonly { key: string; path: InternalPath }[] = [
   { key: 'projects', path: '/projects' },
+  { key: 'docs', path: '/docs' },
   { key: 'contributors', path: '/contributors' },
   { key: 'supporters', path: '/supporters' },
   { key: 'community', path: '/community' },

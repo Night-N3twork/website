@@ -1,6 +1,6 @@
 import { DEFAULT_LOCALE, isLocale, type Locale } from './locales';
 
-export type InternalPath = '/' | '/projects' | '/contributors' | '/supporters' | '/community' | '/privacy' | '/terms' | '/requests' | `/projects/${string}`;
+export type InternalPath = '/' | '/projects' | '/contributors' | '/supporters' | '/community' | '/privacy' | '/terms' | '/requests' | '/docs' | `/projects/${string}` | `/docs/${string}`;
 
 export type LocalePath = { locale: Locale; path: string; prefix: string | null };
 

@@ -7,6 +7,7 @@
   "nav": {
     "home": "ホーム",
     "projects": "プロジェクト",
+    "docs": "ドキュメント",
     "contributors": "コントリビューター",
     "supporters": "サポーター",
     "community": "コミュニティ",
@@ -308,6 +309,18 @@
     "partners": "パートナーと関連団体",
     "conduct": "行動規範",
     "conductLink": "利用規定"
+  },
+  "docs": {
+    "docs": "ドキュメント",
+    "browse": "ドキュメントを見る",
+    "contents": "このページの内容",
+    "pager": "前後のページ",
+    "previous": "前へ",
+    "next": "次へ",
+    "copy": "コピー",
+    "copied": "コピーしました",
+    "copyFailed": "コピーできませんでした",
+    "notice": "このドキュメントは英語で書かれています。"
   },
   "notFound": {
     "meta": "ページが見つかりません",
