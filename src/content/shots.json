@@ -73,30 +73,16 @@
   ],
   "ddx": [
     {
-      "width": 1493,
-      "height": 933,
+      "width": 1600,
+      "height": 1000,
       "files": {
         "960": {
-          "avif": "/shots/ddx-01-960.4f3ee38f.avif",
-          "webp": "/shots/ddx-01-960.4ae4f877.webp"
+          "avif": "/shots/ddx-01-960.a7f3ffe2.avif",
+          "webp": "/shots/ddx-01-960.0b362c3b.webp"
         },
-        "1493": {
-          "avif": "/shots/ddx-01-1493.5a5f7437.avif",
-          "webp": "/shots/ddx-01-1493.9d70432f.webp"
-        }
-      }
-    },
-    {
-      "width": 1493,
-      "height": 933,
-      "files": {
-        "960": {
-          "avif": "/shots/ddx-02-960.e97cda2f.avif",
-          "webp": "/shots/ddx-02-960.e726dd05.webp"
-        },
-        "1493": {
-          "avif": "/shots/ddx-02-1493.d70eb785.avif",
-          "webp": "/shots/ddx-02-1493.8667bbb8.webp"
+        "1600": {
+          "avif": "/shots/ddx-01-1600.402747c8.avif",
+          "webp": "/shots/ddx-01-1600.994c4671.webp"
         }
       }
     },
@@ -105,12 +91,12 @@
       "height": 1000,
       "files": {
         "960": {
-          "avif": "/shots/ddx-03-960.02f826cb.avif",
-          "webp": "/shots/ddx-03-960.6a080d79.webp"
+          "avif": "/shots/ddx-02-960.9ccbbeeb.avif",
+          "webp": "/shots/ddx-02-960.6daf3d01.webp"
         },
         "1600": {
-          "avif": "/shots/ddx-03-1600.f9523e9f.avif",
-          "webp": "/shots/ddx-03-1600.3973e9bd.webp"
+          "avif": "/shots/ddx-02-1600.92a416ab.avif",
+          "webp": "/shots/ddx-02-1600.1619cba0.webp"
         }
       }
     },
@@ -119,12 +105,12 @@
       "height": 1000,
       "files": {
         "960": {
-          "avif": "/shots/ddx-04-960.67355abc.avif",
-          "webp": "/shots/ddx-04-960.23d55d23.webp"
+          "avif": "/shots/ddx-03-960.a74e10d8.avif",
+          "webp": "/shots/ddx-03-960.5442d8ae.webp"
         },
         "1600": {
-          "avif": "/shots/ddx-04-1600.d00ee4d6.avif",
-          "webp": "/shots/ddx-04-1600.79709df3.webp"
+          "avif": "/shots/ddx-03-1600.45ebeb69.avif",
+          "webp": "/shots/ddx-03-1600.8af2fcaf.webp"
         }
       }
     },
@@ -133,12 +119,26 @@
       "height": 1000,
       "files": {
         "960": {
-          "avif": "/shots/ddx-05-960.1091a4f9.avif",
-          "webp": "/shots/ddx-05-960.9e0a1f0b.webp"
+          "avif": "/shots/ddx-04-960.c979f8c3.avif",
+          "webp": "/shots/ddx-04-960.a67f3c4e.webp"
         },
         "1600": {
-          "avif": "/shots/ddx-05-1600.53ff2085.avif",
-          "webp": "/shots/ddx-05-1600.db248035.webp"
+          "avif": "/shots/ddx-04-1600.f3cc46fe.avif",
+          "webp": "/shots/ddx-04-1600.c0556424.webp"
+        }
+      }
+    },
+    {
+      "width": 1600,
+      "height": 1000,
+      "files": {
+        "960": {
+          "avif": "/shots/ddx-05-960.32d936cc.avif",
+          "webp": "/shots/ddx-05-960.c8e7c3fa.webp"
+        },
+        "1600": {
+          "avif": "/shots/ddx-05-1600.0b6f4c56.avif",
+          "webp": "/shots/ddx-05-1600.d2e8a942.webp"
         }
       }
     }

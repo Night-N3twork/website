@@ -54,7 +54,7 @@ function Intro({ copy }: { copy: DetailCopy }) {
           <span>{copy.back}</span>
         </TransitionLink>
         <p className="detail-meta" data-intro="">
-          <Chip stage={copy.stage} label={copy.stageLabel} />
+          <Chip stage={copy.stage} label={copy.stageLabel} slug={copy.slug} />
           <Sep />
           <span>{copy.group}</span>
           {copy.partner ? <Sep /> : null}

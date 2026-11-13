@@ -57,6 +57,7 @@ function detailCopy(project: Project, t: Translate): DetailCopy {
     features: (t.raw(`projects.items.${project.slug}.features`) as string[] | undefined) ?? [],
     status: {
       title: t('projects.sections.status'),
+      slug: project.slug,
       stage: project.stage,
       stageLabel: stages[project.stage],
       group,
@@ -65,6 +66,7 @@ function detailCopy(project: Project, t: Translate): DetailCopy {
       up: t('projects.status.up'),
       down: t('projects.status.down'),
       checked: t.raw('projects.status.checked') as string,
+      released: t.raw('projects.status.released') as string,
     },
     relatedTitle: t('projects.related'),
     related: relatedProjects(project.slug).map((p) => ({ slug: p.slug, name: p.name, stage: p.stage, line: t(`projects.items.${p.slug}.line`) })),

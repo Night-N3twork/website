@@ -206,7 +206,8 @@
     "status": {
       "up": "Up and running",
       "down": "Down right now",
-      "checked": "Last checked {time}"
+      "checked": "Last checked {time}",
+      "released": "Released {date}"
     }
   },
   "roles": {

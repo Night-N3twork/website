@@ -206,7 +206,8 @@
     "status": {
       "up": "Opérationnel",
       "down": "Hors service en ce moment",
-      "checked": "Dernière vérification à {time}"
+      "checked": "Dernière vérification à {time}",
+      "released": "Publié le {date}"
     }
   },
   "roles": {

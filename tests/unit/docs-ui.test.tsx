@@ -9,7 +9,8 @@ import { DocsPager } from '@/ui/glass/docs/DocsPager';
 import { DocsLabelsContext } from '@/ui/glass/docs/labels';
 import { MDX_COMPONENTS } from '@/ui/glass/docs/mdx';
 
-vi.mock('@/motion/core', () => ({ glide: vi.fn() }));
+const { setSmoothWheel } = vi.hoisted(() => ({ setSmoothWheel: vi.fn() }));
+vi.mock('@/motion/core', () => ({ glide: vi.fn(), setSmoothWheel }));
 
 const LABELS: DocsLabels = { docs: 'Docs', browse: 'Browse the docs', contents: 'On this page', pager: 'Previous and next page', previous: 'Previous', next: 'Next', copy: 'Copy', copied: 'Copied', copyFailed: 'Copy failed', lang: 'en', notice: null };
 
@@ -39,6 +40,14 @@ afterEach(() => {
 });
 
 describe('DocsNav', () => {
+  it('scrolls the docs natively while mounted so the page and the index move alike', () => {
+    setSmoothWheel.mockClear();
+    const view = mount(<DocsNav nodes={NAV} current="dusk" label={LABELS.browse} />);
+    expect(setSmoothWheel).toHaveBeenLastCalledWith(false);
+    view.unmount();
+    expect(setSmoothWheel).toHaveBeenLastCalledWith(true);
+  });
+
   it('marks the current page and opens only the folds that hold it', () => {
     mount(<DocsNav nodes={NAV} current="dusk/installation" label={LABELS.browse} />);
     expect(screen.getByRole('link', { name: 'Installation' })).toHaveAttribute('aria-current', 'page');

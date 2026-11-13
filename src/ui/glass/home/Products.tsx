@@ -39,7 +39,7 @@ export function Products({ copy, stages }: { copy: ProductsCopy; stages: StageLa
                     <div key={item.slug} className="deck-slide" data-index={i} hidden={i > 0}>
                       <h3 className="deck-name">{item.name}</h3>
                       <p className="deck-line">{item.line}</p>
-                      <Chip stage={item.stage} label={stages[item.stage]} />
+                      <Chip stage={item.stage} label={stages[item.stage]} slug={item.slug} />
                     </div>
                   ))}
                 </div>

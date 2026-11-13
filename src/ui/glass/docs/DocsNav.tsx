@@ -1,6 +1,7 @@
-import { useId, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { docPath } from '@/lib/docs/paths';
 import { groupHolds, type NavGroup, type NavNode } from '@/lib/docs/sidebar';
+import { setSmoothWheel } from '@/motion/core';
 import { TransitionLink } from '@/navigation/TransitionLink';
 
 interface NavProps {
@@ -62,6 +63,10 @@ export function DocsNav({ nodes, current, label }: NavProps & { label: string })
   useLayoutEffect(() => {
     if (side.current) revealCurrent(side.current);
   }, [current]);
+  useEffect(() => {
+    setSmoothWheel(false);
+    return () => setSmoothWheel(true);
+  }, []);
   return (
     <div className="docs-side" ref={side} data-open={open} data-lenis-prevent="">
       <button type="button" className="docs-side-toggle" aria-expanded={open} aria-controls="docs-nav" onClick={() => setOpen((was) => !was)}>

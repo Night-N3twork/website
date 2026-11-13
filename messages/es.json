@@ -206,7 +206,8 @@
     "status": {
       "up": "Funcionando",
       "down": "Caído ahora mismo",
-      "checked": "Última comprobación: {time}"
+      "checked": "Última comprobación: {time}",
+      "released": "Publicado el {date}"
     }
   },
   "roles": {

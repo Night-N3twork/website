@@ -206,7 +206,8 @@
     "status": {
       "up": "正常に稼働中",
       "down": "現在停止中",
-      "checked": "最終確認 {time}"
+      "checked": "最終確認 {time}",
+      "released": "{date} リリース"
     }
   },
   "roles": {

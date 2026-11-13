@@ -45,7 +45,7 @@ function Slide({ slide, stage, eager }: { slide: ShotSlide; stage: string; eager
         <span className="shot-cap">
           <span className="shot-num">{pad(slide.n)}</span>{' '}
           <span className="shot-name">{slide.name}</span>{' '}
-          <Chip stage={slide.stage} label={stage} />{' '}
+          <Chip stage={slide.stage} label={stage} slug={slide.slug} />{' '}
           <span className="shot-line">{slide.line}</span>
           <Chevron />
         </span>

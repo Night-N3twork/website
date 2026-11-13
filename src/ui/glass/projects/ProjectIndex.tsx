@@ -30,7 +30,7 @@ function Row({ item, n, stages }: { item: IndexItem; n: number; stages: Record<S
         <span className="index-num">{pad(n)}</span>
         <span className="index-name">{item.name}</span>
         <span className="index-line">{item.line}</span>
-        <Chip stage={item.stage} label={stages[item.stage]} />
+        <Chip stage={item.stage} label={stages[item.stage]} slug={item.slug} />
         <Chevron />
       </TransitionLink>
     </li>

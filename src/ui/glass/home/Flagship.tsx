@@ -6,7 +6,7 @@ export function Flagship({ copy, stages }: { copy: FlagshipCopy; stages: StageLa
     <Section frame="flagship" side="left" aria-labelledby="dusk-heading">
       <div className="copy">
         <Eyebrow>
-          {copy.kicker} <Chip stage={copy.stage} label={stages[copy.stage]} />
+          {copy.kicker} <Chip stage={copy.stage} label={stages[copy.stage]} slug="dusk" />
         </Eyebrow>
         <h2 className="mega" id="dusk-heading" data-chars="">
           {copy.title}

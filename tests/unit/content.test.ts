@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import en from '../../messages/en.json';
 import { PARTNERS } from '@/content/partners';
 import { PRODUCT_ICONS } from '@/content/product-icons';
-import { getProject, MONITORED, PRODUCT_GROUPS, PROJECTS, projectsIn } from '@/content/projects';
+import { getProject, MONITORED, PRODUCT_GROUPS, PROJECTS, projectsIn, releaseOf } from '@/content/projects';
 import { ROLES } from '@/content/roles';
 import { SITE } from '@/content/site';
 
@@ -24,6 +24,26 @@ describe('PROJECTS', () => {
 
   it('maps Uptime Kuma monitor ids for the four monitored projects only', () => {
     expect(Object.fromEntries(MONITORED.map((p) => [p.slug, p.monitorId]))).toEqual({ 'link-archive': 16, ddx: 2, space: 1, lunar: 5 });
+  });
+
+  it('carries the npm release for each published package and none for the rest', () => {
+    expect(releaseOf('moonbeam')).toEqual({ version: '1.1.1', date: '2026-09-22' });
+    expect(releaseOf('nova')).toEqual({ version: '1.1.1', date: '2026-11-01' });
+    expect(PROJECTS.filter((p) => releaseOf(p.slug)).map((p) => p.slug)).toEqual(['dusk', 'moonbeam', 'moonscale', 'nova', 'dpm']);
+    expect(PROJECTS.filter((p) => p.npm).every((p) => releaseOf(p.slug))).toBe(true);
+    expect(releaseOf('ddx')).toBeUndefined();
+  });
+
+  it('calls every published npm package live', () => {
+    expect(PROJECTS.filter((p) => releaseOf(p.slug)).every((p) => p.stage === 'live')).toBe(true);
+  });
+
+  it('calls Solar live as the publicly addable bot', () => {
+    expect(getProject('solar')?.stage).toBe('live');
+  });
+
+  it('calls DayDreamX live', () => {
+    expect(getProject('ddx')?.stage).toBe('live');
   });
 
   it('only relates to existing slugs and never to itself', () => {
@@ -51,8 +71,8 @@ describe('PROJECTS', () => {
     expect(PROJECTS.filter((p) => p.partner).map((p) => p.slug)).toEqual(['lunar']);
   });
 
-  it('only calls monitored projects live', () => {
-    expect(PROJECTS.filter((p) => p.stage === 'live').every((p) => p.monitorId !== null)).toBe(true);
+  it('only calls a project live when it is monitored, published or addable', () => {
+    expect(PROJECTS.filter((p) => p.stage === 'live').every((p) => p.monitorId !== null || releaseOf(p.slug) || p.discordInvite)).toBe(true);
   });
 
   it('offers a Discord invite only for the publicly addable bot', () => {

@@ -405,6 +405,7 @@ main { position: relative; z-index: 10; }
 .chip[data-stage='live'] { color: var(--live); }
 .chip[data-stage='beta'] { color: var(--beta); }
 .chip[data-stage='planned'] { color: var(--text-faint); }
+.chip-version { margin-left: 0.9em; color: var(--text-dim); letter-spacing: 0.06em; text-transform: none; font-variant-numeric: tabular-nums; }
 
 .mega { margin-left: -0.04em; font-size: clamp(6rem, 2rem + 14vw, 15rem); font-weight: 500; line-height: 0.82; letter-spacing: -0.065em; perspective: 900px; }
 .mega-char { display: inline-block; }

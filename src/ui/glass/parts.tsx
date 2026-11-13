@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react';
-import type { Stage } from '@/content/projects';
+import { releaseOf, type Stage } from '@/content/projects';
 import { TransitionLink } from '@/navigation/TransitionLink';
 
 const MARK = { outer: 0.29, inner: 0.235, dx: 0.115, dy: -0.06, corner: 0.24 };
@@ -32,10 +32,12 @@ export function Chevron() {
   );
 }
 
-export function Chip({ stage, label }: { stage: Stage; label: string }) {
+export function Chip({ stage, label, slug }: { stage: Stage; label: string; slug?: string }) {
+  const release = slug ? releaseOf(slug) : undefined;
   return (
     <span className="chip" data-stage={stage}>
       {label}
+      {release ? <span className="chip-version">v{release.version}</span> : null}
     </span>
   );
 }
@@ -121,7 +123,7 @@ export function Row({ item, stage }: { item: RowItem; stage: string }) {
       <TransitionLink className="row" to={`/projects/${item.slug}`}>
         <span className="row-name">{item.name}</span>
         <span className="row-line">{item.line}</span>
-        <Chip stage={item.stage} label={stage} />
+        <Chip stage={item.stage} label={stage} slug={item.slug} />
         <Chevron />
       </TransitionLink>
     </li>

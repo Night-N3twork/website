@@ -8,6 +8,7 @@ const GLIDE = 1.4;
 
 let lenis: Lenis | null = null;
 let ready = false;
+let smoothWheel = true;
 
 export const motionEnabled = (): boolean => document.documentElement.classList.contains('motion');
 export const getLenis = (): Lenis | null => lenis;
@@ -22,13 +23,18 @@ export function initMotion(): void {
   ScrollTrigger.clearScrollMemory('manual');
   if (!motionEnabled()) return;
   void import('lenis').then(({ default: Lenis }) => {
-    const instance = new Lenis(LENIS);
+    const instance = new Lenis({ ...LENIS, smoothWheel });
     instance.stop();
     instance.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => instance.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
     lenis = instance;
   });
+}
+
+export function setSmoothWheel(enabled: boolean): void {
+  smoothWheel = enabled;
+  if (lenis) lenis.options.smoothWheel = enabled;
 }
 
 export function glide(target: number | HTMLElement): void {
