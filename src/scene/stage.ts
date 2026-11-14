@@ -2,8 +2,9 @@ import { Euler, MathUtils, type Mesh, type PerspectiveCamera, Quaternion, Raycas
 import type { SceneCore } from './core';
 import { damp, type IntroState, introState, type MoveState, moveState, wrapAngle } from './curves';
 import { BACKDROP_OVERSCAN, BACKDROP_TRAVEL, BACKDROP_Z, BANK, BLOOM, BRIGHTNESS, CAMERA_Z, CENTER, ENV, FOV, type FrameName, INTRO, NARROW, NARROW_ASPECT, NUDGE, OFF_HOME_DEPTH, SPIN, TILT } from './frames';
-import { CORONA } from './glass';
+import { CORONA, setGlassFinish } from './glass';
 import { createInput } from './input';
+import { createGovernor, forcedLevel, initialLevel, LEVEL_NAMES, QUALITY, type QualityLevel, readHints, rememberLevel, settledLevel } from './quality';
 import { createRenderParts } from './render';
 import { createGlassRig } from './rig';
 import { buildPath, dwell, type Path, rigProgress, scrollLift, type Target, targetAt, type Viewport } from './path';
@@ -25,6 +26,8 @@ export interface Stage {
   dispose(): void;
 }
 
+const FRAME_SLACK = 2;
+
 function createHitTest(canvas: HTMLCanvasElement, camera: PerspectiveCamera, target: Mesh): (x: number, y: number) => boolean {
   const raycaster = new Raycaster();
   const ndc = new Vector2();
@@ -36,15 +39,34 @@ function createHitTest(canvas: HTMLCanvasElement, camera: PerspectiveCamera, tar
   };
 }
 
+function startLevel(gl: WebGLRenderingContext | WebGL2RenderingContext): { level: QualityLevel; adaptive: boolean } {
+  const forced = forcedLevel();
+  if (forced !== null) return { level: forced, adaptive: false };
+  const guess = initialLevel(readHints(gl));
+  const settled = settledLevel();
+  return { level: settled === null ? guess : (Math.min(guess, settled) as QualityLevel), adaptive: true };
+}
+
 export function createStage({ canvas, core, backdrop, still }: StageOptions): Stage {
-  const parts = createRenderParts(canvas);
+  const parts = createRenderParts(canvas, 2);
+  const start = startLevel(parts.renderer.getContext());
+  const governor = start.adaptive ? createGovernor(start.level) : null;
+  let quality = QUALITY[start.level];
   const { scene, camera, composer, bloom } = parts;
-  const sky = createSky({ camera, fov: FOV, cameraZ: CAMERA_Z, z: BACKDROP_Z, overscan: BACKDROP_OVERSCAN, reducedMotion: still });
+  const sky = createSky({ camera, renderRatio: parts.ratio, fov: FOV, cameraZ: CAMERA_Z, z: BACKDROP_Z, overscan: BACKDROP_OVERSCAN, reducedMotion: still });
   scene.add(sky.group);
   const glassRig = createGlassRig();
   const { rig, bank, orient, spin, crescent, corona, glass } = glassRig;
   scene.add(rig);
   const hitTest = createHitTest(canvas, camera, crescent);
+
+  function applyLevel(level: QualityLevel): void {
+    quality = QUALITY[level];
+    parts.setQuality(level);
+    setGlassFinish(glass, quality);
+    document.documentElement.dataset.quality = LEVEL_NAMES[level];
+  }
+  applyLevel(start.level);
 
   const spinState = value(0);
   const pos = { x: value(0), y: value(0), z: value(0) };
@@ -52,7 +74,7 @@ export function createStage({ canvas, core, backdrop, still }: StageOptions): St
   const presence = value(0);
   const lean = { roll: 0, pitch: 0 };
   const fx = { glint: 0, glintTarget: 0, flash: 0, velocity: 0 };
-  const clock = { introStart: null as number | null, moveStart: null as number | null, landed: false, lastReach: 0, placed: false, lastScroll: scrollY, last: performance.now() };
+  const clock = { introStart: null as number | null, moveStart: null as number | null, landed: false, lastReach: 0, placed: false, lastScroll: scrollY, last: performance.now(), lastTick: performance.now() };
   let path: Path = { anchors: [], curve: null };
   let lost = false;
   let readyPending = false;
@@ -205,12 +227,25 @@ export function createStage({ canvas, core, backdrop, still }: StageOptions): St
     canvas.dataset.frameTarget = next ?? '';
   }
 
+  function govern(now: number): void {
+    const interval = now - clock.lastTick;
+    clock.lastTick = now;
+    const next = governor?.sample(now, interval) ?? null;
+    if (next === null) return;
+    applyLevel(next);
+    rememberLevel(next);
+    resize();
+  }
+
   function tick(now: number): void {
     frame = requestAnimationFrame(tick);
-    const dt = Math.min((now - clock.last) / 1000, 0.1);
-    clock.last = now;
+    govern(now);
     markTarget();
     if (lost) return;
+    const elapsed = now - clock.last;
+    if (quality.fps > 0 && elapsed < 1000 / quality.fps - FRAME_SLACK) return;
+    const dt = Math.min(elapsed / 1000, 0.1);
+    clock.last = now;
     updateMotion(dt);
     place(dt, now);
     composer.render();

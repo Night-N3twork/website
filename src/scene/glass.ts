@@ -6,6 +6,14 @@ const STRIP_COUNT = 9;
 
 export const CORONA = { x: -0.05, y: -0.04, size: 4.4, strength: 0.7 };
 
+const FINISH = { dispersion: 0.85, iridescence: 0.42, clearcoat: 1 };
+
+export function setGlassFinish(material: MeshPhysicalMaterial, finish: { dispersion: boolean; iridescence: boolean; clearcoat: boolean }): void {
+  material.dispersion = finish.dispersion ? FINISH.dispersion : 0;
+  material.iridescence = finish.iridescence ? FINISH.iridescence : 0;
+  material.clearcoat = finish.clearcoat ? FINISH.clearcoat : 0;
+}
+
 export function createGlassMaterial(): MeshPhysicalMaterial {
   return new MeshPhysicalMaterial({
     color: 0xffffff,
@@ -14,12 +22,12 @@ export function createGlassMaterial(): MeshPhysicalMaterial {
     transmission: 1,
     thickness: 1.25,
     ior: 1.52,
-    dispersion: 0.85,
+    dispersion: FINISH.dispersion,
     attenuationColor: new Color('#c4cfff'),
     attenuationDistance: 3.4,
-    clearcoat: 1,
+    clearcoat: FINISH.clearcoat,
     clearcoatRoughness: 0.025,
-    iridescence: 0.42,
+    iridescence: FINISH.iridescence,
     iridescenceIOR: 1.32,
     iridescenceThicknessRange: [140, 520],
     envMapIntensity: 1.7,

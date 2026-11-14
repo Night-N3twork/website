@@ -54,6 +54,22 @@ describe('deckChapter', () => {
   });
 });
 
+describe('chapter cleanup', () => {
+  it('leaves no scroll triggers behind', () => {
+    initMotion();
+    const main = document.createElement('main');
+    main.append(deck(3));
+    main.insertAdjacentHTML('beforeend', '<div class="marquee"><div class="marquee-track"></div></div>');
+    document.body.append(main);
+    const before = ScrollTrigger.getAll().length;
+    const cleanup = buildRouteChapters(main, { entered: new Promise(() => undefined), context: gsap.context(() => undefined) });
+    expect(ScrollTrigger.getAll().length).toBeGreaterThan(before);
+    cleanup();
+    expect(ScrollTrigger.getAll().length).toBe(before);
+    main.remove();
+  });
+});
+
 describe('buildRouteChapters', () => {
   it('chapters are a no-op without their sections', () => {
     const main = document.createElement('main');

@@ -46,13 +46,19 @@ describe('routeFor', () => {
   });
 
   it('sends the English prefix to the bare path', () => {
-    expect(route('/en')).toEqual({ action: 'redirect', to: '/', status: 307 });
-    expect(route('/en/supporters?a=1')).toEqual({ action: 'redirect', to: '/supporters?a=1', status: 307 });
-    expect(route('/EN/supporters')).toEqual({ action: 'redirect', to: '/supporters', status: 307 });
+    expect(route('/en')).toEqual({ action: 'redirect', to: '/', status: 308 });
+    expect(route('/en/supporters?a=1')).toEqual({ action: 'redirect', to: '/supporters?a=1', status: 308 });
+    expect(route('/EN/supporters')).toEqual({ action: 'redirect', to: '/supporters', status: 308 });
+  });
+
+  it('sends any other casing or escaped letters to the canonical path', () => {
+    expect(route('/PROJECTS/Dusk')).toEqual({ action: 'redirect', to: '/projects/dusk', status: 308 });
+    expect(route('/projects/%64usk?x=1')).toEqual({ action: 'redirect', to: '/projects/dusk?x=1', status: 308 });
+    expect(route('/es/Projects')).toEqual({ action: 'redirect', to: '/es/projects', status: 308 });
   });
 
   it('lowercases a locale prefix', () => {
-    expect(route('/ES/supporters')).toEqual({ action: 'redirect', to: '/es/supporters', status: 307 });
+    expect(route('/ES/supporters')).toEqual({ action: 'redirect', to: '/es/supporters', status: 308 });
   });
 
   it('drops a trailing slash first', () => {
@@ -63,7 +69,7 @@ describe('routeFor', () => {
   it('never builds a protocol-relative location', () => {
     const raw = (pathname: string) => routeFor(Object.assign(new URL('http://localhost'), { pathname }));
     expect(raw('//evil/')).toEqual({ action: 'redirect', to: '/evil', status: 308 });
-    expect(raw('/en//evil')).toEqual({ action: 'redirect', to: '/evil', status: 307 });
+    expect(raw('/en//evil')).toEqual({ action: 'redirect', to: '/evil', status: 308 });
   });
 
   it('drops a trailing slash from endpoints and files too', () => {
@@ -82,9 +88,9 @@ describe('redirectFor', () => {
   const redirect = (path: string) => redirectFor(new URL(path, 'http://x'));
 
   it('returns only the redirects', () => {
-    expect(redirect('/en/projects')).toEqual({ to: '/projects', status: 307 });
+    expect(redirect('/en/projects')).toEqual({ to: '/projects', status: 308 });
     expect(redirect('/projects/')).toEqual({ to: '/projects', status: 308 });
-    expect(redirect('/ES/projects?x=1')).toEqual({ to: '/es/projects?x=1', status: 307 });
+    expect(redirect('/ES/projects?x=1')).toEqual({ to: '/es/projects?x=1', status: 308 });
   });
 
   it('is null for pages and files that need no redirect', () => {

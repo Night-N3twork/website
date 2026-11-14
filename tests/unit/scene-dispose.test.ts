@@ -9,7 +9,7 @@ describe('scene disposal', () => {
   it('frees every sky geometry and material', () => {
     const geometries = vi.spyOn(BufferGeometry.prototype, 'dispose');
     const materials = vi.spyOn(Material.prototype, 'dispose');
-    const sky = createSky({ camera: new PerspectiveCamera(), fov: 32, cameraZ: 9, z: -7, overscan: 1.24, reducedMotion: true });
+    const sky = createSky({ camera: new PerspectiveCamera(), renderRatio: () => 1, fov: 32, cameraZ: 9, z: -7, overscan: 1.24, reducedMotion: true });
     sky.dispose();
     expect(geometries).toHaveBeenCalledTimes(3);
     expect(materials).toHaveBeenCalledTimes(3);

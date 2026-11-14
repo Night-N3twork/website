@@ -82,7 +82,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <script nonce={nonce} suppressHydrationWarning dangerouslySetInnerHTML={{ __html: MOTION_CLASS }} />
         <Meta />
-        <Links />
+        <Links nonce={nonce} />
         <SiteJsonLd />
       </head>
       <body data-route={route}>

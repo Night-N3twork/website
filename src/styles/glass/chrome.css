@@ -36,6 +36,7 @@ main:focus { outline: none; }
 
 .menu {
   --c: 22px;
+  overscroll-behavior: contain;
   --closed: polygon(100% 0, 100% 0, 100% 0, 100% 0, 100% 0, 100% 0);
   --opened: polygon(0 0, calc(100% - var(--c)) 0, 100% var(--c), 100% 100%, var(--c) 100%, 0 calc(100% - var(--c)));
   position: fixed;

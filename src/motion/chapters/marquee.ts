@@ -14,7 +14,7 @@ export function marqueeChapter(main: HTMLElement): () => void {
   const measure = (): void => void (state.half = track.scrollWidth / 2);
   measure();
   ScrollTrigger.addEventListener('refresh', measure);
-  ScrollTrigger.create({
+  const st = ScrollTrigger.create({
     trigger: el,
     start: 'top bottom',
     end: 'bottom top',
@@ -39,5 +39,6 @@ export function marqueeChapter(main: HTMLElement): () => void {
     ScrollTrigger.removeEventListener('refresh', measure);
     gsap.ticker.remove(tick);
     clearTimeout(state.rest);
+    st.kill();
   };
 }

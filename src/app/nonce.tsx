@@ -20,6 +20,13 @@ export function NonceProvider({ value, children }: { value: string; children: Re
   return <NonceReactContext.Provider value={value}>{children}</NonceReactContext.Provider>;
 }
 
+let pageNonce: string | null = null;
+
+function readPageNonce(): string {
+  pageNonce ??= typeof document === 'undefined' ? '' : (document.querySelector<HTMLScriptElement>('script[nonce]')?.nonce ?? '');
+  return pageNonce;
+}
+
 export function useNonce(): string {
-  return useContext(NonceReactContext);
+  return useContext(NonceReactContext) || readPageNonce();
 }

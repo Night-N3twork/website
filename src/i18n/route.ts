@@ -1,23 +1,36 @@
 import { DEFAULT_LOCALE } from './locales';
 import { localizePath, splitLocale } from './paths';
 
-export type Route = { action: 'pass' } | { action: 'rewrite'; to: string } | { action: 'redirect'; to: string; status: 307 | 308 };
+export type Route = { action: 'pass' } | { action: 'rewrite'; to: string } | { action: 'redirect'; to: string; status: 308 };
 
 const UNLOCALIZED = /^\/(?:api|assets)(?:\/|$)|\.|opengraph-image/;
+
+function canonicalSegment(segment: string): string {
+  try {
+    return encodeURIComponent(decodeURIComponent(segment)).toLowerCase();
+  } catch {
+    return segment.toLowerCase();
+  }
+}
+
+const canonicalPath = (pathname: string): string => pathname.split('/').map(canonicalSegment).join('/');
+
+const redirect = (to: string): Route => ({ action: 'redirect', to, status: 308 });
 
 export function routeFor(url: URL): Route {
   const pathname = url.pathname.replace(/\/{2,}/g, '/');
   const { search } = url;
-  if (pathname.length > 1 && pathname.endsWith('/')) return { action: 'redirect', to: `${pathname.replace(/\/+$/, '') || '/'}${search}`, status: 308 };
+  if (pathname.length > 1 && pathname.endsWith('/')) return redirect(`${pathname.replace(/\/+$/, '') || '/'}${search}`);
   if (UNLOCALIZED.test(pathname)) return { action: 'pass' };
-  const { locale, path, prefix } = splitLocale(pathname);
-  if (prefix === null) return { action: 'rewrite', to: `/${DEFAULT_LOCALE}${pathname === '/' ? '' : pathname}${search}` };
-  if (locale === DEFAULT_LOCALE) return { action: 'redirect', to: `${path}${search}`, status: 307 };
-  if (prefix !== locale) return { action: 'redirect', to: `${localizePath(path, locale)}${search}`, status: 307 };
+  const canonical = canonicalPath(pathname);
+  const { locale, path, prefix } = splitLocale(canonical);
+  if (prefix === null) return canonical === pathname ? { action: 'rewrite', to: `/${DEFAULT_LOCALE}${pathname === '/' ? '' : pathname}${search}` } : redirect(`${canonical}${search}`);
+  if (locale === DEFAULT_LOCALE) return redirect(`${path}${search}`);
+  if (prefix !== locale || canonical !== pathname) return redirect(`${localizePath(path, locale)}${search}`);
   return { action: 'pass' };
 }
 
-export type Redirect = { to: string; status: 307 | 308 };
+export type Redirect = { to: string; status: 308 };
 
 export function redirectFor(url: URL): Redirect | null {
   const route = routeFor(url);

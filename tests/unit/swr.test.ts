@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { createCache, type Life } from '@/lib/data/swr';
+import { createCache, type Life, RETRY_LIFE } from '@/lib/data/swr';
 
 const LIFE: Life = { fresh: 60, expire: 600 };
 const always = () => LIFE;
@@ -144,5 +144,34 @@ describe('createCache', () => {
     cache.clear();
     await cache.get('uptime', load, always);
     expect(load).toHaveBeenCalledTimes(2);
+  });
+
+  describe('when a refresh comes back as a failure', () => {
+    type Value = { ok: boolean; n: number };
+    const lifeOf = (value: Value): Life => (value.ok ? LIFE : RETRY_LIFE);
+
+    it('keeps the last good value and retries after the short window', async () => {
+      const { cache, tick } = setup();
+      const load = vi.fn<() => Promise<Value>>().mockResolvedValueOnce({ ok: true, n: 1 }).mockResolvedValueOnce({ ok: false, n: 0 }).mockResolvedValueOnce({ ok: true, n: 2 });
+      await cache.get('discord', load, lifeOf);
+      tick(61);
+      expect(await cache.get('discord', load, lifeOf)).toEqual({ ok: true, n: 1 });
+      await settle();
+      expect(await cache.get('discord', load, lifeOf)).toEqual({ ok: true, n: 1 });
+      expect(load).toHaveBeenCalledTimes(2);
+      tick(RETRY_LIFE.fresh + 1);
+      await cache.get('discord', load, lifeOf);
+      await settle();
+      expect(load).toHaveBeenCalledTimes(3);
+      expect(await cache.get('discord', load, lifeOf)).toEqual({ ok: true, n: 2 });
+    });
+
+    it('lets a failure replace a good value that has expired', async () => {
+      const { cache, tick } = setup();
+      const load = vi.fn<() => Promise<Value>>().mockResolvedValueOnce({ ok: true, n: 1 }).mockResolvedValueOnce({ ok: false, n: 0 });
+      await cache.get('discord', load, lifeOf);
+      tick(LIFE.expire + 1);
+      expect(await cache.get('discord', load, lifeOf)).toEqual({ ok: false, n: 0 });
+    });
   });
 });

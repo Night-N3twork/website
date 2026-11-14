@@ -1,6 +1,5 @@
 import { AdditiveBlending, BufferGeometry, CanvasTexture, Float32BufferAttribute, Group, MathUtils, Mesh, MeshBasicMaterial, type PerspectiveCamera, PlaneGeometry, Points, ShaderMaterial, SRGBColorSpace, type Texture, TextureLoader, Vector2 } from 'three';
 import backdrops from './backdrops.json';
-import { MAX_PIXEL_RATIO } from './frames';
 
 export type Backdrop = 'range' | 'peak';
 
@@ -32,6 +31,7 @@ export function backdropUrl(backdrop: Backdrop, width: number): string {
 }
 
 const STAR_COUNT = 520;
+const STAR_LOOK = { device: 2, render: 1.75 };
 const STAR_SEED = 11;
 const SHOOT = { gap: [8, 20] as [number, number], duration: 0.95, length: 0.2, travel: 0.42, thickness: 0.0035 };
 const FADE_RATE = 7;
@@ -169,6 +169,7 @@ function stepShoot(shoot: Shoot, view: View, dt: number): void {
 
 export interface SkyOptions {
   camera: PerspectiveCamera;
+  renderRatio: () => number;
   fov: number;
   cameraZ: number;
   z: number;
@@ -191,7 +192,7 @@ export interface Sky {
   dispose(): void;
 }
 
-export function createSky({ camera, fov, cameraZ, z, overscan, reducedMotion }: SkyOptions): Sky {
+export function createSky({ camera, renderRatio, fov, cameraZ, z, overscan, reducedMotion }: SkyOptions): Sky {
   const group = new Group();
   group.position.z = z;
   const plane = new Mesh(new PlaneGeometry(1, 1), new MeshBasicMaterial({ color: 0x000000 }));
@@ -213,7 +214,7 @@ export function createSky({ camera, fov, cameraZ, z, overscan, reducedMotion }: 
     view.h = 2 * (cameraZ - z) * Math.tan(MathUtils.degToRad(fov / 2));
     view.w = view.h * camera.aspect;
     field.scale.set(view.w * overscan, view.h * overscan, 1);
-    stars.material.uniforms.uPixelRatio.value = Math.min(devicePixelRatio, 2);
+    stars.material.uniforms.uPixelRatio.value = (renderRatio() * Math.min(devicePixelRatio, STAR_LOOK.device)) / Math.min(devicePixelRatio, STAR_LOOK.render);
     const image = plane.material.map?.image as { width: number; height: number } | undefined;
     if (!image) return;
     const ratio = image.width / image.height;
@@ -227,7 +228,7 @@ export function createSky({ camera, fov, cameraZ, z, overscan, reducedMotion }: 
     if (textures[key]) return;
     void probeAvif().then(() => {
       if (disposed) return;
-      const span = Math.max(innerWidth, innerHeight * PHOTO_ASPECT) * Math.min(devicePixelRatio, MAX_PIXEL_RATIO) * overscan;
+      const span = Math.max(innerWidth, innerHeight * PHOTO_ASPECT) * renderRatio() * overscan;
       loader.load(backdropUrl(key, span), (texture) => {
         if (disposed) return texture.dispose();
         texture.colorSpace = SRGBColorSpace;

@@ -9,6 +9,7 @@ const GLIDE = 1.4;
 let lenis: Lenis | null = null;
 let ready = false;
 let smoothWheel = true;
+let released = false;
 
 export const motionEnabled = (): boolean => document.documentElement.classList.contains('motion');
 export const getLenis = (): Lenis | null => lenis;
@@ -24,12 +25,22 @@ export function initMotion(): void {
   if (!motionEnabled()) return;
   void import('lenis').then(({ default: Lenis }) => {
     const instance = new Lenis({ ...LENIS, smoothWheel });
-    instance.stop();
+    if (!released) instance.stop();
     instance.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => instance.raf(time * 1000));
     gsap.ticker.lagSmoothing(0);
     lenis = instance;
   });
+}
+
+export function holdScroll(): void {
+  released = false;
+  lenis?.stop();
+}
+
+export function releaseScroll(): void {
+  released = true;
+  lenis?.start();
 }
 
 export function setSmoothWheel(enabled: boolean): void {

@@ -33,7 +33,6 @@ export const BACKDROP_Z = -7;
 export const BACKDROP_OVERSCAN = 1.24;
 export const BACKDROP_TRAVEL = 0.8;
 export const BRIGHTNESS = { top: 0.82, bottom: 0.4 };
-export const MAX_PIXEL_RATIO = 1.75;
 export const NARROW_ASPECT = 0.85;
 export const NARROW = { x: 0.16, y: 0.36, scale: 0.62 };
 export const DWELL = 0.55;

@@ -103,6 +103,9 @@ html.motion:not(.intro-done) :is([data-intro], .nav, .rail, .switch) { visibilit
   text-shadow: none;
 }
 
+html[data-quality='low'] .cut { --fill: rgb(8 11 19 / 0.84); backdrop-filter: none; }
+html[data-quality='low'] .nav::before { backdrop-filter: none; }
+
 .cut::after, .btn-ghost::after {
   content: '';
   position: absolute;

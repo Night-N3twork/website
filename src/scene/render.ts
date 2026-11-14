@@ -4,8 +4,9 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { SMAAPass } from 'three/addons/postprocessing/SMAAPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
-import { BLOOM, CAMERA_Z, FOV, MAX_PIXEL_RATIO } from './frames';
+import { BLOOM, CAMERA_Z, FOV } from './frames';
 import { buildEnvironment } from './glass';
+import { QUALITY, type QualityLevel, renderRatio } from './quality';
 
 export interface RenderParts {
   renderer: WebGLRenderer;
@@ -13,12 +14,14 @@ export interface RenderParts {
   camera: PerspectiveCamera;
   composer: EffectComposer;
   bloom: UnrealBloomPass;
+  ratio(): number;
+  setQuality(level: QualityLevel): void;
   resize(width: number, height: number): void;
   rebuildEnvironment(): void;
   dispose(): void;
 }
 
-export function createRenderParts(canvas: HTMLCanvasElement): RenderParts {
+export function createRenderParts(canvas: HTMLCanvasElement, level: QualityLevel): RenderParts {
   const renderer = new WebGLRenderer({ canvas, powerPreference: 'high-performance' });
   renderer.toneMapping = NeutralToneMapping;
   renderer.toneMappingExposure = 1.05;
@@ -34,17 +37,37 @@ export function createRenderParts(canvas: HTMLCanvasElement): RenderParts {
   composer.addPass(bloom);
   composer.addPass(new OutputPass());
   composer.addPass(smaa);
+  let quality = QUALITY[level];
+  let ratio = 1;
+  let size = { width: 1, height: 1 };
+  const bloomSize = bloom.setSize.bind(bloom);
+  bloom.setSize = (width: number, height: number) => bloomSize(Math.max(1, Math.round(width * quality.bloom)), Math.max(1, Math.round(height * quality.bloom)));
+
+  function resize(width: number, height: number): void {
+    size = { width, height };
+    ratio = renderRatio(quality, devicePixelRatio, width, height);
+    renderer.setPixelRatio(ratio);
+    renderer.setSize(width, height, false);
+    composer.setPixelRatio(ratio);
+    composer.setSize(width, height);
+    camera.aspect = width / Math.max(height, 1);
+    camera.updateProjectionMatrix();
+  }
+
+  function setQuality(next: QualityLevel): void {
+    quality = QUALITY[next];
+    renderer.transmissionResolutionScale = quality.transmission;
+    smaa.enabled = quality.smaa;
+    bloom.enabled = quality.bloom > 0;
+    resize(size.width, size.height);
+  }
+
+  setQuality(level);
   return {
     renderer, scene, camera, composer, bloom,
-    resize(width, height) {
-      const ratio = Math.min(devicePixelRatio, MAX_PIXEL_RATIO);
-      renderer.setPixelRatio(ratio);
-      renderer.setSize(width, height, false);
-      composer.setPixelRatio(ratio);
-      composer.setSize(width, height);
-      camera.aspect = width / Math.max(height, 1);
-      camera.updateProjectionMatrix();
-    },
+    ratio: () => ratio,
+    setQuality,
+    resize,
     rebuildEnvironment() {
       environment.dispose();
       environment = buildEnvironment(renderer);

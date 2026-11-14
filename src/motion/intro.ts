@@ -1,6 +1,6 @@
 import gsap from 'gsap';
 import type { Scene } from '@/scene';
-import { getLenis, motionEnabled } from './core';
+import { holdScroll, motionEnabled, releaseScroll } from './core';
 
 export const T = { veil: 0.9, move: 2.5, land: 1.4, skip: 4, heroSkip: 2 };
 export const LOAD_TIMELINE = 'intro-load';
@@ -12,7 +12,7 @@ const byId = (id: string): HTMLElement | null => document.getElementById(id);
 
 function finish(): void {
   document.documentElement.classList.add('intro-done');
-  getLenis()?.start();
+  releaseScroll();
 }
 
 function removeLoader(): void {
@@ -54,7 +54,7 @@ export function runIntro(scene: IntroScene, entrance: () => gsap.core.Timeline):
     finish();
     return Promise.resolve();
   }
-  getLenis()?.stop();
+  holdScroll();
   return new Promise((resolve) => {
     const skipper = new AbortController();
     const load = loadTimeline(scene, veil, loader);

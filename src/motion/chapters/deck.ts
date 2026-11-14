@@ -76,5 +76,6 @@ export function deckChapter(main: HTMLElement): () => void {
   return () => {
     jumps.forEach((off) => off());
     ScrollTrigger.removeEventListener('refresh', place);
+    st.kill();
   };
 }

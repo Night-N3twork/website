@@ -51,7 +51,7 @@ export function Menu({ chrome, path, languages, open, onClose, trigger }: MenuPr
   const dialog = useDialog(open, trigger);
   const { labels } = chrome;
   return (
-    <dialog className="menu cut" id="site-menu" ref={dialog} aria-label={labels.menu} onCancel={(e) => (e.preventDefault(), onClose())} onClose={onClose} onKeyDown={trapTab}>
+    <dialog className="menu cut" id="site-menu" ref={dialog} data-lenis-prevent="" aria-label={labels.menu} onCancel={(e) => (e.preventDefault(), onClose())} onClose={onClose} onKeyDown={trapTab}>
       <button type="button" className="menu-close" onClick={onClose}>
         {labels.close}
       </button>
