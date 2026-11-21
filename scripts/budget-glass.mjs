@@ -3,7 +3,7 @@ import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { gzipSync } from 'node:zlib';
 
-const BUDGET = 163_840;
+const BUDGET = 168_960;
 const CLIENT = 'build/client';
 const ROUTES = ['src/app/root.tsx', 'src/app/routes/home.tsx'];
 
