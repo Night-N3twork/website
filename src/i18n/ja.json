@@ -66,7 +66,7 @@
 			},
 			"lunar": {
 				"name": "Lunar",
-				"description": "ブラウザにインスパイアされたプロキシ"
+				"description": "インターネット検閲の回避を目的とした、高速でタブ機能を備えたウェブプロキシです。"
 			},
 			"linkArchive": {
 				"name": "Link Archive",
@@ -74,7 +74,7 @@
 			},
 			"solar": {
 				"name": "Solar",
-				"description": "Discordフィルタチェッカー兼ユーティリティBot"
+				"description": "人気の高い学校向けフィルターでリンクがブロックされるか確認できます。"
 			},
 			"nyxai": {
 				"name": "NyxAI",
@@ -146,7 +146,7 @@
 			},
 			"lunar": {
 				"name": "Lunar",
-				"description": "ブラウザにインスパイアされたプロキシ"
+				"description": "インターネット検閲の回避を目的とした、高速でタブ機能を備えたウェブプロキシです。"
 			},
 			"linkArchive": {
 				"name": "Link Archive",
@@ -154,7 +154,7 @@
 			},
 			"solar": {
 				"name": "Solar",
-				"description": "Discordフィルタチェッカー兼ユーティリティBot"
+				"description": "人気の高い学校向けフィルターでリンクがブロックされるか確認できます。"
 			},
 			"nyxai": {
 				"name": "NyxAI",
